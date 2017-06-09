@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  9 JUN 2017 14:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  9 JUN 2017 16:46
 entering extended mode
 **./macs.tex
 (macs.tex
@@ -512,37 +512,104 @@ Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen108
 \Gin@req@width=\dimen109
 )
-\c@theorem=\count118
-\c@corollary=\count119
- (macs.aux)
+("C:\Users\john\AppData\Local\Programs\MiKTeX 2.9\tex\latex\algorithm2e\algorit
+hm2e.sty"
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count118
+\algocf@hangindent=\skip54
+
+("C:\Users\john\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ltxmisc\relsize.sty
+"
+Package: relsize 2003/07/04 ver 3.1
+)
+********************************************************
+Package `algorithm2e' Release 5.1 -- october 19 2015 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (christophe.fiorio@umontpellier.fr)
+********************************************************
+\skiptotal=\skip55
+\skiplinenumber=\skip56
+\skiprule=\skip57
+\skiphlne=\skip58
+\skiptext=\skip59
+\skiplength=\skip60
+\algomargin=\skip61
+\skipalgocfslide=\skip62
+\algowidth=\dimen110
+\inoutsize=\dimen111
+\inoutindent=\dimen112
+\interspacetitleruled=\dimen113
+\interspacealgoruled=\dimen114
+\interspacetitleboxruled=\dimen115
+\algocf@ruledwidth=\skip63
+\algocf@inoutbox=\box33
+\algocf@inputbox=\box34
+\AlCapSkip=\skip64
+\AlCapHSkip=\skip65
+\algoskipindent=\skip66
+\algocf@nlbox=\box35
+\algocf@hangingbox=\box36
+\algocf@untilbox=\box37
+\algocf@skipuntil=\skip67
+\algocf@capbox=\box38
+\algoheightruledefault=\skip68
+\algoheightrule=\skip69
+\algotitleheightruledefault=\skip70
+\algotitleheightrule=\skip71
+\c@algocfline=\count119
+\c@algocfproc=\count120
+\c@algocf=\count121
+\algocf@algoframe=\box39
+\algocf@algobox=\box40
+)
+("C:\Users\john\AppData\Local\Programs\MiKTeX 2.9\tex\latex\multirow\multirow.s
+ty"
+Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
+\multirow@colwidth=\skip72
+\multirow@cntb=\count122
+\multirow@dima=\skip73
+\bigstrutjot=\dimen116
+)
+\c@theorem=\count123
+\c@corollary=\count124
+ (macs.aux
+
+LaTeX Warning: Label `my-label' multiply defined.
+
+
+LaTeX Warning: Label `my-label' multiply defined.
+
+)
 \openout1 = `macs.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
 
 ("C:\Users\john\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mki
 i"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count120
-\scratchdimen=\dimen110
-\scratchbox=\box33
-\nofMPsegments=\count121
-\nofMParguments=\count122
+\scratchcounter=\count125
+\scratchdimen=\dimen117
+\scratchbox=\box41
+\nofMPsegments=\count126
+\nofMParguments=\count127
 \everyMPshowfont=\toks27
-\MPscratchCnt=\count123
-\MPscratchDim=\dimen111
-\MPnumerator=\count124
-\makeMPintoPDFobject=\count125
+\MPscratchCnt=\count128
+\MPscratchDim=\dimen118
+\MPnumerator=\count129
+\makeMPintoPDFobject=\count130
 \everyMPtoPDFconversion=\toks28
 )
 ("C:\Users\john\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\pdftexcm
@@ -602,13 +669,13 @@ G,.JBIG2,.JB2,.eps]
 Unavoidable over/underfulls may occur in the first
 few pages of dalcsthesis. These can usually be ignored.
 However, if uncorrectable errors occur, notify staff.
-LaTeX Info: Redefining \\ on input line 42.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 42.
+LaTeX Info: Redefining \\ on input line 43.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 43.
 ("C:\Users\john\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 42.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 43.
 
 [1
 
@@ -632,7 +699,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 ]
-\ab@page=\count126
+\ab@page=\count131
 
 No file macs.gls.
 [3
@@ -655,7 +722,7 @@ Chapter 2.
 File: Figures/partition.png Graphic file (type png)
 
 <use Figures/partition.png>
-Package pdftex.def Info: Figures/partition.png used on input line 120.
+Package pdftex.def Info: Figures/partition.png used on input line 121.
 (pdftex.def)             Requested size: 303.53267pt x 254.32367pt.
  [6
 
@@ -664,42 +731,84 @@ Package pdftex.def Info: Figures/partition.png used on input line 120.
 File: Figures/separatorTree.png Graphic file (type png)
 
 <use Figures/separatorTree.png>
-Package pdftex.def Info: Figures/separatorTree.png used on input line 128.
+Package pdftex.def Info: Figures/separatorTree.png used on input line 129.
 (pdftex.def)             Requested size: 346.89732pt x 260.31616pt.
  [7 <./Figures/separatorTree.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8]
+[9]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10]
+[11]
 Chapter 3.
-[8
+[12
 
 ]
 Chapter 4.
-(macs.bbl [9
 
-]) [10
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-] (macs.aux) ) 
+Overfull \hbox (25.20703pt too wide) in paragraph at lines 266--280
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (62.83466pt too wide) in paragraph at lines 288--302
+[][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[13
+
+] [14]
+Chapter 5.
+(macs.bbl [15
+
+]) [16
+
+
+] (macs.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 1061 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 3599 strings out of 493328
- 49530 string characters out of 3130507
- 123604 words of memory out of 3000000
- 7050 multiletter control sequences out of 15000+200000
- 9896 words of font info for 37 fonts, out of 3000000 for 9000
+ 4539 strings out of 493328
+ 64814 string characters out of 3130507
+ 178831 words of memory out of 3000000
+ 7978 multiletter control sequences out of 15000+200000
+ 10205 words of font info for 38 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,5n,28p,1293b,234s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmbx12.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/john/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/john/AppData/Local/P
-rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/john/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users
-/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.p
-fb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmsy8.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmti12.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/font
-s/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on macs.pdf (14 pages, 154876 bytes).
+ 39i,12n,28p,1591b,2126s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmbx12.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/john/AppData/Local/Programs/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/john/AppData/Local
+/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/john/Ap
+pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Us
+ers/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12
+.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmr6.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr8.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/john/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/john/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/john/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on macs.pdf (20 pages, 204829 bytes).
 PDF statistics:
- 89 PDF objects out of 1000 (max. 8388607)
+ 120 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

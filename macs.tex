@@ -12,7 +12,8 @@
 \usepackage{amsthm}
 \usepackage{graphicx} %package to manage images
 \graphicspath{ {Figures/} }
-
+\usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage{multirow}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
@@ -133,17 +134,175 @@ We can see that each time we make a partitioning on a graph, it splits its verte
 Note that we arbitrarily decide which side of partition will be the left child or the right child in this stage. The tree is also not perfect balanced in some cases (e.g. one child is a leaf and the other is an internal node), the side of the children is also decided arbitrarily. We will take advantages of this "freedom" to further reduce the space to encode the graph in later time. The vertex labels may be disordered by making in-order traversal on the edge separator tree (e.g. in Figure 2.2 the order of the vertexes after in-order traversal is :$v_{1}$, $v_{4}$, $v_{2}$, $v_{3}$, $v_{5}$, $v_{6}$, $v_{7}$, $v_{8}$), we will renumber these vertex by making a in-order traversal along the edge separator tree.
 
 
-METIS Partition library. To recursively partition the graph, we used METIS's API
-in our project. METIS is an open source library developed by Karypis lib in University
-of Minnesota. It supports set of serial programs for partitioning graphs and partitioning
-nite element meshes. The algorithms implemented in METIS are based on the multilevel
-recursive-bisection, multilevel k-way, and multi-constraint partitioning schemes [2]. The
-METIS partitioning API returns one integer list with vertex index as key,as well as 0 or 1
-as value to indicate which side of partitioning the vertex belongs to (we put the vertexes
-with value 0 into left child and vertexes with value 1 into right child). The returned value
+\textbf{METIS Partition Library}. To recursively partition the graph, we use METIS's API in our project. METIS is an open source library developed by Karypis lib in University of Minnesota. It supports set of serial programs for partitioning graphs and partitioning finite element meshes. The algorithms implemented in METIS are based on the multilevel recursive-bisection, multilevel k-way, and multi-constraint partitioning schemes [2]. The METIS partitioning API returns one integer list with vertex index as key, and a flag 0 or 1 to indicate which side of partitioning the vertex belongs to. The returned value of METIS API does not provide information about edges, and the API takes two integer arrays (adjacency list of current graph and the index of vertex in adjacency list)as input parameters, hence before each calling of the METIS API, we need to generate an adjacency list and an index list for the current graph to be partitioned, and in order to collect the edge separators, we need both the adjacency list and the returned values after calling the API.
 
+The Algorithm to build the separator tree is given in Algorithm 1. Here we use $(V,E)$
+to represent a graph for simplicity, but in fact the METIS API takes formalized adjacency list and the index list as input parameters. So each time to call the METIS API, the current vertex set need to be renumbered temporally in contiguous ascending numbers, and the adjacency list needs to be initialized according to the temporally order. The METIS API also does not support to partition the graph with the vertex amount under 3, hence the very basic partitioning cases are defined by ourself.
+
+\begin{algorithm}
+    \underline{buildTree} $(V,E)$\;
+    \eIf{$|V|=1$}
+      {
+        return $V$\;
+      }
+      {
+      	$(V_{a},V_{b})$ $\leftarrow$ \textbf{METIS$\_$API} $(V,E)$  \;
+		$E_{sep}$ $\leftarrow$ \textbf{findEdgeSeparator} $(V,E,V_{a},V_{b})$ \;
+		$E'$ = $E \  - \ E_{sep}$   \;
+      	$E_{a}$ $\leftarrow$ $\{ (u,v) \in E' \ | \  u\in V_{a} \vee v \in V_{b} \}$ \;
+		$E_{b}$ = $E'$ - $E_{a}$ \;
+		$T_{a}$ $\leftarrow$ \textbf{buildTree} $(V_{a},E_{a})$ \;
+		$T_{b}$ $\leftarrow$ \textbf{buildTree} $(V_{b},E_{b})$ \;  
+        return \textbf{separatorTree} $(T_{a}, E_{sep}, T_{b})$ \; 
+      }
+    \caption{Building the edge separator tree}
+\end{algorithm}
+\bigskip
+
+\textbf{Building Adjacency Table}. After getting the edge separator tree, we need to renumber the vertexes based on an in-order traversal along the tree. Each vertex appears in one leaf of the tree will receive a new label which increases by one when visiting a new leaf node. A mapping table is also generated after completing the traversal, which will be used to build an adjacency list for each renumbered vertex by using the new vertex labels. Then we can build an adjacency list for each vertex, the list contains all the neighbouring vertexes in sorted order. We use gamma code to encode the difference of each adjacency pair in the list (e.g. $v_{1} - v$, $v_{2} - v_{1}$,..., $v_{n-1} - v_{n-2}$), each difference d costs $2\lfloor \log n \rfloor + 1$ bits to be encoded. Note that the value $v -v_{1}$ might be negative,so we store one flag bit for it. We also encode the number of the entries in an adjacency list at the starting position of the list, which will be used to support degree queries in constant time.
+
+\begin{lemma}
+Any n-vertex member in a class of graphs which satisfies a $n^{c}-edge$ separator
+theorem, can be encoded in $O(n)$ bits using an adjacency table.
+\end{lemma}
+ 
+\begin{proof}
+For each edge $(u, v)$ in an edge separator in a graph with s vertexes, the difference
+between vertex u and vertex v is $O(s)$. We use gamma code to encode the difference which would use $O(\log (s))$ bits, so that edge will contribute $O(\log (s))$ bits to the adjacency lists of both vertex u and vertex v. Hence, we charge $O(\log (s))$ to every edge in a separator of a graph with s vertices. Recall that by using the $n^{c}- edge$ separator theorem, each member with n vertexes in the class of the graph has a $\beta n^{c}$ edge separator whose removal partitions the member into two parts with at most $\beta n$ vertexes in each. Let define $S(n)$ to be an upper bound of required bits to encode a graph with n vertexes, and let $\alpha < a < 1 - \alpha $, then $S(n)$ satisfies the recurrence:
+\[ S(n) \leq S(an) = S(n-an) + O(n^{c} \log n) \]
+This recurrence can be solved to $S(n) = O(n)$, and the bits to encode the degree of all the vertexes is bounded by $0(n)$, because there are $O(n)$ edges in total. So the total space is $O(n)$ bits.
+\end{proof}
+
+\textbf{Child-flipping}. When encoding the graph, We contiguously encode the difference between each adjacency pair in the list by using gamma code. The gamma code use $2\lfloor \log n \rfloor + 1$ bits to encode a difference d. If we can make each difference "smaller", in other words, if we can make the labels of vertexes in an adjacency list closer to each other, then we can reduce the space to encode the adjacency list. We arbitrarily decide the side of partitioning during the construction of the separator tree (in our project, we decide the side of partitioning according to the output value of METIS API: '0' to the left child and '1' to right child), so there is a degree of freedom in the way to build the tree. To take advantage of this freedom, we can apply a heuristic optimization method called "child-flipping"~\cite{compact-representation} to our edge separator tree.
+
+The child-flipping algorithm works when making traversal along a separator tree, it tracks the nodes containing vertex labels which appear before and after the vertex labels in the current node. Let define $N_{L}$ to be the left children of current node's left ancestors and $N_{R}$ to be the right children of the current node's right ancestors, $N_{1}$ and $N_{2}$ represents the current node's left child and right child, respectively, and $E_{AB}$ indicates the number of edges between the vertexes in node A and node B. For each node, the vertexes in $N_{1}$ of the current node will have labels less than the vertexes' under the node, the vertexes in $N_{2}$ will have larger labels than all the vertexes under the node, and there is no intersection between the vertexes in $N_{L}$ and $N_{R}$ of the node. The child-flipping exams $E_{N_{L}N_{1}}$, $E_{N_{2}N_{R}}$, $E_{N_{L}N_{2}}$ and $E_{N_{1}N_{R}}$ of each node to ensure that $E_{N_{L}N_{1}} + E_{N_{L}N_{1}} \leq E_{N_{L}N_{1}} + E_{N_{L}N_{1}}$. If not, the child-flipping algorithm swaps the two children of current node. The meaning of making this swap is : after renumbering the vertexes based on an in-order traversal, if $E_{N_{L}N_{1}} + E_{N_{L}N_{1}} < E_{N_{L}N_{1}} + E_{N_{L}N_{1}}$, then the space to encode the edges $N_{L}N_{2}$ and $N_{1}N_{R}$ is greater than that to encode $N_{L}N_{2}$ and $N_{1}N_{R}$, because the difference $v_{N_{2}} -v_{N_{L}}$ is obviously greater than $v_{N_{1}} - v_{N_{L}}$, similar fact works on the difference of $v_{N_{R}}-v_{N_{1}} \  and \  v_{N_{R}}-v_{N_{2}}$.
+
+This heuristic algorithm can be applied to any edge separator tree as a postprocessing
+step. However, this process is quite time-consuming, the time cost of applying both METIS and child-flipping in Blandfor $et al.$ ~\cite{compact-representation}'s experiment shows a demonstration on this. To get the four numbers of edges($E_{N_{L}N_{1}}$, $E_{N_{2}N_{R}}$, $E_{N_{L}N_{2}}$ and $E_{N_{1}N_{R}}$ ), we need to have the four vertex sets: $N_{L}$, $N_{R}$, $N_{1}$ and $N_{2}$ for each tree node. The $N_{L}$ and $N_{R}$ of each node in separator tree can be pre-collected, but the $N_{1}$ and $N_{2}$ need to be calculate locally when reach the node. In our project, we make some efforts to reduce the time to conduct this child-flipping processing: Let assume we have a node $N_{a}$ in a separator tree with left child as $N_{b}$ and right child as $N_{c}$, if we knew the $N_{1}$ and $N_{2}$ of Na (denote as $N_{1a}$ and $N_{2a}$), then
+
+\begin{itemize}[noitemsep]
+\item for node b : $ N_{1b} = N_{1a}, N_{2b} = N_{2a} \cup N_{Ra}$
+\item for node c : $ N_{1c} = N_{1a} \cup N_{La}, N_{2c} = N_{2a}$ 
+\end{itemize}
+
+Having this general case, then we can generate the $N_{1}$ and $N_{2}$ for each node during the child-flipping traversal via DFS. The $N_{L}$ and $N_{R}$ of each node in separator tree can be pre-collected via a post-order traversal along the edge separator tree, the vertex set of a node is formed by merging the two vertex sets of its children in sorted order. When needing to expand the current $N_{1}$ or $N_{1}$, we include the new coming $N_{L}$ or $N_{R}$ as distinct sorted set instead of merging $N_{L}$ into $N_{1}$ or $N_{R}$ into $N_{2}$. Note that in term of a node, the size of $N_{L}$ or $N_{R}$ is always smaller that the size of $N_{1}$ or $N_{2}$, respectively. We check an existing of an edge by performing binary on larger sorted set, which improve the speed of child-flipping processing significantly .
 
 \chapter{Index Structure}
+
+
+\chapter{Experiment}
+
+
+\begin{table}[h]
+\centering
+\caption{Graph List}
+\label{graph-list}
+\begin{tabular}{|l||c|c|c|c|}
+\hline
+\multicolumn{1}{|c||}{Graph} & Vertexes & Edges   & Max Degree & Source        \\ \hline
+feocean                   & 143437   & 409593  & 6          & 3D mesh       \\
+m14b                      & 214765   & 1679018 & 40         & 3D mesh       \\
+febody                    & 45087    & 163734  & 28         & Scotch Graphs \\ 
+wave                      & 156317   & 1059331 & 44         & RIACS Grids   \\
+558a                      & 110971   & 741934  & 26         & Cytoscape     \\
+144                       & 144649   & 1074393 & 26         & Cytoscape     \\
+bcsstk30                  & 28924    & 1007284 & 218        & Matrix: HB    \\
+bcsstk31                  & 35588    & 572914  & 188        & Matrix: HB    \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+\begin{table}[h]
+\centering
+\caption{The performance of compact mechanisms.}
+\label{compact-performance}
+\begin{tabular}{|l||c|c||c|c||c|}
+\cline{2-6}
+\hline
+\multirow{2}{*}{Graph} & \multicolumn{2}{c||}{METIS} & \multicolumn{2}{c||}{METIS-CF} & \multirow{2}{*}{Degree} \\ \cline{2-5}
+                       & Time          & Space        & Time           & Space         &                         \\ \cline{6-6} \hline
+feocean                & 55.69         & 8.68         & 59.51          & 8.27          & 0.86                    \\
+m14b                   & 129.3         & 5.21         & 155.37         & 5.00          & 0.51                    \\
+febody                 & 6.33          & 4.64         & 7.2            & 4.25          & 0.82                    \\
+wave                   & 77.4          & 5.76         & 86.52          & 5.57          & 0.55                    \\
+558a                   & 39.06         & 5.45         & 52.33          & 5.21          & 0.54                    \\
+144                    & 67.09         & 5.32         & 84.33          & 5.13          & 0.52                    \\
+bcsstk30               & 7.89          & 2.29         & 12.3           & 2.24          & 0.17                    \\
+bcsstk31               & 6.61          & 2.98         & 9.02           & 2.89          & 0.30                    \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[h]
+\centering
+\caption{The space cost of various indexing schemes.}
+\label{my-label}
+\begin{tabular}{|l||c||c||c||c|c||c|c|}
+\hline
+\multicolumn{1}{|c||}{\multirow{2}{*}{Graph}} & Direct & Semi-D & Indirect & \multicolumn{2}{c||}{RRR} & \multicolumn{2}{c|}{SD Vector} \\\cline{2-8}
+\multicolumn{1}{|c||}{}                       & Space  & Space  & With D   & D-free     & With D     & D-free        & With D        \\ \hline
+feocean                                    & 5.6    & 2.8    & 0.84     & 1.96       & 2.03       & 1.58          & 1.59          \\
+m14b                                       & 2.05   & 1.02   & 0.42     & 0.95       & 1.01       & 0.64          & 0.64          \\
+febody                                     & 4.4    & 2.2    & 0.54     & 1.22       & 1.33       & 1.31          & 1.31          \\
+wave                                       & 2.36   & 1.18   & 0.46     & 1.07       & 1.14       & 0.72          & 0.72          \\
+558a                                       & 2.39   & 1.19   & 0.47     & 1.03       & 1.10       & 0.70          & 0.77          \\
+114                                        & 2.15   & 1.07   & 0.43     & 0.98       & 1.05       & 0.67          & 0.67          \\
+bcsstk30                                   & 0.46   & 0.23   & 0.26     & 0.33       & 0.35       & 0.16          & 0.16          \\
+bcsstk31                                   & 0.93   & 0.46   & 0.21     & 0.51       & 0.54       & 0.35          & 0.35          \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+\begin{table}[h]
+\centering
+\caption{The performance of various indexing schemes without degree of vertex encoded.}
+\label{my-label}
+\begin{tabular}{|l||c|c||c|c||c|c||c|c|}
+\hline
+\multicolumn{1}{|c||}{\multirow{2}{*}{Graph}} & \multicolumn{2}{c||}{Direct} & \multicolumn{2}{c||}{Semi-D} & \multicolumn{2}{c||}{RRR} & \multicolumn{2}{c|}{SD Vector} \\
+\cline{2-9}
+\multicolumn{1}{|c||}{}                       & D-query      & N-list      & D-query      & N-list      & D0query     & N-list    & D-query        & N-list       \\ \hline
+feocean                                    & 48.32        & 50.64       & 49.15        & 50.25       & 51.50       & 51.90     & 49.72          & 50.93        \\
+m14b                                       & 134.75       & 143.25      & 138.16       & 145.80      & 136.07      & 141.77    & 131.44         & 137.72       \\
+febody                                     & 8.60         & 9.94        & 8.70         & 10.04       & 12.03       & 13.40     & 9.18           & 10.55        \\
+wave                                       & 83.23        & 89.76       & 83.43        & 90.93       & 87.68       & 92.82     & 84.44          & 89.32        \\
+558a                                       & 52.59        & 55.67       & 52.80        & 55.93       & 57.53       & 60.74     & 53.20          & 57.66        \\
+144                                        & 76.27        & 79.44       & 76.92        & 79.50       & 79.52       & 82.52     & 77.17          & 80.85        \\
+bcsstk30                                   & 31.11        & 35.51       & 31.44        & 35.88       & 33.89       & 38.38     & 32.36          & 36.00        \\
+bcsstk31                                   & 23.74        & 27.47       & 23.85        & 27.58       & 29.21       & 31.93     & 25.71          & 28.11        \\ \hline
+\end{tabular}
+\end{table}
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[h]
+\caption{The performance of various indexing schemes with degree of vertex encoded.}
+\label{my-label}
+\begin{tabular}{|l||c|c||c|c||c|c||c|c||c|c|}
+\hline
+\multicolumn{1}{|c||}{\multirow{2}{*}{G}} & \multicolumn{2}{c||}{Direct} & \multicolumn{2}{c||}{Semi-D} & \multicolumn{2}{c||}{Indirect} & \multicolumn{2}{c||}{RRR} & \multicolumn{2}{c|}{SD Vector} \\
+\cline{2-11}
+\multicolumn{1}{|c||}{}                       & D-q          & N-l         & D-q          & N-l         & D-q           & N-l          & D-q        & N-l        & D-q           & N-l           \\ \hline
+feo*                                    & 51.09        & 54.46       & 51.33        & 54.48       & 56.91         & 59.37        & 53.83      & 57.25      & 51.73         & 54.29         \\
+m14b                                       & 139.61       & 147.43      & 141.05       & 148.15      & 149.06        & 153.83       & 146.05     & 151.70     & 142.38        & 146.14        \\
+feb*                                     & 10.13        & 12.54       & 10.75        & 12.94       & 16.81         & 17.50        & 13.28      & 15.67      & 10.63         & 13.00         \\
+wave                                       & 90.97        & 94.22       & 91.44        & 94.55       & 99.96         & 101.01       & 95.35      & 97.40      & 91.85         & 95.31         \\
+558a                                       & 57.75        & 62.62       & 58.13        & 62.83       & 66.68         & 68.65        & 62.13      & 66.13      & 58.97         & 62.12         \\
+114                                        & 84.05        & 87.66       & 84.24        & 88.13       & 91.58         & 93.64        & 87.67      & 81.10      & 85.56         & 88.30         \\
+b*30                                   & 34.08        & 38.57       & 34.59        & 38.60       & 42.40         & 45.68        & 35.49      & 40.57      & 34.27         & 39.81         \\
+b*31                                   & 26.51        & 31.02       & 26.82        & 31.26       & 34.78         & 36.39        & 30.99      & 35.78      & 26.37         & 31.71        \\ 	\hline
+\end{tabular}
+\end{table}
+
+
+
 \chapter{Conclusion}
 
 Did it!
