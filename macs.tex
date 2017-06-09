@@ -1,0 +1,72 @@
+% glossary.tex - thesis example with glossary
+\documentclass[12pt,glossary]{dalthesis}
+% to prepare draft version use option draft:
+%\documentclass[12pt,draft]{dalthesis}
+
+\begin{document}
+
+\macs  % options are \mcs, \macs, \mec, \mhi, \phd, and \bcshon
+\title{COMPACT REPRESENTATION OF SEPARABLE GRAPH}
+\author{Xiang Zhang}
+\defenceday{1}
+\defencemonth{August}
+\defenceyear{2017}
+\convocation{May}{2017}
+
+% Use multiple \supervisor commands for co-supervisors.
+% Use one \reader command for each reader.
+
+\supervisor{Dr. Meng He}
+\reader{D. Odaprof}
+\reader{A. External}
+
+\nolistoftables
+\nolistoffigures
+
+\frontmatter
+
+\begin{abstract}
+This is a test document.
+\end{abstract}
+
+\printglossary
+
+\begin{acknowledgements}
+Thanks to all the little people who make me look tall.
+\end{acknowledgements}
+
+\mainmatter
+
+\chapter{Introduction}
+
+Nowadays, many applications use graphs to show the relationship and represent connectivity between multiple objects. As the graphs inevitably grow very huge, the space issue becomes ever more important.
+
+In this project, we are interested in improving a compact representation mechanism for separable graphs presented by a previous work ~\cite{compact-representation}. In which work the authors proposed an approach to representing separable graphs compactly. Their representation used O(n) bits, meanwhile using constant time on degree or adjacency query, and neighbour listing for one vertex in constant time per neighbour (They took advantage of O(logn)-bit parallelism computation to access O(n) consecutive bits in one operation). Graphs with good separators got good compression by using their representation, and even graphs that are not strictly separable, their representation still works well because the separable components in those graphs can be compressed.In their paper, they provided detail description for compressing the graph by building two structures: the shadow adjacency table ~\cite{compact-representation} and the root-find structure ~\cite{compact-representation}, which used vertex separators to encode the graph into a shadow adjacency table ~\cite{compact-representation}, as well as support constant time on query operations. But their experiment implemented the data structure by using edge separator instead of vertex separator, which means the shadow label
+and root-find structure were not needed. In this project, we implement the data structure by using edge separator, and conduct experiment on it.
+\chapter{Doing It}
+
+\section{Getting Ready}
+
+Get all the parts that I need.  I can throw in a whole pile of terms like
+preparation\glossary{name={Preparation},description={Getting ready to do something}},
+methodology\glossary{name={Methodology},description={The way to do something methodically}},
+forethought\glossary{name={Forethought},description={Thinking ahead}},
+and
+analysis\glossary{name={Analysis},description={Looking back at what you did to see what did or didn't work}}
+as examples for me to use in the future.
+
+\section{Next Step}
+
+Do it!
+
+Of course, you have to have pictures to show how you did it to make people
+understand things better.
+
+\chapter{Conclusion}
+
+Did it!
+
+\bibliographystyle{plain}
+\bibliography{bib}
+
+\end{document}

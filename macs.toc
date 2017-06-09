@@ -1,0 +1,14 @@
+\baselineskip =0.7\baselineskip 
+\contentsline {chapter}{Abstract}{iii}
+\contentsline {chapter}{Acknowledgements}{iv}
+\contentsline {chapter}{\numberline {Chapter 1}Introduction}{1}
+\addvspace {10\p@ }
+\contentsline {chapter}{\numberline {Chapter 2}Doing It}{2}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {section}{\numberline {2.1}Getting Ready}{2}
+\addvspace {10\p@ }
+\contentsline {section}{\numberline {2.2}Next Step}{2}
+\contentsline {chapter}{\numberline {Chapter 3}Conclusion}{3}
+\addvspace {10\p@ }
+\contentsline {chapter}{Bibliography}{4}
