@@ -7,6 +7,17 @@
 \usepackage{amssymb}
 \usepackage{blindtext}
 \usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{graphicx} %package to manage images
+\graphicspath{ {Figures/} }
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
 
 \begin{document}
 
@@ -80,25 +91,59 @@ In this project, we will only consider the connected graph, which means all vert
 
 In this project, we use two kinds of succinct data structure on bit vector : RRR~\cite{RRR} and SD vector~\cite{SD-vector}, to build the index structure which supports queries on separable graph. Both structures satisfy information-theoretic lower bound, and still supports efficient rank and select query operations.
 
+\textbf{Adjacency Tables}. An adjacency list representation for a graph associates each vertex in the graph with the collection of its neighboring vertices. For use as a data structure, the main alternative to the adjacency list is the adjacency matrix. For a sparse graph (most pairs of vertices are not connected by edges), in our case, a graph has $bounded \ mdensity$, an adjacency list representation is significantly more space-efficient than an adjacency matrix representation: the space cost of the adjacency list representation depends on the number of edges and vertices in the graph, while the adjacency matrix representation is stored as the square of the number of vertices. Generally, an adjacency list representation for an undirected graph requires 8$|E|$ bytes (2(32)$|E|$ bits) of space, where $|E|$ is the number of edges in the graph. However, it is not space-efficient enough yet.
+
+In our project, we assign each vertex in the graph an integer label. For each vertex, we store an adjacency list which contains its all neighbouring vertexes. If a vertex with label $v$ has neighbours $v_{1}, v_{2}, v_{3}, ...,v_{n}$ in ascending sorted order, then we encode the difference between each adjacency pair in the adjacency list as $|v_{1}-v|, \ |v_{2}-v_{1}|,\  |v_{3}-v_{2}|,\ ...,\ |v_{n}-v_{n-1}|$ contiguously, which forms a sequence of bits stored in memory. We use the gammacode~\cite{Gamma} to encode the differences, which uses $2\lfloor \log n \rfloor + 1$ bits to encode a difference. The difference $v_{1} - v$ may be negative in some cases, we here store a one-bit flag that value. To implement one of our index structures, the degree of each vertex needs to be encoded at start position of the corresponding adjacency, but in other circumstances the space of degree can be saved. By concatenating all the adjacency lists in the order of the vertex labels, we form an adjacency table. To access the adjacency list of a vertex, knowing the starting position of the adjacency
+is necessary. The easiest and fastest approach is to store an array of offset pointers of size $O(\log (n))$ for each. But if doing so, we would use $nO(\log (n))$ space, which exceeds our space bound. Alternatively, we implement other two index structures proposed by Blandfor~\cite{compact-representation}, as well as two index structures based on succinct data structure on bit vector, which use less space cost down to $O(n)$ bits.
+
+\begin{lemma}
+An adjacency table can support degree queries in $O(1)$ time, and neighbour
+listing in $O(d)$ time, where $d$ is the degree of the vertex.
+\end{lemma}
+ 
+\begin{proof}
+To access an adjacency list of a particular vertex, we use our index structure to locate its starting position in constant time. Each adjacency list consists of a encoded degree number and a sequence of encoded differences, which use $O(\log (n))$ bits and $dO(\log (n))$ bits respectively. By taking advantages of the $O(\log n)$-bits parallelism computation, we can decode any $O(\log (n))$-bits value in constant time, like using lookup table. Hence we can decode the degree at the starting of each adjacency list in constant time. For neighbour listing, we decode each difference pair in constant time. So it takes constant time to make degree queries, and $O(d)$ time to make neighbourhood queries, where d is the degree of the vertex.
+\end{proof}
+
+\section{Outline}
+This report is organized as follows. Chapter 1 shows the motivation of this project, and provides some preliminaries used in this project. Chapter 2 and 3 explain the construction and usage of the edge separator tree and several index structures respectively. Chapter 4 describes the experiment setup and examines the performance of our data structure. Chapter 5 shows the conclusion as well as the future work of our project.
+
 \chapter{Doing It}
 
-\section{Getting Ready}
+\section{Edge Separator Tree}
 
-Get all the parts that I need.  I can throw in a whole pile of terms like
-preparation\glossary{name={Preparation},description={Getting ready to do something}},
-methodology\glossary{name={Methodology},description={The way to do something methodically}},
-forethought\glossary{name={Forethought},description={Thinking ahead}},
-and
-analysis\glossary{name={Analysis},description={Looking back at what you did to see what did or didn't work}}
-as examples for me to use in the future.
 
-\section{Next Step}
+To compactly represent the tree, the first thing we need to do is building an edge separator tree from the original tree. The tree-building process is based on recursively partition the tree into two parts using edge separator. One example that illustrates the function of edge separator is shown in Figure 2.1: assuming we have an 8-vertex graph $G_{1}$ with 9 edges, by removing the two edges $(v_{1}, v_{9})$ and $(v_{1}, v_{5})$, we can partition $G_{1}$ into two parts with 4 vertexes in each. Hence the edge separator in this partitioning step is $\{(v_{1}, v_{9}),(v_{1}, v_{5}) \}$.
 
-Do it!
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{partition}
+\caption{An example of a partition process using edge separator}
+\end{figure}
 
-Of course, you have to have pictures to show how you did it to make people
-understand things better.
+We can see that each time we make a partitioning on a graph, it splits its vertex set and parts of edges set, and removes some edges. if we perform this partitioning recursively until only one vertex left, then we have an edge separator tree from the graph, one edge separator tree for the $G1$ in Figure 2.1 is shown in Figure 2.2. Each vertex in a graph will appear once in a leaf of the edge separator tree build from that graph. Each internal node is the set of edges used as edge separators to make partitioning in each step.
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{separatorTree}
+\caption{An example of edge separator tree}
+\end{figure}
+
+
+Note that we arbitrarily decide which side of partition will be the left child or the right child in this stage. The tree is also not perfect balanced in some cases (e.g. one child is a leaf and the other is an internal node), the side of the children is also decided arbitrarily. We will take advantages of this "freedom" to further reduce the space to encode the graph in later time. The vertex labels may be disordered by making in-order traversal on the edge separator tree (e.g. in Figure 2.2 the order of the vertexes after in-order traversal is :$v_{1}$, $v_{4}$, $v_{2}$, $v_{3}$, $v_{5}$, $v_{6}$, $v_{7}$, $v_{8}$), we will renumber these vertex by making a in-order traversal along the edge separator tree.
+
+
+METIS Partition library. To recursively partition the graph, we used METIS's API
+in our project. METIS is an open source library developed by Karypis lib in University
+of Minnesota. It supports set of serial programs for partitioning graphs and partitioning
+nite element meshes. The algorithms implemented in METIS are based on the multilevel
+recursive-bisection, multilevel k-way, and multi-constraint partitioning schemes [2]. The
+METIS partitioning API returns one integer list with vertex index as key,as well as 0 or 1
+as value to indicate which side of partitioning the vertex belongs to (we put the vertexes
+with value 0 into left child and vertexes with value 1 into right child). The returned value
+
+
+\chapter{Index Structure}
 \chapter{Conclusion}
 
 Did it!

@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{Gamma}
+P.~Elias.
+\newblock Universal codeword sets and representations of the integers.
+\newblock {\em IEEE Transactions on Information Theory}, (21):194--203, 1975.
+
 \bibitem{compact-representation}
 Daniel K.Blandfor, Guy~E. Blelloch, and Ian~A. Ksh.
 \newblock Compact representations of separable graphs.
