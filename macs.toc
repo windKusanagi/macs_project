@@ -3,12 +3,16 @@
 \contentsline {chapter}{Acknowledgements}{iv}
 \contentsline {chapter}{\numberline {Chapter 1}Introduction}{1}
 \addvspace {10\p@ }
-\contentsline {chapter}{\numberline {Chapter 2}Doing It}{2}
+\addvspace {10\p@ }
+\contentsline {section}{\numberline {1.1}Related Works}{2}
+\addvspace {10\p@ }
+\contentsline {section}{\numberline {1.2}Preliminaries}{2}
+\contentsline {chapter}{\numberline {Chapter 2}Doing It}{4}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {2.1}Getting Ready}{2}
+\contentsline {section}{\numberline {2.1}Getting Ready}{4}
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {2.2}Next Step}{2}
-\contentsline {chapter}{\numberline {Chapter 3}Conclusion}{3}
+\contentsline {section}{\numberline {2.2}Next Step}{4}
+\contentsline {chapter}{\numberline {Chapter 3}Conclusion}{5}
 \addvspace {10\p@ }
-\contentsline {chapter}{Bibliography}{4}
+\contentsline {chapter}{Bibliography}{6}
