@@ -14,6 +14,9 @@
 \graphicspath{ {Figures/} }
 \usepackage[linesnumbered,ruled]{algorithm2e}
 \usepackage{multirow}
+\usepackage{setspace}
+
+\renewcommand{\baselinestretch}{2.0}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
@@ -58,6 +61,9 @@ Thanks to all the little people who make me look tall.
 
 Nowadays, many applications use graphs to show the relationship and represent connectivity between multiple objects. As the graphs inevitably grow very huge, the space issue becomes ever more important.
 
+\bigskip
+\bigskip
+
 In this project, we are interested in improving a compact representation mechanism for separable graphs presented by a previous work ~\cite{compact-representation}. In which work the authors proposed an approach to representing separable graphs compactly. Their representation used $O(n)$ bits, meanwhile using constant time on degree or adjacency query, and neighbour listing for one vertex in constant time per neighbour (They took advantage of $O(\log n)$-bit parallelism computation to access $O(n)$ consecutive bits in one operation). Graphs with good separators got good compression by using their representation, and even graphs that are not strictly separable, their representation still works well because the separable components in those graphs can be compressed.In their paper, they provided detail description for compressing the graph by building two structures: the adjacency table and the root-find structure ~\cite{compact-representation}, which used vertex separators to encode the graph into a shadow adjacency table ~\cite{compact-representation}, as well as support constant time on query operations. But their experiment implemented the data structure by using edge separator instead of vertex separator, which means the shadow label
 and root-find structure were not needed. In this project, we implement the data structure by using edge separator, and conduct experiment on it.
 
@@ -71,17 +77,35 @@ constant time, and neighbour listing in constant time per Neighbour. The index s
 
 \section{Preliminaries}
 
-\textbf{Graph Separator}. A family of graphs $G$ is define separable if : it is closed under taking subgraphs, and satisfies the $f(.)$-separator theorem ~\cite{separator-theorem} if there is a constant $\alpha$ < 1 and $\beta$ > 0 such that each member graph in G with n vertexes has a separator set S of size $|S|$ $<$ $\beta f(n)$, that partition the graph into two parts A and B, with at most $\alpha n$ vertexes in each `\cite{separator-theorem}. A graph is separable if it belongs to a separable family of graphs. 
+\textbf{Graph Separator}. A family of graphs $G$ is define separable if : it is closed under taking subgraphs, and satisfies the $f(.)$-separator theorem ~\cite{separator-theorem} if there is a constant $\alpha$ $<$ 1 and $\beta$ $>$ 0 such that each member graph in G with n vertexes has a separator set S of size $|S|$ $<$ $\beta f(n)$, that partition the graph into two parts A and B, with at most $\alpha n$ vertexes in each `\cite{separator-theorem}. A graph is separable if it belongs to a separable family of graphs. 
+
+\bigskip
+\bigskip
 
 In this project we focus on the graphs that satisfy the $n^{c}$-separator theorem for some constant $c < 1$. One class of graphs that reach this specifications is the planar graphs, which satisfies the theorem that $c = \frac{1}{2}$ . Another example can be well-shaped meshes in $\mathbb{R}^{d}$ , with separators of size $O(n^{1-1/d})$~\cite{ separators-sphere-packing}.
 
+\bigskip
+\bigskip
+
 Lipton $et al$.~\cite{Nested-Dissection} prove that all classes of graph which satisfy $n/(\log n )^{1+\epsilon}$-separator theorem have bounded density. The bounded density means that every n-vertex member in a class if graphs has bounded $O(n)$ edges. So we can assert that the separable graphs have bounded density.
+
+\bigskip
+\bigskip
 
 By making use of the definitions above, we define a class of graphs G satisfies a $f(n)$-edge separator theorem if there are constant variables $\alpha$ < 1 and $\beta$ > 0 such that each member graph in $G$ with n vertexes, has an edge separator with at most $\beta f(n)$ edges whose removal partitions the graph into two subgraphs with at most $\alpha n$ vertexes in each. The edge separator is not as common as the vertex separator, because a graph with an edge separator of size s also has a vertex separator of size s at most, but no similar bounds holds when it is conversed~\cite{compact-representation}.
 
+\bigskip
+\bigskip
+
 In this project, we will only consider the connected graph, which means all vertexes in the graph have nonzero degree, and we assume each step of partitioning always returns a edge separator set of size $O(n^{c})$.
 
+\bigskip
+\bigskip
+
 \textbf{Queries}. Our data structure supports three kinds of queries on separable graphs: adjacency queries, degree queries and neighbour listing. The adjacency query checks whether there is an edge between two vertices, the neighbour listing returns the neighbours of a given vertex, and the degree query reports the number of edges connected to a given vertex.
+
+\bigskip
+\bigskip
 
 \textbf{Bit Vector}. The compact representation stores a separable graph as difference-encoded bit sequence in memory. To support the three kinds queries (adjacency queries, degree queries and neighbour listing) in constant time, knowing both the number of encoded adjacency lists in the sequence up to an index position, and the start position of a particular adjacency is necessary. More formally, the compact representation requires data structures that support rank and select operations in constant time: Given a set $B[0...n)$ to represented a subset $S$ of a universe $U = [0...n)$ = $\{0,1,...,n-1 \}$, where $B[i] = 1 \ iff \ i \in S$,
 
@@ -90,9 +114,17 @@ In this project, we will only consider the connected graph, which means all vert
 \item $select_{q}(x)$ = $ min \{ k \in [0...n) : rank_{q}(k) = x \} $ 
 \end{itemize}
 
+\bigskip
+
 In this project, we use two kinds of succinct data structure on bit vector : RRR~\cite{RRR} and SD vector~\cite{SD-vector}, to build the index structure which supports queries on separable graph. Both structures satisfy information-theoretic lower bound, and still supports efficient rank and select query operations.
 
+\bigskip
+\bigskip
+
 \textbf{Adjacency Tables}. An adjacency list representation for a graph associates each vertex in the graph with the collection of its neighboring vertices. For use as a data structure, the main alternative to the adjacency list is the adjacency matrix. For a sparse graph (most pairs of vertices are not connected by edges), in our case, a graph has $bounded \ mdensity$, an adjacency list representation is significantly more space-efficient than an adjacency matrix representation: the space cost of the adjacency list representation depends on the number of edges and vertices in the graph, while the adjacency matrix representation is stored as the square of the number of vertices. Generally, an adjacency list representation for an undirected graph requires 8$|E|$ bytes (2(32)$|E|$ bits) of space, where $|E|$ is the number of edges in the graph. However, it is not space-efficient enough yet.
+
+\bigskip
+\bigskip
 
 In our project, we assign each vertex in the graph an integer label. For each vertex, we store an adjacency list which contains its all neighbouring vertexes. If a vertex with label $v$ has neighbours $v_{1}, v_{2}, v_{3}, ...,v_{n}$ in ascending sorted order, then we encode the difference between each adjacency pair in the adjacency list as $|v_{1}-v|, \ |v_{2}-v_{1}|,\  |v_{3}-v_{2}|,\ ...,\ |v_{n}-v_{n-1}|$ contiguously, which forms a sequence of bits stored in memory. We use the gammacode~\cite{Gamma} to encode the differences, which uses $2\lfloor \log n \rfloor + 1$ bits to encode a difference. The difference $v_{1} - v$ may be negative in some cases, we here store a one-bit flag that value. To implement one of our index structures, the degree of each vertex needs to be encoded at start position of the corresponding adjacency, but in other circumstances the space of degree can be saved. By concatenating all the adjacency lists in the order of the vertex labels, we form an adjacency table. To access the adjacency list of a vertex, knowing the starting position of the adjacency
 is necessary. The easiest and fastest approach is to store an array of offset pointers of size $O(\log (n))$ for each. But if doing so, we would use $nO(\log (n))$ space, which exceeds our space bound. Alternatively, we implement other two index structures proposed by Blandfor~\cite{compact-representation}, as well as two index structures based on succinct data structure on bit vector, which use less space cost down to $O(n)$ bits.
@@ -109,18 +141,19 @@ To access an adjacency list of a particular vertex, we use our index structure t
 \section{Outline}
 This report is organized as follows. Chapter 1 shows the motivation of this project, and provides some preliminaries used in this project. Chapter 2 and 3 explain the construction and usage of the edge separator tree and several index structures respectively. Chapter 4 describes the experiment setup and examines the performance of our data structure. Chapter 5 shows the conclusion as well as the future work of our project.
 
-\chapter{Doing It}
-
-\section{Edge Separator Tree}
-
+\chapter{Edge Separator Tree}
 
 To compactly represent the tree, the first thing we need to do is building an edge separator tree from the original tree. The tree-building process is based on recursively partition the tree into two parts using edge separator. One example that illustrates the function of edge separator is shown in Figure 2.1: assuming we have an 8-vertex graph $G_{1}$ with 9 edges, by removing the two edges $(v_{1}, v_{9})$ and $(v_{1}, v_{5})$, we can partition $G_{1}$ into two parts with 4 vertexes in each. Hence the edge separator in this partitioning step is $\{(v_{1}, v_{9}),(v_{1}, v_{5}) \}$.
+
+\bigskip
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{partition}
 \caption{An example of a partition process using edge separator}
 \end{figure}
+
+\bigskip
 
 We can see that each time we make a partitioning on a graph, it splits its vertex set and parts of edges set, and removes some edges. if we perform this partitioning recursively until only one vertex left, then we have an edge separator tree from the graph, one edge separator tree for the $G1$ in Figure 2.1 is shown in Figure 2.2. Each vertex in a graph will appear once in a leaf of the edge separator tree build from that graph. Each internal node is the set of edges used as edge separators to make partitioning in each step.
 
@@ -130,14 +163,22 @@ We can see that each time we make a partitioning on a graph, it splits its verte
 \caption{An example of edge separator tree}
 \end{figure}
 
-
+\bigskip
+\bigskip
 Note that we arbitrarily decide which side of partition will be the left child or the right child in this stage. The tree is also not perfect balanced in some cases (e.g. one child is a leaf and the other is an internal node), the side of the children is also decided arbitrarily. We will take advantages of this "freedom" to further reduce the space to encode the graph in later time. The vertex labels may be disordered by making in-order traversal on the edge separator tree (e.g. in Figure 2.2 the order of the vertexes after in-order traversal is :$v_{1}$, $v_{4}$, $v_{2}$, $v_{3}$, $v_{5}$, $v_{6}$, $v_{7}$, $v_{8}$), we will renumber these vertex by making a in-order traversal along the edge separator tree.
 
+\bigskip
+\bigskip
 
 \textbf{METIS Partition Library}. To recursively partition the graph, we use METIS's API in our project. METIS is an open source library developed by Karypis lib in University of Minnesota. It supports set of serial programs for partitioning graphs and partitioning finite element meshes. The algorithms implemented in METIS are based on the multilevel recursive-bisection, multilevel k-way, and multi-constraint partitioning schemes [2]. The METIS partitioning API returns one integer list with vertex index as key, and a flag 0 or 1 to indicate which side of partitioning the vertex belongs to. The returned value of METIS API does not provide information about edges, and the API takes two integer arrays (adjacency list of current graph and the index of vertex in adjacency list)as input parameters, hence before each calling of the METIS API, we need to generate an adjacency list and an index list for the current graph to be partitioned, and in order to collect the edge separators, we need both the adjacency list and the returned values after calling the API.
 
+\bigskip
+\bigskip
+
 The Algorithm to build the separator tree is given in Algorithm 1. Here we use $(V,E)$
 to represent a graph for simplicity, but in fact the METIS API takes formalized adjacency list and the index list as input parameters. So each time to call the METIS API, the current vertex set need to be renumbered temporally in contiguous ascending numbers, and the adjacency list needs to be initialized according to the temporally order. The METIS API also does not support to partition the graph with the vertex amount under 3, hence the very basic partitioning cases are defined by ourself.
+
+\bigskip
 
 \begin{algorithm}
     \underline{buildTree} $(V,E)$\;
@@ -159,12 +200,14 @@ to represent a graph for simplicity, but in fact the METIS API takes formalized 
 \end{algorithm}
 \bigskip
 
-\textbf{Building Adjacency Table}. After getting the edge separator tree, we need to renumber the vertexes based on an in-order traversal along the tree. Each vertex appears in one leaf of the tree will receive a new label which increases by one when visiting a new leaf node. A mapping table is also generated after completing the traversal, which will be used to build an adjacency list for each renumbered vertex by using the new vertex labels. Then we can build an adjacency list for each vertex, the list contains all the neighbouring vertexes in sorted order. We use gamma code to encode the difference of each adjacency pair in the list (e.g. $v_{1} - v$, $v_{2} - v_{1}$,..., $v_{n-1} - v_{n-2}$), each difference d costs $2\lfloor \log n \rfloor + 1$ bits to be encoded. Note that the value $v -v_{1}$ might be negative,so we store one flag bit for it. We also encode the number of the entries in an adjacency list at the starting position of the list, which will be used to support degree queries in constant time.
+\textbf{Building Adjacency Table}. After getting the edge separator tree, we need to renumber the vertexes based on an in-order traversal along the tree. Each vertex appears in one leaf of the tree will receive a new label which increases by one when visiting a new leaf node. A mapping table is also generated after completing the traversal, which will be used to build an adjacency list for each renumbered vertex by using the new vertex labels. Then we can build an adjacency list for each vertex, the list contains all the neighbouring vertexes in sorted order. We use gamma code to encode the difference of each adjacency pair in the list (e.g. $v_{1} - v$, $v_{2} - v_{1}$,..., $v_{n-1} - v_{n-2}$), each difference d costs $2\lfloor \log n \rfloor + 1$ bits to be encoded. Note that the value $v -v_{1}$ might be negative, so we store one flag bit for it. We also encode the number of the entries in an adjacency list at the starting position of the list, which will be used to support degree queries in constant time.
 
+\bigskip
 \begin{lemma}
 Any n-vertex member in a class of graphs which satisfies a $n^{c}-edge$ separator
 theorem, can be encoded in $O(n)$ bits using an adjacency table.
 \end{lemma}
+ 
  
 \begin{proof}
 For each edge $(u, v)$ in an edge separator in a graph with s vertexes, the difference
@@ -173,9 +216,15 @@ between vertex u and vertex v is $O(s)$. We use gamma code to encode the differe
 This recurrence can be solved to $S(n) = O(n)$, and the bits to encode the degree of all the vertexes is bounded by $0(n)$, because there are $O(n)$ edges in total. So the total space is $O(n)$ bits.
 \end{proof}
 
+\bigskip
+\bigskip
+
 \textbf{Child-flipping}. When encoding the graph, We contiguously encode the difference between each adjacency pair in the list by using gamma code. The gamma code use $2\lfloor \log n \rfloor + 1$ bits to encode a difference d. If we can make each difference "smaller", in other words, if we can make the labels of vertexes in an adjacency list closer to each other, then we can reduce the space to encode the adjacency list. We arbitrarily decide the side of partitioning during the construction of the separator tree (in our project, we decide the side of partitioning according to the output value of METIS API: '0' to the left child and '1' to right child), so there is a degree of freedom in the way to build the tree. To take advantage of this freedom, we can apply a heuristic optimization method called "child-flipping"~\cite{compact-representation} to our edge separator tree.
 
 The child-flipping algorithm works when making traversal along a separator tree, it tracks the nodes containing vertex labels which appear before and after the vertex labels in the current node. Let define $N_{L}$ to be the left children of current node's left ancestors and $N_{R}$ to be the right children of the current node's right ancestors, $N_{1}$ and $N_{2}$ represents the current node's left child and right child, respectively, and $E_{AB}$ indicates the number of edges between the vertexes in node A and node B. For each node, the vertexes in $N_{1}$ of the current node will have labels less than the vertexes' under the node, the vertexes in $N_{2}$ will have larger labels than all the vertexes under the node, and there is no intersection between the vertexes in $N_{L}$ and $N_{R}$ of the node. The child-flipping exams $E_{N_{L}N_{1}}$, $E_{N_{2}N_{R}}$, $E_{N_{L}N_{2}}$ and $E_{N_{1}N_{R}}$ of each node to ensure that $E_{N_{L}N_{1}} + E_{N_{L}N_{1}} \leq E_{N_{L}N_{1}} + E_{N_{L}N_{1}}$. If not, the child-flipping algorithm swaps the two children of current node. The meaning of making this swap is : after renumbering the vertexes based on an in-order traversal, if $E_{N_{L}N_{1}} + E_{N_{L}N_{1}} < E_{N_{L}N_{1}} + E_{N_{L}N_{1}}$, then the space to encode the edges $N_{L}N_{2}$ and $N_{1}N_{R}$ is greater than that to encode $N_{L}N_{2}$ and $N_{1}N_{R}$, because the difference $v_{N_{2}} -v_{N_{L}}$ is obviously greater than $v_{N_{1}} - v_{N_{L}}$, similar fact works on the difference of $v_{N_{R}}-v_{N_{1}} \  and \  v_{N_{R}}-v_{N_{2}}$.
+
+\bigskip
+\bigskip
 
 This heuristic algorithm can be applied to any edge separator tree as a postprocessing
 step. However, this process is quite time-consuming, the time cost of applying both METIS and child-flipping in Blandfor $et al.$ ~\cite{compact-representation}'s experiment shows a demonstration on this. To get the four numbers of edges($E_{N_{L}N_{1}}$, $E_{N_{2}N_{R}}$, $E_{N_{L}N_{2}}$ and $E_{N_{1}N_{R}}$ ), we need to have the four vertex sets: $N_{L}$, $N_{R}$, $N_{1}$ and $N_{2}$ for each tree node. The $N_{L}$ and $N_{R}$ of each node in separator tree can be pre-collected, but the $N_{1}$ and $N_{2}$ need to be calculate locally when reach the node. In our project, we make some efforts to reduce the time to conduct this child-flipping processing: Let assume we have a node $N_{a}$ in a separator tree with left child as $N_{b}$ and right child as $N_{c}$, if we knew the $N_{1}$ and $N_{2}$ of Na (denote as $N_{1a}$ and $N_{2a}$), then

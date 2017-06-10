@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  9 JUN 2017 16:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  10 JUN 2017 12:33
 entering extended mode
 **./macs.tex
 (macs.tex
@@ -572,6 +572,10 @@ Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
 \multirow@dima=\skip73
 \bigstrutjot=\dimen116
 )
+("C:\Users\john\AppData\Local\Programs\MiKTeX 2.9\tex\latex\setspace\setspace.s
+ty"
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
 \c@theorem=\count123
 \c@corollary=\count124
  (macs.aux
@@ -584,18 +588,18 @@ LaTeX Warning: Label `my-label' multiply defined.
 )
 \openout1 = `macs.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
 
 ("C:\Users\john\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mki
 i"
@@ -669,13 +673,13 @@ G,.JBIG2,.JB2,.eps]
 Unavoidable over/underfulls may occur in the first
 few pages of dalcsthesis. These can usually be ignored.
 However, if uncorrectable errors occur, notify staff.
-LaTeX Info: Redefining \\ on input line 43.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 43.
+LaTeX Info: Redefining \\ on input line 46.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 46.
 ("C:\Users\john\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 43.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 46.
 
 [1
 
@@ -710,40 +714,44 @@ No file macs.gls.
 ]
 Dalthesis preface pages completed.
 Chapter 1.
-
-Underfull \vbox (badness 4713) has occurred while \output is active []
-
- [1
+[1
 
 ]
-[2] [3] [4] [5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2]
+[3] [4] [5] [6] [7]
 Chapter 2.
-<Figures/partition.png, id=39, 588.1975pt x 492.84125pt>
+<Figures/partition.png, id=45, 588.1975pt x 492.84125pt>
 File: Figures/partition.png Graphic file (type png)
 
 <use Figures/partition.png>
-Package pdftex.def Info: Figures/partition.png used on input line 121.
+Package pdftex.def Info: Figures/partition.png used on input line 152.
 (pdftex.def)             Requested size: 303.53267pt x 254.32367pt.
- [6
 
- <./Figures/partition.png>]
-<Figures/separatorTree.png, id=45, 603.25375pt x 452.69125pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<Figures/separatorTree.png, id=47, 603.25375pt x 452.69125pt>
 File: Figures/separatorTree.png Graphic file (type png)
 
 <use Figures/separatorTree.png>
-Package pdftex.def Info: Figures/separatorTree.png used on input line 129.
+Package pdftex.def Info: Figures/separatorTree.png used on input line 162.
 (pdftex.def)             Requested size: 346.89732pt x 260.31616pt.
- [7 <./Figures/separatorTree.png>]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8
+
+] [9 <./Figures/partition.png>] [10 <./Figures/separatorTree.png>] [11]
+[12]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8]
-[9]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10]
-[11]
+ [13]
+[14] [15]
 Chapter 3.
-[12
+[16
 
 ]
 Chapter 4.
@@ -751,7 +759,7 @@ Chapter 4.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (25.20703pt too wide) in paragraph at lines 266--280
+Overfull \hbox (25.20703pt too wide) in paragraph at lines 315--329
  [][] 
  []
 
@@ -759,20 +767,20 @@ Overfull \hbox (25.20703pt too wide) in paragraph at lines 266--280
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (62.83466pt too wide) in paragraph at lines 288--302
+Overfull \hbox (62.83466pt too wide) in paragraph at lines 337--351
 [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[13
+[17
 
-] [14]
+] [18]
 Chapter 5.
-(macs.bbl [15
+(macs.bbl [19
 
-]) [16
+]) [20
 
 
 ] (macs.aux)
@@ -785,13 +793,13 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4539 strings out of 493328
- 64814 string characters out of 3130507
- 178831 words of memory out of 3000000
- 7978 multiletter control sequences out of 15000+200000
+ 4571 strings out of 493328
+ 65449 string characters out of 3130507
+ 179225 words of memory out of 3000000
+ 8006 multiletter control sequences out of 15000+200000
  10205 words of font info for 38 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,12n,28p,1591b,2126s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,12n,28p,1591b,2166s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmbx12.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/john/AppData/Local/Programs/Mi
@@ -806,9 +814,9 @@ lic/amsfonts/cm/cmr8.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts
 eX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/john/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/john/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on macs.pdf (20 pages, 204829 bytes).
+Output written on macs.pdf (24 pages, 207977 bytes).
 PDF statistics:
- 120 PDF objects out of 1000 (max. 8388607)
+ 132 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
