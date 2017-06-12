@@ -5,6 +5,11 @@ P.~Elias.
 \newblock Universal codeword sets and representations of the integers.
 \newblock {\em IEEE Transactions on Information Theory}, (21):194--203, 1975.
 
+\bibitem{Succinct}
+Guy~Joseph Jacobson.
+\newblock Succinct static data structures.
+\newblock {\em Carnegie Mellon University, Pittsburgh, PA}, 1988.
+
 \bibitem{compact-representation}
 Daniel K.Blandfor, Guy~E. Blelloch, and Ian~A. Ksh.
 \newblock Compact representations of separable graphs.

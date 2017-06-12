@@ -52,7 +52,7 @@ This is a test document.
 \printglossary
 
 \begin{acknowledgements}
-Thanks to all the little people who make me look tall.
+My Supervisor, Dr. Meng He, deserves the most praise for his invaluable guidance, friendship and suggestions. I would also like to thank all of the friends and acquaintances I have made at Dalhousie University. They have made this journey something to remember. Without everyone’s support and guidance this project would have not been a success.
 \end{acknowledgements}
 
 \mainmatter
@@ -62,15 +62,22 @@ Thanks to all the little people who make me look tall.
 Nowadays, many applications use graphs to show the relationship and represent connectivity between multiple objects. As the graphs inevitably grow very huge, the space issue becomes ever more important.
 
 \bigskip
+
+In the field of Computer Science, a succinct representation of a data structure is a compact representation whose space cost is close to the information-theoretic lower bound, and still supports efficient query operations. The concept of “succinct” was firstly introduced by Jacobson~\cite{Succinct} to encode data structures such that bit vectors, (unlabeled) trees, and planar graphs.
 \bigskip
 
-In this project, we are interested in improving a compact representation mechanism for separable graphs presented by a previous work ~\cite{compact-representation}. In which work the authors proposed an approach to representing separable graphs compactly. Their representation used $O(n)$ bits, meanwhile using constant time on degree or adjacency query, and neighbour listing for one vertex in constant time per neighbour (They took advantage of $O(\log n)$-bit parallelism computation to access $O(n)$ consecutive bits in one operation). Graphs with good separators got good compression by using their representation, and even graphs that are not strictly separable, their representation still works well because the separable components in those graphs can be compressed.In their paper, they provided detail description for compressing the graph by building two structures: the adjacency table and the root-find structure ~\cite{compact-representation}, which used vertex separators to encode the graph into a shadow adjacency table ~\cite{compact-representation}, as well as support constant time on query operations. But their experiment implemented the data structure by using edge separator instead of vertex separator, which means the shadow label
-and root-find structure were not needed. In this project, we implement the data structure by using edge separator, and conduct experiment on it.
 
-We firstly follow their idea to implement the data structure by using edge separator. The data structure is building by recursively partitioning a graph into two subgraphs until only one vertex left. During the partition process, an edge separator tree is built. Then make use of the edge separator tree to renumber the vertexes. We store an adjacency list for each vertex, then concatenate the adjacency lists in the order of renumbered vertex to form an adjacency table. Each pair of vertexes in the adjacency is stored via encoding the difference $d$ between the two vertexes, and all the differences are stored contiguously as a sequence of bits in memory. We show, by using adjacency table, $O(n)$ bits are sufficient to encode the separable graph.
+In this project, we are interested in improving a compact representation mechanism for separable graphs presented by a previous work ~\cite{compact-representation}. In which work the authors proposed an approach to representing separable graphs compactly. Their representation used $O(n)$ bits, meanwhile using constant time on degree or adjacency query, and neighbour listing for one vertex in constant time per neighbour (They took advantage of $O(\log n)$-bit parallelism computation to access $O(n)$ consecutive bits in one operation). Graphs with good separators got good compression by using their representation, and even graphs that are not strictly separable, their representation still works well because the separable components in those graphs can be compressed.In their paper, they provided detail description for compressing the graph by building two structures: the adjacency table and the root-find structure ~\cite{compact-representation}, which used vertex separators to encode the graph into a shadow adjacency table ~\cite{compact-representation}, as well as support constant time on query operations. But their experiment implemented the data structure by using edge separator instead of vertex separator, which means the shadow label and root-find structure were not needed. In this project, we implement the data structure by using edge separator, and conduct experiment on it.
 
-Next, we implement several index structures to support degree and adjacency query in
-constant time, and neighbour listing in constant time per Neighbour. The index structures contains all the index structures involved in their experiment, as well as two index structures implemented by us via applying succinct data structure on bit vector. In their paper, they encoded the degree of each vertex at the start of each adjacency list. However, we found that, the space of degree can be saved in some cases, which causes a trade-off between the time to support degree queries and the space to encode the graph.
+\bigskip
+\bigskip
+
+We firstly follow their idea to implement the data structure by using edge separator. The data structure is building by recursively partitioning a graph into two subgraphs until only one vertex left. During the partition process, an edge separator tree is built. Then make use of the edge separator tree to renumber the vertexes. We store an adjacency list for each vertex, then concatenate the adjacency lists in the order of renumbered vertex to form an adjacency table. Each pair of vertexes in the adjacency is stored via encoding the difference $d$ between the two vertexes, and all the differences are stored contiguously as a sequence of bits in memory. We show, by using adjacency table, $O(n)$ bits are sufficient to encode the separable graph. 
+
+\bigskip
+\bigskip
+
+Next, we implement several index structures to support degree and adjacency query in constant time, and neighbour listing in constant time per Neighbour. The index structures contains all the index structures involved in their experiment, as well as two index structures implemented by us via applying succinct data structure on bit vector. In their paper, they encoded the degree of each vertex at the start of each adjacency list. However, we found that, the space of degree can be saved in some cases, which causes a trade-off between the time to support degree queries and the space to encode the graph.
 
 \section{Related Works}
 
@@ -92,7 +99,7 @@ Lipton $et al$.~\cite{Nested-Dissection} prove that all classes of graph which s
 \bigskip
 \bigskip
 
-By making use of the definitions above, we define a class of graphs G satisfies a $f(n)$-edge separator theorem if there are constant variables $\alpha$ < 1 and $\beta$ > 0 such that each member graph in $G$ with n vertexes, has an edge separator with at most $\beta f(n)$ edges whose removal partitions the graph into two subgraphs with at most $\alpha n$ vertexes in each. The edge separator is not as common as the vertex separator, because a graph with an edge separator of size s also has a vertex separator of size s at most, but no similar bounds holds when it is conversed~\cite{compact-representation}.
+By making use of the definitions above, we define a class of graphs G satisfies a $f(n)$-edge separator theorem if there are constant variables $\alpha$ $<$ 1 and $\beta$ $>$ 0 such that each member graph in $G$ with n vertexes, has an edge separator with at most $\beta f(n)$ edges whose removal partitions the graph into two subgraphs with at most $\alpha n$ vertexes in each. The edge separator is not as common as the vertex separator, because a graph with an edge separator of size s also has a vertex separator of size s at most, but no similar bounds holds when it is conversed~\cite{compact-representation}.
 
 \bigskip
 \bigskip
@@ -128,12 +135,12 @@ In this project, we use two kinds of succinct data structure on bit vector : RRR
 
 In our project, we assign each vertex in the graph an integer label. For each vertex, we store an adjacency list which contains its all neighbouring vertexes. If a vertex with label $v$ has neighbours $v_{1}, v_{2}, v_{3}, ...,v_{n}$ in ascending sorted order, then we encode the difference between each adjacency pair in the adjacency list as $|v_{1}-v|, \ |v_{2}-v_{1}|,\  |v_{3}-v_{2}|,\ ...,\ |v_{n}-v_{n-1}|$ contiguously, which forms a sequence of bits stored in memory. We use the gammacode~\cite{Gamma} to encode the differences, which uses $2\lfloor \log n \rfloor + 1$ bits to encode a difference. The difference $v_{1} - v$ may be negative in some cases, we here store a one-bit flag that value. To implement one of our index structures, the degree of each vertex needs to be encoded at start position of the corresponding adjacency, but in other circumstances the space of degree can be saved. By concatenating all the adjacency lists in the order of the vertex labels, we form an adjacency table. To access the adjacency list of a vertex, knowing the starting position of the adjacency
 is necessary. The easiest and fastest approach is to store an array of offset pointers of size $O(\log (n))$ for each. But if doing so, we would use $nO(\log (n))$ space, which exceeds our space bound. Alternatively, we implement other two index structures proposed by Blandfor~\cite{compact-representation}, as well as two index structures based on succinct data structure on bit vector, which use less space cost down to $O(n)$ bits.
-
+\bigskip
 \begin{lemma}
 An adjacency table can support degree queries in $O(1)$ time, and neighbour
 listing in $O(d)$ time, where $d$ is the degree of the vertex.
 \end{lemma}
- 
+\bigskip 
 \begin{proof}
 To access an adjacency list of a particular vertex, we use our index structure to locate its starting position in constant time. Each adjacency list consists of a encoded degree number and a sequence of encoded differences, which use $O(\log (n))$ bits and $dO(\log (n))$ bits respectively. By taking advantages of the $O(\log n)$-bits parallelism computation, we can decode any $O(\log (n))$-bits value in constant time, like using lookup table. Hence we can decode the degree at the starting of each adjacency list in constant time. For neighbour listing, we decode each difference pair in constant time. So it takes constant time to make degree queries, and $O(d)$ time to make neighbourhood queries, where d is the degree of the vertex.
 \end{proof}
@@ -147,7 +154,7 @@ To compactly represent the tree, the first thing we need to do is building an ed
 
 \bigskip
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.7\textwidth]{partition}
 \caption{An example of a partition process using edge separator}
@@ -157,7 +164,7 @@ To compactly represent the tree, the first thing we need to do is building an ed
 
 We can see that each time we make a partitioning on a graph, it splits its vertex set and parts of edges set, and removes some edges. if we perform this partitioning recursively until only one vertex left, then we have an edge separator tree from the graph, one edge separator tree for the $G1$ in Figure 2.1 is shown in Figure 2.2. Each vertex in a graph will appear once in a leaf of the edge separator tree build from that graph. Each internal node is the set of edges used as edge separators to make partitioning in each step.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\textwidth]{separatorTree}
 \caption{An example of edge separator tree}
@@ -208,12 +215,12 @@ Any n-vertex member in a class of graphs which satisfies a $n^{c}-edge$ separato
 theorem, can be encoded in $O(n)$ bits using an adjacency table.
 \end{lemma}
  
- 
+
 \begin{proof}
 For each edge $(u, v)$ in an edge separator in a graph with s vertexes, the difference
 between vertex u and vertex v is $O(s)$. We use gamma code to encode the difference which would use $O(\log (s))$ bits, so that edge will contribute $O(\log (s))$ bits to the adjacency lists of both vertex u and vertex v. Hence, we charge $O(\log (s))$ to every edge in a separator of a graph with s vertices. Recall that by using the $n^{c}- edge$ separator theorem, each member with n vertexes in the class of the graph has a $\beta n^{c}$ edge separator whose removal partitions the member into two parts with at most $\beta n$ vertexes in each. Let define $S(n)$ to be an upper bound of required bits to encode a graph with n vertexes, and let $\alpha < a < 1 - \alpha $, then $S(n)$ satisfies the recurrence:
-\[ S(n) \leq S(an) = S(n-an) + O(n^{c} \log n) \]
-This recurrence can be solved to $S(n) = O(n)$, and the bits to encode the degree of all the vertexes is bounded by $0(n)$, because there are $O(n)$ edges in total. So the total space is $O(n)$ bits.
+\[ S(n) \leq S(an) + S(n-an) + O(n^{c} \log n) \]
+This recurrence can be solved to $S(n) = O(n)$, and the bits to encode the degree of all the vertexes is bounded by $O(n)$, because there are $O(n)$ edges in total. So the total space is $O(n)$ bits.
 \end{proof}
 
 \bigskip
@@ -238,11 +245,33 @@ Having this general case, then we can generate the $N_{1}$ and $N_{2}$ for each 
 
 \chapter{Index Structure}
 
+We already introduce how to encode a graph with good edge separator into difference adjacency table bounded by $O(n)$ bits, but to access to the particular adjacency list for a particular vertex, we need to know the exact starting position in the bit sequence. Hence our representation requires a data structure that support efficient select operations on the bit sequence. Note that, the space cost of the data structure should not exceed our space bound which is $O(n)$.  
+
+\bigskip
+\bigskip
+
+Blandfor $et al.$~\cite{compact-representation} has proposed three kinds of index structure: $direct$, $semi-direct$, and $indirect$. In addition to these three structures, we also implement other two index structures based on RRR and SD Vector respectively, we will henceforth call these two RRR-based and SDV-based index structure. 
+
+\bigskip
+\bigskip
+
+\textbf{direct index structure}. The easiest way to access to the starting position of 
+any adjacency list is to store an offset pointer for each vertex. Because our representation uses $O(n)$ bits to store a separable graph, one offset pointer will use $\Theta (n)$ bits. For all vertexes, it will use $n \Theta (n)$ in total. If we want to locate the starting position of any vertex, only one memory access is needed, so this approach is fastest among the five index structures. In our implementation, we allocate one word (32 bits) space for each vertex, hence the total space for this direct index structure is 4$n$ bytes.
+
+\bigskip
+\bigskip
+
+\textbf{semi-direct index structure}. This $semi-direct$ index structure is very similar to the $direct$ structure, but instead of allocating one word space for each vertex, we use two words to store four offset values. Let say we have four vertexes $v_{n}$, $v_{n+1}$, $v_{n+2}$, $v_{n+3}$, The first word space will store the pointer value of $v_{n}$, then use the second word to store three offset value $v_{n+1}$-$v_{n}$, $v_{n+2}$-$v_{n}$, $v_{n+3}$-$v_{n}$. If the space of the three offset values exceeds one-word bound, then store the offsets somewhere else, then the second word store a pointer pointed to them. Compared to the $direct$ structure, if the vertex satisfies $v_{id}$ mod 4 = 0, then it works exactly as same as $direct$ structure, if not, it firstly gets the real offset by adding the corresponding offset to the first pointer value, then access the memory directly. If every four vertexes fit into two-word space, then this $semi-direct$ structure would use half of the space used by $direct$ structure.      
+
+\bigskip
+\bigskip
+
+\textbf{indirect index structure}
 
 \chapter{Experiment}
 
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{Graph List}
 \label{graph-list}
@@ -262,7 +291,7 @@ bcsstk31                  & 35588    & 572914  & 188        & Matrix: HB    \\ \
 
 
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{The performance of compact mechanisms.}
 \label{compact-performance}
@@ -286,7 +315,7 @@ bcsstk31               & 6.61          & 2.98         & 9.02           & 2.89   
 
 % Please add the following required packages to your document preamble:
 % \usepackage{multirow}
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{The space cost of various indexing schemes.}
 \label{my-label}
@@ -308,7 +337,7 @@ bcsstk31                                   & 0.93   & 0.46   & 0.21     & 0.51  
 
 
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \caption{The performance of various indexing schemes without degree of vertex encoded.}
 \label{my-label}
@@ -331,7 +360,7 @@ bcsstk31                                   & 23.74        & 27.47       & 23.85 
 
 % Please add the following required packages to your document preamble:
 % \usepackage{multirow}
-\begin{table}[h]
+\begin{table}[ht]
 \caption{The performance of various indexing schemes with degree of vertex encoded.}
 \label{my-label}
 \begin{tabular}{|l||c|c||c|c||c|c||c|c||c|c|}
