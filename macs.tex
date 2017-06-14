@@ -214,7 +214,7 @@ to represent a graph for simplicity, but in fact the METIS API takes formalized 
 Any n-vertex member in a class of graphs which satisfies a $n^{c}-edge$ separator
 theorem, can be encoded in $O(n)$ bits using an adjacency table.
 \end{lemma}
- 
+\bigskip 
 
 \begin{proof}
 For each edge $(u, v)$ in an edge separator in a graph with s vertexes, the difference
@@ -245,34 +245,50 @@ Having this general case, then we can generate the $N_{1}$ and $N_{2}$ for each 
 
 \chapter{Index Structure}
 
-We already introduce how to encode a graph with good edge separator into difference adjacency table bounded by $O(n)$ bits, but to access to the particular adjacency list for a particular vertex, we need to know the exact starting position in the bit sequence. Hence our representation requires a data structure that support efficient select operations on the bit sequence. Note that, the space cost of the data structure should not exceed our space bound which is $O(n)$.  
+We already introduce how to encode a graph with good edge separator into difference adjacency table bounded by $O(n)$ bits, but to access to the particular adjacency list for a particular vertex, we need to know the exact starting position in the bit sequence. Hence our representation requires a data structure that support efficient select operations on the bit sequence. Note that, the space cost of the data structure should not exceed our space bound which is $O(n)$. Blandfor $et al.$ has proposed three kinds of index structure: $direct$, $semi-direct$, and $indirect$~\cite{compact-representation} to support efficient select queries. In addition to these three structures, we also implement other two index structures based on RRR and SD Vector respectively, we will henceforth call these two RRR-based and SDV-based index structure. 
 
 \bigskip
 \bigskip
 
-Blandfor $et al.$ has proposed three kinds of index structure: $direct$, $semi-direct$, and $indirect$~\cite{compact-representation}. In addition to these three structures, we also implement other two index structures based on RRR and SD Vector respectively, we will henceforth call these two RRR-based and SDV-based index structure. 
-
-\bigskip
-\bigskip
-
-\textbf{direct index structure}. The easiest way to access to the starting position of 
+\textbf{Direct indexing structure}. The easiest way to access to the starting position of 
 any adjacency list is to store an offset pointer for each vertex. Because our representation uses $O(n)$ bits to store a separable graph, one offset pointer will use $\Theta (\log (n))$ bits. For all vertexes, it will use $n \Theta (\log (n))$ in total. If we want to locate the starting position of any vertex, only one memory access is needed, so this approach is fastest among the five index structures. In our implementation, we allocate one word (32 bits) space for each vertex, hence the total space for this direct index structure is 4$n$ bytes.
 
 \bigskip
 \bigskip
 
-\textbf{semi-direct index structure}. This $semi-direct$ index structure is very similar to the $direct$ structure, but instead of allocating one word space for each vertex, we use two words to store four offset values. Let say we have four vertexes $v_{n}$, $v_{n+1}$, $v_{n+2}$, $v_{n+3}$, The first word space will store the pointer value of $v_{n}$, then use the second word to store three offset value $v_{n+1}$-$v_{n}$, $v_{n+2}$-$v_{n}$, $v_{n+3}$-$v_{n}$. If the space of the three offset values exceeds one-word bound, then store the offsets somewhere else, then the second word store a pointer pointed to them. Compared to the $direct$ structure, if the vertex satisfies $v_{id}$ mod 4 = 0, then it works exactly as same as $direct$ structure, if not, it firstly gets the real offset by adding the corresponding offset to the first pointer value, then access the memory directly. If every four vertexes fit into two-word space, then this $semi-direct$ structure would use half of the space used by $direct$ structure.      
+\textbf{Semi-direct indexing structure}. This $semi-direct$ index structure is very similar to the $direct$ structure, but instead of allocating one word space for each vertex, we use two words to store four offset values. Let say we have four vertexes $v_{n}$, $v_{n+1}$, $v_{n+2}$, $v_{n+3}$, The first word space will store the pointer value of $v_{n}$, then use the second word to store three offset value $v_{n+1}$-$v_{n}$, $v_{n+2}$-$v_{n}$, $v_{n+3}$-$v_{n}$. If the space of the three offset values exceeds one-word bound, then store the offsets somewhere else, then the second word store a pointer pointed to them. Compared to the $direct$ structure, if the vertex satisfies $v_{id}$ mod 4 = 0, then it works exactly as same as $direct$ structure, if not, it firstly gets the real offset by adding the corresponding offset to the first pointer value, then access the memory directly. If every four vertexes fit into two-word space, then this $semi-direct$ structure would use half of the space used by $direct$ structure.      
 
 \bigskip
 \bigskip
 
-\textbf{indirect index structure}. Note that the above two index structure use $n \theta (n)$, which exceeds $O(n)$ space bound. To limit the space cost within the bound, Blandfor $et al.$ implement the third structure : $indirct$, which use $O(n)$ space meanwhile supports constant time on locating vertex. The component of the structure is shown in  Figure 3.1: we firstly divide all vertexes into blocks with $\log(n)$ vertexes in each, then we further divide each block into subblocks. Each subblock contains a minimal number of vertexes whose indexing offset length reaches at least $k\log(n)$ bits for some constant number $k$. We store a bit vector with $\log(n)$ bits length for each block, if $v_{i}$ is the first vertex in its subblock, then the ($i$ mod $\log (n)$)$_{th}$ bit in the vector of its block is set to 1, otherwise 0. We only store the offset pointer of vertex if its corresponding bit in bit vector is 1. This will require $O(n)$ bits in total.  
+\textbf{Indirect indexing structure}. Note that the above two index structure use $n \theta (n)$, which exceeds $O(n)$ space bound. To limit the space cost within the bound, Blandfor $et al.$ implement the third structure : $indirct$, which use $O(n)$ space meanwhile supports constant time on locating vertex. The component of the structure is shown in  Figure 3.1: we firstly divide all vertexes into blocks with $\log(n)$ vertexes in each, then we further divide each block into subblocks. Each subblock contains a minimal number of vertexes whose indexing offset length reaches at least $k\log(n)$ bits for some constant number $k$. We store a bit vector with $\log(n)$ bits length for each block, if $v_{i}$ is the first vertex in its subblock, then the ($i$ mod $\log (n)$)$_{th}$ bit in the vector of its block is set to 1, otherwise 0. We only store the offset pointers of vertexes if their corresponding bits in bit vector are 1. This will require $O(n)$ bits in total.  
+
+\bigskip
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1.0\textwidth]{indirect}
 \caption{The architecture of the $indirect$ index structure}
 \end{figure}
+
+\bigskip
+
+To locate the starting position of a particular vertex, we firstly find which block the vertex is in by dividing the vertex label with $\log(n)$ (number of vertexes in each block). Next we check the bit vector of that block to find which subblock contains the vertex. Since we store the offset pointer for each vertex which is the first one in its subblock, we can know the starting position of the target subblock, then we decode the subblock. Although we will get all the adjacency lists within the subblock if do so, the degree information of each vertex is also encoded, hence we can have the adjacency list of the target vertex easily. The bit vector of each block has $\log(n)$ bits, each subblock is $k\log(n)$ bits long, determining and decoding the subblock can be completed by using lookup table, which uses constant time to check $\Theta(\log(n))$ bits.         
+
+\bigskip
+\bigskip
+
+\textbf{RRR-based indexing structure}. RRR is a succinct data structure which was first proposed by Raman $et al$.~\cite{RRR}. This data structure works on bit sequence $S[0,...,n)$ in such a way that provides rank and select operations in $O(1)$ time at the price of $nH_{0}(S)+o(n)$ space cost, where $H_{0}(S)$ is the empirical zero-order entropy of the sequence. The RRR data structure divides the original bit sequence into several superblocks, then divide the superblocks further. For each block it stores a number to indicate the number of '1's or '0's in the block. The number would be used as a lookup key in a table. Besides that, it also stores an offset which indicates which of the blocks the number is in. Offset is also used as an index in the table. By grouping blocks into superblock, RRR can avoid iterating over each block to conduct a rank or select query.
+
+\bigskip
+\bigskip
+
+RRR efficiently compresses a bit set if the set is very sparse populated, we take advantage of this feature of RRR and implement a indexing structure based on it. The original graph is encoded into a bit sequence by using gamma code, and we know the length of this sequence. Hence we can maintain another bit set with same length as the encoded bit sequence, in which we set a bit to '1' if it is the starting point of an adjacency list, otherwise we set the bit to 0. By doing so, we get a bit set which is very '1' sparse, then we can build RRR bit vector on this bit set. To locate a particular vertex, we only need to conduct a $select$ query on the RRR bit vector, and we will know its starting position in the encoded bit sequence in constant time. Since the encoded bit sequence is $O(n)$ bits long, and for a n-bit sequence, RRR needs $nH_{0}(S)+o(n)$ bits to support constant $rank$ and $select$ queries. We do not need to store additional information besides RRR structure, so the space cost will not exceed our bound. 
+
+\bigskip
+\bigskip
+
+     
 
 
 

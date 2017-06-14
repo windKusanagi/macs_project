@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  12 JUN 2017 18:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  14 JUN 2017 16:35
 entering extended mode
 **./macs.tex
 (macs.tex
@@ -749,27 +749,27 @@ Chapter 3.
 File: Figures/indirect.png Graphic file (type png)
 
 <use Figures/indirect.png>
-Package pdftex.def Info: Figures/indirect.png used on input line 273.
+Package pdftex.def Info: Figures/indirect.png used on input line 270.
 (pdftex.def)             Requested size: 433.62001pt x 261.8704pt.
- [18 <./Figures/indirect.png>]
+ [18 <./Figures/indirect.png>] [19] [20]
 Chapter 4.
 
-Overfull \hbox (25.20703pt too wide) in paragraph at lines 352--366
+Overfull \hbox (25.20703pt too wide) in paragraph at lines 368--382
  [][] 
  []
 
 
-Overfull \hbox (62.83466pt too wide) in paragraph at lines 374--388
+Overfull \hbox (62.83466pt too wide) in paragraph at lines 390--404
 [][] 
  []
 
-[19
+[21
 
-] [20]
+] [22]
 Chapter 5.
-(macs.bbl [21
+(macs.bbl [23
 
-]) [22
+]) [24
 
 
 ] (macs.aux)
@@ -803,9 +803,9 @@ lic/amsfonts/cm/cmr8.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts
 eX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/john/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/john/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on macs.pdf (26 pages, 231244 bytes).
+Output written on macs.pdf (28 pages, 235427 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
+ 147 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
