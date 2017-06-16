@@ -1,9 +1,25 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Practical-Entropy}
+K.~Sadakane D.~Okanohara.
+\newblock Practical entropy-compressed rank/select dictionary.
+\newblock {\em Proceedings of ALENEX}, 2007.
+
+\bibitem{Elias}
+P.~Elias.
+\newblock Efficient storage and retrieval by content and address of static
+  files.
+\newblock {\em Journal of the ACM}, 1974.
 
 \bibitem{Gamma}
 P.~Elias.
 \newblock Universal codeword sets and representations of the integers.
 \newblock {\em IEEE Transactions on Information Theory}, (21):194--203, 1975.
+
+\bibitem{Fano}
+R.~Fano.
+\newblock n the number of bits required to implement an associative memory.
+\newblock {\em Computer Structures Group, Project MAC, MIT}, 1971.
 
 \bibitem{Succinct}
 Guy~Joseph Jacobson.

@@ -72,12 +72,12 @@ In this project, we are interested in improving a compact representation mechani
 \bigskip
 \bigskip
 
-We firstly follow their idea to implement the data structure by using edge separator. The data structure is building by recursively partitioning a graph into two subgraphs until only one vertex left. During the partition process, an edge separator tree is built. Then make use of the edge separator tree to renumber the vertexes. We store an adjacency list for each vertex, then concatenate the adjacency lists in the order of renumbered vertex to form an adjacency table. Each pair of vertexes in the adjacency is stored via encoding the difference $d$ between the two vertexes, and all the differences are stored contiguously as a sequence of bits in memory. We show, by using adjacency table, $O(n)$ bits are sufficient to encode the separable graph. 
+We firstly follow their idea to implement the data structure by using edge separator. The data structure is building by recursively partitioning a graph into two subgraphs until only one vertex left. During the partition process, an edge separator tree is built. Then make use of the edge separator tree to renumber the vertexes. We store an adjacency list for each vertex, then concatenate the adjacency lists in the order of renumbered vertex to form an adjacency table. Each pair of vertexes in the adjacency is stored by encoding the difference $d$ between the two vertexes, and all the differences are stored contiguously as a sequence of bits in memory. We show, by using adjacency table, $O(n)$ bits are sufficient to encode the separable graph. 
 
 \bigskip
 \bigskip
 
-Next, we implement several index structures to support degree and adjacency query in constant time, and neighbour listing in constant time per Neighbour. The index structures contains all the index structures involved in their experiment, as well as two index structures implemented by us via applying succinct data structure on bit vector. In their paper, they encoded the degree of each vertex at the start of each adjacency list. However, we found that, the space of degree can be saved in some cases, which causes a trade-off between the time to support degree queries and the space to encode the graph.
+Next, we implement several index structures to support degree and adjacency query in constant time, and neighbour listing in constant time per Neighbour. The index structures contains all the index structures involved in their experiment, as well as two index structures implemented by us which apply succinct data structures on bit vector. In their paper, they encoded the degree of each vertex at the start of each adjacency list. However, we found that, the space of degree can be saved in some cases, which causes a trade-off between the time to support degree queries and the space to encode the graph.
 
 \section{Related Works}
 
@@ -278,7 +278,7 @@ To locate the starting position of a particular vertex, we firstly find which bl
 \bigskip
 \bigskip
 
-\textbf{RRR-based indexing structure}. RRR is a succinct data structure which was first proposed by Raman $et al$.~\cite{RRR}. This data structure works on bit sequence $S[0,...,n)$ in such a way that provides rank and select operations in $O(1)$ time at the price of $nH_{0}(S)+o(n)$ space cost, where $H_{0}(S)$ is the empirical zero-order entropy of the sequence. The RRR data structure divides the original bit sequence into several superblocks, then divide the superblocks further. For each block it stores a number to indicate the number of '1's or '0's in the block. The number would be used as a lookup key in a table. Besides that, it also stores an offset which indicates which of the blocks the number is in. Offset is also used as an index in the table. By grouping blocks into superblock, RRR can avoid iterating over each block to conduct a rank or select query.
+\textbf{RRR-based indexing structure}. RRR is a succinct data structure which was first proposed by Raman $et al$.~\cite{RRR}. This data structure works on bit sequence $S[0,...,n)$ in such a way that provides rank and select operations in $O(1)$ time at the price of $nH_{0}(S)+o(n)$ space cost, where $H_{0}(S)$ is the empirical zero-order entropy of the sequence. The RRR data structure divides the original bit sequence into several superblocks, then divide the superblocks further. For each block it stores a number to indicate the number of ones or zeros in the block. The number would be used as a lookup key in a table. Besides that, it also stores an offset which indicates which of the blocks the number is in. Offset is also used as an index in the table. By grouping blocks into superblock, RRR can avoid iterating over each block to conduct a rank or select query.
 
 \bigskip
 \bigskip
@@ -288,8 +288,7 @@ RRR efficiently compresses a bit set if the set is very sparse populated, we tak
 \bigskip
 \bigskip
 
-     
-
+\textbf{SD Vector-based indexing structure}. SD Vector is a bit vector that can compress very sparse populated bit vectors by representing the positions of 1 by the Elias~\cite{Elias}-Fano~\cite{Fano} representation for non-decreasing sequences. Given a bit set $B[0,...n-1)$ with $m$ ones ($m << n$),   the SD Vector uses $m \log n/m  + 2m + o(m)$~\cite{Practical-Entropy} bits to store the bit set, meanwhile support constant time $rank$ and $select$ queries. The idea of SD Vector-based indexing structure is very similar to RRR-based indexing structure. We firstly maintain a bit sequence which has the same length as the encoded graph bit sequence, next we mark the bits which indicate the starting position of an adjacency list, then we build the SD Vector on this bit sequence. In order to locate the starting position of a particular vertex, we use this SD Vector to perform a $select$ operation. 
 
 
 \chapter{Experiment}
