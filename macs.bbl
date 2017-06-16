@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{Barbay}
+He~M Barbay~J, Castelli Aleardi~L and Munro JI.
+\newblock Succinct representation of labeled graphs.
+\newblock {\em Algorithmica 62}, pages 224--257, 2012.
+
 \bibitem{Practical-Entropy}
 K.~Sadakane D.~Okanohara.
 \newblock Practical entropy-compressed rank/select dictionary.
@@ -18,13 +23,30 @@ P.~Elias.
 
 \bibitem{Fano}
 R.~Fano.
-\newblock n the number of bits required to implement an associative memory.
+\newblock The number of bits required to implement an associative memory.
 \newblock {\em Computer Structures Group, Project MAC, MIT}, 1971.
 
-\bibitem{Succinct}
-Guy~Joseph Jacobson.
-\newblock Succinct static data structures.
-\newblock {\em Carnegie Mellon University, Pittsburgh, PA}, 1988.
+\bibitem{Jacobson}
+Jacobson G.
+\newblock Space-efficient static trees and graphs.
+\newblock {\em 30th annual IEEE symposium on foundations of computer science},
+  pages 549--554, 1989.
+
+\bibitem{succinct-representation}
+Blelloch GE and Farzan A.
+\newblock Succinct representations of separable graphs.
+\newblock {\em Amir A, Parida L (eds) CPM}, page 138–150, 2010.
+
+\bibitem{Geary}
+Raman~R Geary~RF, Rahman~N.
+\newblock A simple optimal representation for balanced parentheses.
+\newblock {\em Theor Comput Sci 368}, page 231–246, 2006.
+
+\bibitem{Munro}
+V.~Raman J.~I.~Munro.
+\newblock Succinct representation of balanced parentheses, static trees and
+  planar graphs.
+\newblock {\em 38th FOCS}, pages 118--126, 1997.
 
 \bibitem{compact-representation}
 Daniel K.Blandfor, Guy~E. Blelloch, and Ian~A. Ksh.
@@ -52,9 +74,21 @@ R.~Raman, V.~Raman, and S.~Rao.
   of k-ary trees and multi-sets.
 \newblock {\em SODA}, 2002.
 
+\bibitem{Chuang}
+X.He R.C.N.Chuang, A.Garg and M.Y.Kao.
+\newblock Compact encodings of planar graphs via canonical orderings and
+  multiple parentheses.
+\newblock {\em Lecture Notes in Computer Science, 1443}, pages 118--129, 1998.
+
 \bibitem{separator-theorem}
 R.J.Liton and R.E. Tarjan.
 \newblock A separator theorem for planar graphs.
 \newblock {\em SIAM J.Applied Mathematics}, (16):177--189, 1979.
+
+\bibitem{Chiang}
+Y.T.Chiang and C.C.Lin.
+\newblock Orderly spanning trees with applications to graph encoding and graph
+  drawing.
+\newblock {\em In SODA}, pages 506--515, 2001.
 
 \end{thebibliography}

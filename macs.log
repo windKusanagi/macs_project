@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  16 JUN 2017 11:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  16 JUN 2017 17:38
 entering extended mode
 **./macs.tex
 (macs.tex
@@ -715,64 +715,64 @@ No file macs.gls.
 Dalthesis preface pages completed.
 Chapter 1.
 
-Underfull \vbox (badness 3746) has occurred while \output is active []
+Underfull \vbox (badness 3635) has occurred while \output is active []
 
  [1
 
 ]
-[2] [3] [4] [5] [6] [7]
+[2] [3] [4] [5] [6] [7] [8] [9] [10]
 Chapter 2.
-<Figures/partition.png, id=45, 588.1975pt x 492.84125pt>
+<Figures/partition.png, id=55, 588.1975pt x 492.84125pt>
 File: Figures/partition.png Graphic file (type png)
 
 <use Figures/partition.png>
-Package pdftex.def Info: Figures/partition.png used on input line 159.
+Package pdftex.def Info: Figures/partition.png used on input line 184.
 (pdftex.def)             Requested size: 303.53267pt x 254.32367pt.
 
-<Figures/separatorTree.png, id=47, 603.25375pt x 452.69125pt>
+<Figures/separatorTree.png, id=57, 603.25375pt x 452.69125pt>
 File: Figures/separatorTree.png Graphic file (type png)
 
 <use Figures/separatorTree.png>
-Package pdftex.def Info: Figures/separatorTree.png used on input line 169.
+Package pdftex.def Info: Figures/separatorTree.png used on input line 194.
 (pdftex.def)             Requested size: 346.89732pt x 260.31616pt.
- [8
+ [11
 
-] [9 <./Figures/partition.png>] [10 <./Figures/separatorTree.png>] [11] [12]
+] [12 <./Figures/partition.png>] [13 <./Figures/separatorTree.png>] [14] [15]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13]
-[14] [15]
+ [16]
+[17] [18]
 Chapter 3.
-[16
+[19
 
-] [17] <Figures/indirect.png, id=85, 618.31pt x 373.395pt>
+] [20] <Figures/indirect.png, id=94, 618.31pt x 373.395pt>
 File: Figures/indirect.png Graphic file (type png)
 
 <use Figures/indirect.png>
-Package pdftex.def Info: Figures/indirect.png used on input line 270.
+Package pdftex.def Info: Figures/indirect.png used on input line 295.
 (pdftex.def)             Requested size: 433.62001pt x 261.8704pt.
- [18 <./Figures/indirect.png>] [19] [20]
+ [21 <./Figures/indirect.png>] [22] [23]
 Chapter 4.
 
-Overfull \hbox (25.20703pt too wide) in paragraph at lines 367--381
+Overfull \hbox (25.20703pt too wide) in paragraph at lines 392--406
  [][] 
  []
 
 
-Overfull \hbox (62.83466pt too wide) in paragraph at lines 389--403
+Overfull \hbox (62.83466pt too wide) in paragraph at lines 414--428
 [][] 
  []
 
-[21
+[24
 
-] [22]
+] [25]
 Chapter 5.
-(macs.bbl [23
+(macs.bbl [26
 
-]) [24
+] [27
 
 
-] (macs.aux)
+]) [28] (macs.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -782,10 +782,10 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4580 strings out of 493328
- 65602 string characters out of 3130507
- 179243 words of memory out of 3000000
- 8014 multiletter control sequences out of 15000+200000
+ 4586 strings out of 493328
+ 65665 string characters out of 3130507
+ 179273 words of memory out of 3000000
+ 8020 multiletter control sequences out of 15000+200000
  10205 words of font info for 38 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,12n,28p,1591b,2170s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -803,9 +803,9 @@ lic/amsfonts/cm/cmr8.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts
 eX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/john/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/john/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on macs.pdf (28 pages, 236947 bytes).
+Output written on macs.pdf (32 pages, 247440 bytes).
 PDF statistics:
- 147 PDF objects out of 1000 (max. 8388607)
+ 160 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

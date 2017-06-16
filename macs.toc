@@ -5,17 +5,17 @@
 \contentsline {chapter}{\numberline {Chapter 1}Introduction}{1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {1.1}Related Works}{3}
+\contentsline {section}{\numberline {1.1}Related Works}{4}
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {1.2}Preliminaries}{3}
+\contentsline {section}{\numberline {1.2}Preliminaries}{5}
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {1.3}Outline}{7}
-\contentsline {chapter}{\numberline {Chapter 2}Edge Separator Tree}{8}
+\contentsline {section}{\numberline {1.3}Outline}{10}
+\contentsline {chapter}{\numberline {Chapter 2}Edge Separator Tree}{11}
 \addvspace {10\p@ }
-\contentsline {chapter}{\numberline {Chapter 3}Index Structure}{16}
+\contentsline {chapter}{\numberline {Chapter 3}Index Structure}{19}
 \addvspace {10\p@ }
-\contentsline {chapter}{\numberline {Chapter 4}Experiment}{21}
+\contentsline {chapter}{\numberline {Chapter 4}Experiment}{24}
 \addvspace {10\p@ }
-\contentsline {chapter}{\numberline {Chapter 5}Conclusion}{23}
+\contentsline {chapter}{\numberline {Chapter 5}Conclusion}{26}
 \addvspace {10\p@ }
-\contentsline {chapter}{Bibliography}{24}
+\contentsline {chapter}{Bibliography}{27}

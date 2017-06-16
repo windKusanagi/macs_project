@@ -59,15 +59,18 @@ My Supervisor, Dr. Meng He, deserves the most praise for his invaluable guidance
 
 \chapter{Introduction}
 
-Nowadays, many applications use graphs to show the relationship and represent connectivity between multiple objects. As the graphs inevitably grow very huge, the space issue becomes ever more important.
+Nowadays, many applications use graphs to show the relationship and represent connectivity between multiple objects. The usage of such graphs are so popular in representing various of data type including link structure of the web, 3d models in mesh, geographic maps, and surface meshes in computer graphics, etc. As the graphs inevitably grow very huge, the space issue becomes ever more important. Hence, the problem of designing space-efficient data structures to represent graphs while supporting efficient queries operations, has drawn a great deal of attention. 
+
+\bigskip
+Plenty of previous works have been conducted to represent graphs "succinctly", which means represent the graphs in a compact representation whose space cost is close to the information-theoretic lower bound, and still supports efficient query operations. The problem of succinctly representation of a graph can be formalized as: given a graph $G = (V, E)$ of type $\chi$, where n and m are numbers of vertexes and edges, respectively, then represent $G$ using $\lg | \chi | + o(\lg | \chi | )$ bits of space, and support a set of query operations on the graph in constant time ( assuming we can access $\Theta(\lg n)$ consecutive bits in one operation ). The space bound may not be satisfied, alternatively, trade-off between space cost and query time can be further investigated.  
 
 \bigskip
 
-In the field of Computer Science, a succinct representation of a data structure is a compact representation whose space cost is close to the information-theoretic lower bound, and still supports efficient query operations. The concept of “succinct” was firstly introduced by Jacobson~\cite{Succinct} to encode data structures such that bit vectors, (unlabeled) trees, and planar graphs.
+A considerable strategy to save the space when represent graphs is taking advantage of structural properties of graphs. In practice, the most common structural property of graphs is they have small separators. A graph has separators if it can be partitioned into two subgraphs in approximately equal size by removing a small amount of vertexes. For example, Planar graphs, have $O(n^{1/2})$ separators, and even graphs that are not strictly planar because of crossings, such power networks, have small separators too. More generally, nearly all graphs that represents connections relationship in low dimensional spaces have small separators. We say a graph is separable if it is taken from a class of graphs that satisfies an $n^{c}$-separator theorem~\cite{separator-theorem} for some constant c $<$ 1.
+
 \bigskip
 
-
-In this project, we are interested in improving a compact representation mechanism for separable graphs presented by a previous work ~\cite{compact-representation}. In which work the authors proposed an approach to representing separable graphs compactly. Their representation used $O(n)$ bits, meanwhile using constant time on degree or adjacency query, and neighbour listing for one vertex in constant time per neighbour (They took advantage of $O(\log n)$-bit parallelism computation to access $O(n)$ consecutive bits in one operation). Graphs with good separators got good compression by using their representation, and even graphs that are not strictly separable, their representation still works well because the separable components in those graphs can be compressed.In their paper, they provided detail description for compressing the graph by building two structures: the adjacency table and the root-find structure ~\cite{compact-representation}, which used vertex separators to encode the graph into a shadow adjacency table ~\cite{compact-representation}, as well as support constant time on query operations. But their experiment implemented the data structure by using edge separator instead of vertex separator, which means the shadow label and root-find structure were not needed. In this project, we implement the data structure by using edge separator, and conduct experiment on it.
+In this project, we are interested in improving a compact representation mechanism for separable graphs presented by a previous work ~\cite{compact-representation}. In which work the authors proposed an approach to representing separable graphs compactly. Their representation used $O(n)$ bits, meanwhile using constant time on degree or adjacency query, and neighbour listing for one vertex in constant time per neighbour (They took advantage of $O(\lg n)$-bit parallelism computation to access $\Theta(\lg n)$ consecutive bits in one operation). Graphs with good separators got good compression by using their representation, and even graphs that are not strictly separable, their representation still works well because the separable components in those graphs can be compressed.In their paper, they provided detail description for compressing the graph by building two structures: the adjacency table and the root-find structure ~\cite{compact-representation}, which used vertex separators to encode the graph into a shadow adjacency table ~\cite{compact-representation}, as well as support constant time on query operations. But their experiment implemented the data structure by using edge separator instead of vertex separator, which means the shadow label and root-find structure were not needed. In this project, we implement the data structure by using edge separator, and conduct experiment on it.
 
 \bigskip
 \bigskip
@@ -77,14 +80,36 @@ We firstly follow their idea to implement the data structure by using edge separ
 \bigskip
 \bigskip
 
-Next, we implement several index structures to support degree and adjacency query in constant time, and neighbour listing in constant time per Neighbour. The index structures contains all the index structures involved in their experiment, as well as two index structures implemented by us which apply succinct data structures on bit vector. In their paper, they encoded the degree of each vertex at the start of each adjacency list. However, we found that, the space of degree can be saved in some cases, which causes a trade-off between the time to support degree queries and the space to encode the graph.
+Next, we implement several index structures to support degree and adjacency query in constant time, and neighbour listing in constant time per Neighbour. The index structures contains all the index structures involved in their experiment, as well as two index structures implemented by us which apply succinct data structures on bit vector. In their paper, they encoded the degree of each vertex at the start of each adjacency list. However, the space of degree can be saved in some cases, which causes a trade-off between the time to support degree queries and the space to encode the graph.
+
+\bigskip
+\bigskip
+
+We compare the performance of various indexing structure by conduct a DFS on the graph represented by different indexing structure. We also compare our space and time cost to that of an array-based adjacency list.  
 
 \section{Related Works}
 
+There has been considerable works dedicate to compress graphs such as planar graph, k-Page graph and separable graph. The first attempt of succinct representation of graphs was conducted by Jacobson~\cite{Jacobson}, who first showed how to represent planar graph by using O(n) bits while supporting adjacency queries in $O(\log n)$ time. His approach decomposes a planar graph into at most four one-page graph which is represented as a sequence of balanced parentheses. His representation extended naturally to a $k$-page graph problem, where k$\geq$1.
+
+\bigskip
+\bigskip
+
+Munro and Raman~\cite{Munro} improved the time for adjacency queries to O(1) time while using $8n+2m$ bits where $n$ and $m$ are numbers of vertexes and edges respectively. Their work gives great reduction in the higher order term for number of bits regarding Jacobson's parenthesis representation, and further expands the types of operations on parenthesis representation. Geary $et$ $al.$~\cite{Geary} gave a conceptually simpler representation compared to Jacobson's data structure, they used $2n+o(n)$ bits while supporting natural parenthesis operations in $O(1)$ time. The space constants on the high order term has been improved by Chuang $et$ $al.$~\cite{Chuang}, and further by Chiang $et$ $al.$~\cite{Chiang}. The former proposed another encoding mechanism based on $canonical orderings$ of a planar graph, then used a $multiple parentheses sequence$ to represent the graph, while the latter generalized the notion of canonical orderings to orderly spanning trees and improved constant factors in terms of numbers of vertexes and edges. 
+
+\bigskip
+\bigskip
+
+A succinct representation for a k-page graph when k is large to support various navigational
+operations more efficiently, was proposed by Barbay $et$ $al.$~\cite{Barbay}, whose representation used $n+2m\lg n + m \cdot o(\lg k) + o(m)$ bits to support adjacency queries in $O(\lg k \lg \lg k)$ time, degree queries in constant time and neighbourhood in $O(d(x) \lg \lg k)$, where $d(x)$ is the degree of vertex $x$, or used $n+(2+\epsilon)m\lg k + m \cdot o(\lg k) + O(m)$ bits to support adjacency, degree and neighbourhood queries in $O(\lg k)$, $O(1)$ and $O(d(x))$ time, respectively, where $\epsilon$ is any constant satisfies $0< \epsilon <1$.   
+
+\bigskip
+\bigskip
+
+Blandford $et$ $al.$~\cite{compact-representation} made use of the unlabelled graphs with small separators to compactly represent the graph, whose representation used $O(n)$ bits on graph satisfies a $n^{c}$-separator theorem, while support degree and adjacency queries in $O(1)$ time, and neighbourhood queries in constant time per neighbour. Subsequently, Blelloch $et$ $al.$~\cite{succinct-representation} proposed a succinct representation on unlabelled separable graphs, which used $lg| \chi |+ o(n)$ bits to represent a graph in type $\chi$, while holding the same time bounds as the performance of Blandford's representation.       
 
 \section{Preliminaries}
 
-\textbf{Graph Separator}. A family of graphs $G$ is define separable if : it is closed under taking subgraphs, and satisfies the $f(.)$-separator theorem ~\cite{separator-theorem} if there is a constant $\alpha$ $<$ 1 and $\beta$ $>$ 0 such that each member graph in G with n vertexes has a separator set S of size $|S|$ $<$ $\beta f(n)$, that partition the graph into two parts A and B, with at most $\alpha n$ vertexes in each `\cite{separator-theorem}. A graph is separable if it belongs to a separable family of graphs. 
+\textbf{Graph Separator}. A family of graphs $G$ is define separable if : it is closed under taking subgraphs, and satisfies the $f(.)$-separator theorem ~\cite{separator-theorem} if there is a constant $\alpha$ $<$ 1 and $\beta$ $>$ 0 such that each member graph in G with n vertexes has a separator set S of size $|S|$ $<$ $\beta f(n)$, that partition the graph into two parts A and B, with at most $\alpha n$ vertexes in each. A graph is separable if it belongs to a separable family of graphs. 
 
 \bigskip
 \bigskip
