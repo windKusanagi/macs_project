@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  16 JUN 2017 17:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  20 JUN 2017 17:07
 entering extended mode
 **./macs.tex
 (macs.tex
@@ -754,13 +754,12 @@ Package pdftex.def Info: Figures/indirect.png used on input line 295.
  [21 <./Figures/indirect.png>] [22] [23]
 Chapter 4.
 
-Overfull \hbox (25.20703pt too wide) in paragraph at lines 392--406
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 411.
+
+
+Overfull \hbox (24.18439pt too wide) in paragraph at lines 415--430
  [][] 
- []
-
-
-Overfull \hbox (62.83466pt too wide) in paragraph at lines 414--428
-[][] 
  []
 
 [24
@@ -803,7 +802,7 @@ lic/amsfonts/cm/cmr8.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts
 eX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/john/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/john/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on macs.pdf (32 pages, 247440 bytes).
+Output written on macs.pdf (32 pages, 246603 bytes).
 PDF statistics:
  160 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
