@@ -313,7 +313,7 @@ RRR efficiently compresses a bit set if the set is very sparse populated, we tak
 \bigskip
 \bigskip
 
-\textbf{SD Vector-based indexing structure}. SD Vector is a bit vector that can compress very sparse populated bit vectors by representing the positions of 1 by the Elias~\cite{Elias}-Fano~\cite{Fano} representation for non-decreasing sequences. Given a bit set $B[0,...n-1)$ with $m$ ones ($m << n$),   the SD Vector uses $m \log n/m  + 2m + o(m)$~\cite{Practical-Entropy} bits to store the bit set, meanwhile support constant time $rank$ and $select$ queries. The idea of SD Vector-based indexing structure is very similar to RRR-based indexing structure. We firstly maintain a bit sequence which has the same length as the encoded graph bit sequence, next we mark the bits which indicate the starting position of an adjacency list, then we build the SD Vector on this bit sequence. In order to locate the starting position of a particular vertex, we use this SD Vector to perform a $select$ operation. 
+\textbf{SD Vector-based indexing structure}. SD Vector is a bit vector that can compress very sparse populated bit vectors by representing the positions of 1 by the Elias~\cite{Elias} - Fano~\cite{Fano} representation for non-decreasing sequences. Given a bit set $B[0,...n-1)$ with $m$ ones ($m << n$),   the SD Vector uses $m \log n/m  + 2m + o(m)$~\cite{Practical-Entropy} bits to store the bit set, meanwhile support constant time $rank$ and $select$ queries. The idea of SD Vector-based indexing structure is very similar to RRR-based indexing structure. We firstly maintain a bit sequence which has the same length as the encoded graph bit sequence, next we mark the bits which indicate the starting position of an adjacency list, then we build a SD Vector on this bit sequence. In order to locate the starting position of a particular vertex, we use the SD Vector to perform a $select$ operation which would return the expected position. 
 
 
 \chapter{Experiment}
@@ -393,14 +393,14 @@ Avg      &    2.54   &   1.27   &     0.46     &  1.06   &    0.77       \\
 \begin{tabular}{|l||c||c||c||c||c||c|}
 \hline
 Graph    & Array & Direct & Semi & Indirect & RRR & SD Vector \\ \hline
-feocean  &   13.6    &   31.6     &   34.9   &          &  103.3   & 60.8          \\
-m14b     &   36.2    &    88.5    &   93.1   &      &  251.6   &   130.7        \\
-febody   &   2.5    &    7.3    &   7.9   &          &   33.7  &     13.8      \\
-wave     &    19.9   &    60.8    &   66.1   &          &   176.2  &   95.1        \\
-558a     &    14.5   &    42.1    &   45.9   &          &  115.0   &    65.6       \\
-144      &   19.2    &    60.0    &   64.7   &          &  130.4   &  87.9         \\
-bcsstk30 &   4.2    &    24.9    &   26.8   &          &   40.9  &  29.3         \\
-bcsstk31 &    3.7   &    20.2    &   20.7   &          &   39.2  &  27.9         \\ \hline
+feocean  &   13.6    &   31.6     &   34.9   &    97.2      &  103.3   & 60.8          \\
+m14b     &   36.2    &    88.5    &   93.1   &   216.8   &  251.6   &   130.7        \\
+febody   &   2.5    &    7.3    &   7.9   &     27.7    &   33.7  &     13.8      \\
+wave     &    19.9   &    60.8    &   66.1   &    144.8     &   176.2  &   95.1        \\
+558a     &    14.5   &    42.1    &   45.9   &    102.8     &  115.0   &    65.6       \\
+144      &   19.2    &    60.0    &   64.7   &     111.2     &  130.4   &  87.9         \\
+bcsstk30 &   4.2    &    24.9    &   26.8   &    37.0    &   40.9  &  29.3         \\
+bcsstk31 &    3.7   &    20.2    &   20.7   &     35.4    &   39.2  &  27.9         \\ \hline
 Avg      &       &        &      &          &     &           \\
 \hline
 \end{tabular}
