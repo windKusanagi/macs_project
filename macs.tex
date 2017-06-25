@@ -15,7 +15,7 @@
 \usepackage[linesnumbered,ruled]{algorithm2e}
 \usepackage{multirow}
 \usepackage{setspace}
-
+\usepackage{url}
 \renewcommand{\baselinestretch}{2.0}
 
 \newtheorem{theorem}{Theorem}[section]
@@ -104,9 +104,6 @@ operations more efficiently, was proposed by Barbay $et$ $al.$~\cite{Barbay}, wh
 
 \bigskip
 
-
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
 \begin{table}[ht]
 \centering
 \caption{A summary of performance of various of succinct planar graph representations. Notation: $n$ and $m$ denote the numbers of vertexes and edges in Graph $G$, respectively, $i$ is the number of isolated vertexes in $G$, $\epsilon$ is an arbitrary positive constant, $\tau$ = min\{ $\lg k / \lg \lg m, \lg \lg k$, and $H$ is the information theoretic lower bound regarding storing a separable graph. \}  }
@@ -353,7 +350,7 @@ RRR efficiently compresses a bit set if the set is very sparse populated, we tak
 
 
 \chapter{Experiment}
-
+\section{Experiment Setup}
 
 \begin{table}[ht]
 \centering
@@ -362,14 +359,14 @@ RRR efficiently compresses a bit set if the set is very sparse populated, we tak
 \begin{tabular}{|l||c|c|c|c|}
 \hline
 \multicolumn{1}{|c||}{Graph} & Vertexes & Edges   & Max Degree & Source        \\ \hline
-feocean                   & 143437   & 409593  & 6          & 3D mesh       \\
-m14b                      & 214765   & 1679018 & 40         & 3D mesh       \\
-febody                    & 45087    & 163734  & 28         & Scotch Graphs \\ 
-wave                      & 156317   & 1059331 & 44         & RIACS Grids   \\
-558a                      & 110971   & 741934  & 26         & Cytoscape     \\
-144                       & 144649   & 1074393 & 26         & Cytoscape     \\
-bcsstk30                  & 28924    & 1007284 & 218        & Matrix: HB    \\
-bcsstk31                  & 35588    & 572914  & 188        & Matrix: HB    \\ \hline
+feocean                   & 143437   & 409593  & 6          & 3D mesh~\cite{3DMESH}        \\
+m14b                      & 214765   & 1679018 & 40         & 3D mesh~\cite{3DMESH}       \\
+febody                    & 45087    & 163734  & 28         & Scotch Graphs~\cite{Scotch} \\ 
+wave                      & 156317   & 1059331 & 44         & RIACS Grids~\cite{RIACS}    \\
+558a                      & 110971   & 741934  & 26         & Cytoscape~\cite{Cytoscape}      \\
+144                       & 144649   & 1074393 & 26         & Cytoscape~\cite{Cytoscape}     \\
+bcsstk30                  & 28924    & 1007284 & 218        & Matrix: HB~\cite{Matrix}    \\
+bcsstk31                  & 35588    & 572914  & 188        & Matrix: HB~\cite{Matrix}     \\ \hline
 \end{tabular}
 \end{table}
 

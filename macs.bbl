@@ -1,14 +1,33 @@
 \begin{thebibliography}{10}
 
+\bibitem{Matrix}
+{\em Matrix: HB}.
+\newblock Available at \url{http"//cis.ufl.edu/pub/umfpack/matrices/HB/}.
+
+\bibitem{RIACS}
+{\em RIACS GRIDS}.
+\newblock Available at \url{http://riacs.edu/pub/grids/}.
+
 \bibitem{Barbay}
 He~M Barbay~J, Castelli Aleardi~L and Munro JI.
 \newblock Succinct representation of labeled graphs.
 \newblock {\em Algorithmica 62}, pages 224--257, 2012.
 
+\bibitem{Scotch}
+Dave Beckett.
+\newblock {\em Internet Parallel Computing Archive}.
+\newblock Available at
+  \url{http://wotug.org/parallel/libraries/communication/scotch/Graphs/}.
+
 \bibitem{Gavoille}
 Gavoille C and Hanusse N.
 \newblock On compact encoding of pagenumber.
 \newblock {\em Discret Math Theor Comput Sci 10(3)}, 2008.
+
+\bibitem{3DMESH}
+C.Walshaw.
+\newblock {\em Graph partitioning archive}.
+\newblock Available at \url{http://www.gre.ac.uk/~c.walshaw/partition/}.
 
 \bibitem{Practical-Entropy}
 K.~Sadakane D.~Okanohara.
@@ -89,6 +108,12 @@ X.He R.C.N.Chuang, A.Garg and M.Y.Kao.
 R.J.Liton and R.E. Tarjan.
 \newblock A separator theorem for planar graphs.
 \newblock {\em SIAM J.Applied Mathematics}, (16):177--189, 1979.
+
+\bibitem{Cytoscape}
+svn2github.
+\newblock {\em Cytoscape GPU layout}.
+\newblock Available at
+  \url{https://github.com/svn2github/cytoscape/tree/master/csplugins/trunk/soc/ghuck/GpuGraphLayoutPlugin/sample_graphs}.
 
 \bibitem{Chiang}
 Y.T.Chiang and C.C.Lin.
