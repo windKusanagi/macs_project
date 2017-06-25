@@ -2,7 +2,7 @@
 
 \bibitem{Matrix}
 {\em Matrix: HB}.
-\newblock Available at \url{http"//cis.ufl.edu/pub/umfpack/matrices/HB/}.
+\newblock Available at \url{http://cis.ufl.edu/pub/umfpack/matrices/HB/}.
 
 \bibitem{RIACS}
 {\em RIACS GRIDS}.
@@ -65,6 +65,11 @@ Blelloch GE and Farzan A.
 Raman~R Geary~RF, Rahman~N.
 \newblock A simple optimal representation for balanced parentheses.
 \newblock {\em Theor Comput Sci 368}, page 231–246, 2006.
+
+\bibitem{sdsl}
+Simon Gog.
+\newblock {\em SDSL - Succinct Data Structure Library}.
+\newblock Available at \url{https://github.com/simongog/sdsl-lite}.
 
 \bibitem{Munro}
 V.~Raman J.~I.~Munro.

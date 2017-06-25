@@ -53,6 +53,10 @@ This is a test document.
 
 \begin{acknowledgements}
 My Supervisor, Dr. Meng He, deserves the most praise for his invaluable guidance, friendship and suggestions. I would also like to thank all of the friends and acquaintances I have made at Dalhousie University. They have made this journey something to remember. Without everyone’s support and guidance this project would have not been a success.
+I would like to thank Dalhousie University to provide such a great environment
+to do research and allowing me to finish my work.
+I am proudly grateful to my supportive and loving family for their whole-hearted
+support of my graduate studies.
 \end{acknowledgements}
 
 \mainmatter
@@ -350,7 +354,14 @@ RRR efficiently compresses a bit set if the set is very sparse populated, we tak
 
 
 \chapter{Experiment}
+After implementing our data structure by encoding the graph into an adjacency table as well as building an auxiliary indexing structure for supporting queries on graph, we'd like to exam the performance of our approach. In this chapter we will describe the experimental setup, then show and discuss our experiment result.
+
+\bigskip
+ 
 \section{Experiment Setup}
+
+\bigskip
+\textbf{RRR and SD Vector}. As we introduced in Chapter 3, we take advantage of the features of succinct representation of bit vector to build two indexing structures: RRR-based and SD Vector-based. We implemented both RRR and SD Vector structures by using the succinct data structure API provided by Simon Gog~\cite{sdsl}, which present a various of succinct representations including bit vector, Integer Vectors, Wavelet Trees, Compressed Suffix Arrays (CSA), etc. The API for RRR and SD Vector works when a bit set is provided, then it builds $select\_support\_type$ or $rank\_support\_type$ data structure on it. A $select$ or $rank$ operation then can be called by using member functions within the $select\_support\_type$ or $rank\_support\_type$ objects.  
 
 \begin{table}[ht]
 \centering
@@ -370,6 +381,7 @@ bcsstk31                  & 35588    & 572914  & 188        & Matrix: HB~\cite{M
 \end{tabular}
 \end{table}
 
+\textbf{Decoding}. 
 
 
 \begin{table}[ht]
