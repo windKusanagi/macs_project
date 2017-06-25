@@ -5,6 +5,11 @@ He~M Barbay~J, Castelli Aleardi~L and Munro JI.
 \newblock Succinct representation of labeled graphs.
 \newblock {\em Algorithmica 62}, pages 224--257, 2012.
 
+\bibitem{Gavoille}
+Gavoille C and Hanusse N.
+\newblock On compact encoding of pagenumber.
+\newblock {\em Discret Math Theor Comput Sci 10(3)}, 2008.
+
 \bibitem{Practical-Entropy}
 K.~Sadakane D.~Okanohara.
 \newblock Practical entropy-compressed rank/select dictionary.

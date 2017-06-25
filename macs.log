@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  22 JUN 2017 15:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  25 JUN 2017 11:19
 entering extended mode
 **./macs.tex
 (macs.tex
@@ -585,6 +585,9 @@ LaTeX Warning: Label `my-label' multiply defined.
 
 LaTeX Warning: Label `my-label' multiply defined.
 
+
+LaTeX Warning: Label `my-label' multiply defined.
+
 )
 \openout1 = `macs.aux'.
 
@@ -720,20 +723,25 @@ Underfull \vbox (badness 3635) has occurred while \output is active []
  [1
 
 ]
-[2] [3] [4] [5] [6] [7] [8] [9] [10]
+[2] [3] [4]
+Overfull \hbox (62.382pt too wide) in paragraph at lines 114--131
+ [][] 
+ []
+
+[5] [6] [7] [8] [9] [10]
 Chapter 2.
 <Figures/partition.png, id=55, 588.1975pt x 492.84125pt>
 File: Figures/partition.png Graphic file (type png)
 
 <use Figures/partition.png>
-Package pdftex.def Info: Figures/partition.png used on input line 184.
+Package pdftex.def Info: Figures/partition.png used on input line 220.
 (pdftex.def)             Requested size: 303.53267pt x 254.32367pt.
 
 <Figures/separatorTree.png, id=57, 603.25375pt x 452.69125pt>
 File: Figures/separatorTree.png Graphic file (type png)
 
 <use Figures/separatorTree.png>
-Package pdftex.def Info: Figures/separatorTree.png used on input line 194.
+Package pdftex.def Info: Figures/separatorTree.png used on input line 230.
 (pdftex.def)             Requested size: 346.89732pt x 260.31616pt.
  [11
 
@@ -749,16 +757,16 @@ Chapter 3.
 File: Figures/indirect.png Graphic file (type png)
 
 <use Figures/indirect.png>
-Package pdftex.def Info: Figures/indirect.png used on input line 295.
+Package pdftex.def Info: Figures/indirect.png used on input line 331.
 (pdftex.def)             Requested size: 433.62001pt x 261.8704pt.
  [21 <./Figures/indirect.png>] [22] [23]
 Chapter 4.
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 411.
+               Default added (so using `tbp') on input line 447.
 
 
-Overfull \hbox (24.18439pt too wide) in paragraph at lines 415--430
+Overfull \hbox (24.18439pt too wide) in paragraph at lines 451--466
  [][] 
  []
 
@@ -781,10 +789,10 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4586 strings out of 493328
- 65665 string characters out of 3130507
- 179273 words of memory out of 3000000
- 8020 multiletter control sequences out of 15000+200000
+ 4589 strings out of 493328
+ 65710 string characters out of 3130507
+ 179278 words of memory out of 3000000
+ 8023 multiletter control sequences out of 15000+200000
  10205 words of font info for 38 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,12n,28p,1591b,2170s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -802,7 +810,7 @@ lic/amsfonts/cm/cmr8.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts
 eX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/john/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/john/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on macs.pdf (32 pages, 246682 bytes).
+Output written on macs.pdf (32 pages, 249274 bytes).
 PDF statistics:
  160 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -10,7 +10,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{amsthm}
-\usepackage{graphicx} %package to manage images
+\usepackage{graphicx} %package to manage images1
 \graphicspath{ {Figures/} }
 \usepackage[linesnumbered,ruled]{algorithm2e}
 \usepackage{multirow}
@@ -89,7 +89,7 @@ We compare the performance of various indexing structure by conduct a DFS on the
 
 \section{Related Works}
 
-There has been considerable works dedicate to compress graphs such as planar graph, k-Page graph and separable graph. The first attempt of succinct representation of graphs was conducted by Jacobson~\cite{Jacobson}, who first showed how to represent planar graph by using O(n) bits while supporting adjacency queries in $O(\log n)$ time. His approach decomposes a planar graph into at most four one-page graph which is represented as a sequence of balanced parentheses. His representation extended naturally to a $k$-page graph problem, where k$\geq$1.
+There has been considerable works dedicate to compress graphs such as planar graph, k-Page graph and separable graph. The first attempt of succinct representation of graphs was conducted by Jacobson~\cite{Jacobson}, who firstly showed how to represent planar graph by using O(n) bits while supporting adjacency queries in $O(\log n)$ time. His approach decomposes a planar graph into at most four one-page graph which is represented as a sequence of balanced parentheses. His representation extended naturally to a $k$-page graph problem, where k$\geq$1.
 
 \bigskip
 \bigskip
@@ -103,9 +103,45 @@ A succinct representation for a k-page graph when k is large to support various 
 operations more efficiently, was proposed by Barbay $et$ $al.$~\cite{Barbay}, whose representation used $n+2m\lg n + m \cdot o(\lg k) + o(m)$ bits to support adjacency queries in $O(\lg k \lg \lg k)$ time, degree queries in constant time and neighbourhood in $O(d(x) \lg \lg k)$, where $d(x)$ is the degree of vertex $x$, or used $n+(2+\epsilon)m\lg k + m \cdot o(\lg k) + O(m)$ bits to support adjacency, degree and neighbourhood queries in $O(\lg k)$, $O(1)$ and $O(d(x))$ time, respectively, where $\epsilon$ is any constant satisfies $0< \epsilon <1$.   
 
 \bigskip
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{table}[ht]
+\centering
+\caption{A summary of performance of various of succinct planar graph representations. Notation: $n$ and $m$ denote the numbers of vertexes and edges in Graph $G$, respectively, $i$ is the number of isolated vertexes in $G$, $\epsilon$ is an arbitrary positive constant, $\tau$ = min\{ $\lg k / \lg \lg m, \lg \lg k$, and $H$ is the information theoretic lower bound regarding storing a separable graph. \}  }
+\label{my-label}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Type                       & Ref. & Space & Adjacency & Neighborhood & Degree \\ \hline
+\multirow{4}{*}{Planar}    &  ~\cite{Jacobson}    & $O(n)$ &   $O(\lg n)$   &       $O(deg(x) \lg n)$       &    $0(\lg n)$    \\ \cline{2-6} 
+                           &   ~\cite{Chuang} &  $\frac{3}{5} m + (5+ \epsilon )n + o(n) $  & $O(1)$  & $O(deg(x))$ &   $O(1)$     \\ \cline{2-6} 
+                           & ~\cite{Chiang} & $2m+2n+0(m+n)$& $O(1)$  &  $O(deg(x))$  &  $O(1)$     \\ \cline{2-6} 
+                           & ~\cite{Munro} & $2m+8n+o(n)$&  $O(1)$  &  $O(deg(x))$  &   $O(1)$  \\ \hline
+\multirow{5}{*}{k-page}    &  ~\cite{Jacobson} &  $O(kn)$  & $O(\lg n + k)$  &  $O(geg(x)\lg n$  &  $O(\lg n)$ \\ \cline{2-6} 
+                           &   ~\cite{Gavoille}   & $(2(m+i)+o(m+i))\lg k$ & $O(\tau \lg k)$  &  $O(deg(x) \tau)$ & O(1) \\ \cline{2-6} 
+                           &  ~\cite{Barbay} & $2m \lg k+n+o(m \lg k)$  & $O(\lg k \lg \lg k)$  & $O(deg(x) \lg \lg k)$ &   $O(1)$  \\ \cline{2-6} 
+                           &   ~\cite{Barbay}   & $(2+\epsilon )m\lg k+n+o(m\lg k)$ & $O(\lg k)$ & $O(deg(x))$& $O(1)$        \\ \cline{2-6} 
+                           &~\cite{Munro} & $2m+2kn+o(kn)$ & $O(k)$  & $O(deg(x)+k)$ &  $O(1)$  \\ \hline
+\multirow{1}{*}{Triangulation} &  ~\cite{Chuang}    & $2m+n+o(n)$  & $O(1)$      & $O(deg(x))$    & $O(1)$   \\ \hline
+                           
+\multirow{2}{*}{Separable} &  ~\cite{compact-representation}    & $O(n$)  & $O(1)$      & $O(deg(x))$    & $O(1)$   \\ \cline{2-6} 
+                           &  ~\cite{succinct-representation}    &  $o(n)+H$     & $O(1)$      & $O(deg(x))$    & $O(1)$   \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+
+
 \bigskip
 
-Blandford $et$ $al.$~\cite{compact-representation} made use of the unlabelled graphs with small separators to compactly represent the graph, whose representation used $O(n)$ bits on graph satisfies a $n^{c}$-separator theorem, while support degree and adjacency queries in $O(1)$ time, and neighbourhood queries in constant time per neighbour. Subsequently, Blelloch $et$ $al.$~\cite{succinct-representation} proposed a succinct representation on unlabelled separable graphs, which used $lg| \chi |+ o(n)$ bits to represent a graph in type $\chi$, while holding the same time bounds as the performance of Blandford's representation.       
+Blandford $et$ $al.$~\cite{compact-representation} made use of the unlabelled graphs with small separators to compactly represent the graph, whose representation used $O(n)$ bits on graph satisfies a $n^{c}$-separator theorem, while supported degree and adjacency queries in $O(1)$ time, and neighbourhood queries in constant time per neighbour. Subsequently, Blelloch $et$ $al.$~\cite{succinct-representation} proposed a succinct representation on unlabelled separable graphs, which used $lg| \chi |+ o(n)$ bits to represent a graph in type $\chi$, while holding the same time bounds as the performance of Blandford's representation. A summary of performance of various of succinct planar graph representations is shown in Table .
+        
+
+
+
 
 \section{Preliminaries}
 
