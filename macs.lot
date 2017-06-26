@@ -1,0 +1,13 @@
+\select@language {english}
+\baselineskip =0.7\baselineskip 
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {Table 1.1}{\ignorespaces A summary of performance of various of succinct planar graph representations. Notation: $n$ and $m$ denote the numbers of vertexes and edges in Graph $G$, respectively, $i$ is the number of isolated vertexes in $G$, $\epsilon $ is an arbitrary positive constant, $\tau $ = min\{ $\mathop {\mathgroup \symoperators lg}\nolimits k / \mathop {\mathgroup \symoperators lg}\nolimits \mathop {\mathgroup \symoperators lg}\nolimits m, \mathop {\mathgroup \symoperators lg}\nolimits \mathop {\mathgroup \symoperators lg}\nolimits k$, and $H$ is the information theoretic lower bound regarding storing a separable graph. \} }}{5}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {Table 4.1}{\ignorespaces Graph List}}{27}
+\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges}}{27}
+\contentsline {table}{\numberline {Table 4.3}{\ignorespaces The space cost of different indexing structures. Space is in bits per edge for encoding the edges.}}{28}
+\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a DFS, the time cost is measured by millisecond}}{28}
+\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance}}{28}
+\addvspace {10\p@ }

@@ -1,7 +1,9 @@
 \select@language {english}
 \baselineskip =0.7\baselineskip 
-\contentsline {chapter}{Abstract}{iii}
-\contentsline {chapter}{Acknowledgements}{iv}
+\contentsline {chapter}{List of Tables}{iii}
+\contentsline {chapter}{List of Figures}{iv}
+\contentsline {chapter}{Abstract}{v}
+\contentsline {chapter}{Acknowledgements}{vi}
 \contentsline {chapter}{\numberline {Chapter 1}Introduction}{1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -18,6 +20,8 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {4.1}Experiment Setup}{24}
-\contentsline {chapter}{\numberline {Chapter 5}Conclusion}{27}
 \addvspace {10\p@ }
-\contentsline {chapter}{Bibliography}{28}
+\contentsline {section}{\numberline {4.2}Experiment Result}{26}
+\contentsline {chapter}{\numberline {Chapter 5}Conclusion}{29}
+\addvspace {10\p@ }
+\contentsline {chapter}{Bibliography}{30}

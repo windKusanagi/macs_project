@@ -1,8 +1,9 @@
 \begin{thebibliography}{10}
 
 \bibitem{Matrix}
-{\em Matrix: HB}.
-\newblock Available at \url{http://cis.ufl.edu/pub/umfpack/matrices/HB/}.
+{\em BCS Structural Engineering Matrix}.
+\newblock Available at
+  \url{http://math.nist.gov/MatrixMarket/data/Harwell-Boeing/bcsstruc5/}.
 
 \bibitem{RIACS}
 {\em RIACS GRIDS}.

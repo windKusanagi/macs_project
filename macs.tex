@@ -26,12 +26,12 @@
 \begin{document}
 
 \macs  % options are \mcs, \macs, \mec, \mhi, \phd, and \bcshon
-\title{COMPACT REPRESENTATION OF SEPARABLE GRAPH}
+\title{COMPACT REPRESENTATION OF SEPARABLE GRAPH}``
 \author{Xiang Zhang}
 \defenceday{1}
 \defencemonth{August}
 \defenceyear{2017}
-\convocation{May}{2017}
+\convocation{September}{2017}
 
 % Use multiple \supervisor commands for co-supervisors.
 % Use one \reader command for each reader.
@@ -40,10 +40,13 @@
 \reader{D. Odaprof}
 \reader{A. External}
 
-\nolistoftables
-\nolistoffigures
+
 
 \frontmatter
+
+
+
+
 
 \begin{abstract}
 This is a test document.
@@ -195,7 +198,7 @@ In this project, we use two kinds of succinct data structure on bit vector : RRR
 \bigskip
 \bigskip
 
-In our project, we assign each vertex in the graph an integer label. For each vertex, we store an adjacency list which contains its all neighbouring vertexes. If a vertex with label $v$ has neighbours $v_{1}, v_{2}, v_{3}, ...,v_{n}$ in ascending sorted order, then we encode the difference between each adjacency pair in the adjacency list as $|v_{1}-v|, \ |v_{2}-v_{1}|,\  |v_{3}-v_{2}|,\ ...,\ |v_{n}-v_{n-1}|$ contiguously, which forms a sequence of bits stored in memory. We use the gammacode~\cite{Gamma} to encode the differences, which uses $2\lfloor \log n \rfloor + 1$ bits to encode a difference. The difference $v_{1} - v$ may be negative in some cases, we here store a one-bit flag that value. To implement one of our index structures, the degree of each vertex needs to be encoded at start position of the corresponding adjacency, but in other circumstances the space of degree can be saved. By concatenating all the adjacency lists in the order of the vertex labels, we form an adjacency table. To access the adjacency list of a vertex, knowing the starting position of the adjacency
+In our project, we assign each vertex in the graph an integer label. For each vertex, we store an adjacency list which contains its all neighbouring vertexes. If a vertex with label $v$ has neighbours $v_{1}, v_{2}, v_{3}, ...,v_{n}$ in ascending sorted order, then we encode the difference between each adjacency pair in the adjacency list as $|v_{1}-v|, \ |v_{2}-v_{1}|,\  |v_{3}-v_{2}|,\ ...,\ |v_{n}-v_{n-1}|$ contiguously, which forms a sequence of bits stored in memory. We use the Elias gamma code~\cite{Gamma} to encode the differences, which uses $2\lfloor \log n \rfloor + 1$ bits to encode a difference. The difference $v_{1} - v$ may be negative in some cases, we here store a one-bit flag that value. To implement one of our index structures, the degree of each vertex needs to be encoded at start position of the corresponding adjacency, but in other circumstances the space of degree can be saved. By concatenating all the adjacency lists in the order of the vertex labels, we form an adjacency table. To access the adjacency list of a vertex, knowing the starting position of the adjacency
 is necessary. The easiest and fastest approach is to store an array of offset pointers of size $O(\log (n))$ for each. But if doing so, we would use $nO(\log (n))$ space, which exceeds our space bound. Alternatively, we implement other two index structures proposed by Blandfor~\cite{compact-representation}, as well as two index structures based on succinct data structure on bit vector, which use less space cost down to $O(n)$ bits.
 \bigskip
 \begin{lemma}
@@ -330,12 +333,12 @@ any adjacency list is to store an offset pointer for each vertex. Because our re
 \begin{figure}[ht]
 \centering
 \includegraphics[width=1.0\textwidth]{indirect}
-\caption{The architecture of the $indirect$ index structure}
+\caption{The architecture of the $indirect$ indexing structure}
 \end{figure}
 
 \bigskip
 
-To locate the starting position of a particular vertex, we firstly find which block the vertex is in by dividing the vertex label with $\log(n)$ (number of vertexes in each block). Next we check the bit vector of that block to find which subblock contains the vertex. Since we store the offset pointer for each vertex which is the first one in its subblock, we can know the starting position of the target subblock, then we decode the subblock. Although we will get all the adjacency lists within the subblock if do so, the degree information of each vertex is also encoded, hence we can have the adjacency list of the target vertex easily. The bit vector of each block has $\log(n)$ bits, each subblock is $k\log(n)$ bits long, determining and decoding the subblock can be completed by using lookup table, which uses constant time to check $\Theta(\log(n))$ bits.         
+To locate the starting position of a particular vertex, we firstly find which block the vertex is in by dividing the vertex label with $\log(n)$ (number of vertexes in each block). Next we check the bit vector of that block to find which subblock contains the vertex. Since we store the offset pointer for the vertexes which are the first one in their subblock, we can know the starting position of the target subblock, then we decode the subblock. Although we will get all the adjacency lists within the subblock if do so, the degree information of each vertex is also encoded, hence we can have the adjacency list of the target vertex easily. The bit vector of each block has $\log(n)$ bits, each subblock is $k\log(n)$ bits long, determining and decoding the subblock can be completed by using lookup table, which uses constant time to check $\Theta(\log(n))$ bits.         
 
 \bigskip
 \bigskip
@@ -361,7 +364,31 @@ After implementing our data structure by encoding the graph into an adjacency ta
 \section{Experiment Setup}
 
 \bigskip
-\textbf{RRR and SD Vector}. As we introduced in Chapter 3, we take advantage of the features of succinct representation of bit vector to build two indexing structures: RRR-based and SD Vector-based. We implemented both RRR and SD Vector structures by using the succinct data structure API provided by Simon Gog~\cite{sdsl}, which present a various of succinct representations including bit vector, Integer Vectors, Wavelet Trees, Compressed Suffix Arrays (CSA), etc. The API for RRR and SD Vector works when a bit set is provided, then it builds $select\_support\_type$ or $rank\_support\_type$ data structure on it. A $select$ or $rank$ operation then can be called by using member functions within the $select\_support\_type$ or $rank\_support\_type$ objects.  
+\textbf{RRR and SD Vector}. As we introduced in Chapter 3, we take advantage of the features of succinct representation of bit vector to build two indexing structures: RRR-based and SD Vector-based. We implemented both RRR and SD Vector structures by using the succinct data structure API provided by Simon Gog~\cite{sdsl}, which presents a various of succinct representations including bit vector, Integer Vectors, Wavelet Trees, Compressed Suffix Arrays (CSA), etc. The API for RRR and SD Vector works when a bit set is provided, then it builds $select\_support\_type$ or $rank\_support\_type$ data structure on it. A $select$ or $rank$ operation then can be called by using member functions within the $select\_support\_type$ or $rank\_support\_type$ objects.  
+
+\bigskip
+\bigskip
+
+\textbf{Decoding}. Taking advantage of the feature of Random-Access-Machine that costs constant-time to perform operations on $O(\lg n)$ bits, we can decode any $O(\lg n)$-bit words in constant time. One practical approach here is using a lookup table. In our project, the graph is Elias gamma encoded, to ensure a decoding operation on $O(\lg n)$-bits requires constant time, we implement a table to decode multiple gamma codes at once. For a fixed number of $k_{g}$, we create a table of size $2^{k_{g}}$, and use the numbers range from 0~$2^{k_{g}}$ as indexes. Each entry in the table indicates a decoding result which is represented by a 32-bit word. 
+
+\bigskip
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1.0\textwidth]{Decoding}
+\caption{The working mechanism of the lookup table}
+\end{figure}
+
+\bigskip
+
+The working mechanism of this lookup table is shown in Figure 4.1 (note that we set the $k_{g}$ to 16, and limit the number of words decoded at once to 3 in our implementation): the first two bits indicate the number of values that this 16 bits decode to. If a bit block with size of 16 can not be directly decoded (e.g. the first case in the Figure 4.1, which is all zero), then the firstly two bits in the corresponding entry is set to 0, which means none of number can be decoded in this block. The next 24 bits ($3_{rd} - 26_{th}$ bits) indicate the three potential decoding result (if the first two bits show that only one number can be decoded, then we only look into the $3_{rd} - 11_{rd}$ bits). The next 5 bits ($27_{th} - 31_{th}$ bits) show the number of unused bits which will be used in next lookup operation, and the last bit is unused. This makes each table entry fit into 32 bits.     
+
+\bigskip
+\bigskip
+
+
+\textbf{Test Graphs}. The test graph used in our experiment come from several source: two 3D Mesh graphs from an online Graph Partitioning Archive maintained by C. Walshaw~\cite{3DMESH}, one graph from Scotch Graph Archive maintained by Dave Beckett~\cite{Scotch}, one graph from RIACS Graph Archive~\cite{RIACS}, two Gpu Layout Plugin graphs from Cytoscape online resource~\cite{Cytoscape}, and two BCS Structural Engineering Matrix graphs from Matrix Market~\cite{Matrix}. All the test graphs are undirected graphs, a summary of general attributes of the graphs is shown in Table 4.1, giving the information about the numbers of vertexes and edges, max degree and graph source.
+
 
 \begin{table}[ht]
 \centering
@@ -376,17 +403,20 @@ febody                    & 45087    & 163734  & 28         & Scotch Graphs~\cit
 wave                      & 156317   & 1059331 & 44         & RIACS Grids~\cite{RIACS}    \\
 558a                      & 110971   & 741934  & 26         & Cytoscape~\cite{Cytoscape}      \\
 144                       & 144649   & 1074393 & 26         & Cytoscape~\cite{Cytoscape}     \\
-bcsstk30                  & 28924    & 1007284 & 218        & Matrix: HB~\cite{Matrix}    \\
-bcsstk31                  & 35588    & 572914  & 188        & Matrix: HB~\cite{Matrix}     \\ \hline
+bcsstk30                  & 28924    & 1007284 & 218        & BCS~\cite{Matrix}    \\
+bcsstk31                  & 35588    & 572914  & 188        & BCS~\cite{Matrix}     \\ \hline
 \end{tabular}
 \end{table}
 
-\textbf{Decoding}. 
+
+\section{Experiment Result}. The experiments were conducted on a Linux server containing 32 Intel Xeon E5-2650 @ 2.00GHz cores and 256 Gigabytes main memory.
+We present each edge in undirected graphs in both directions, which means the space cost measured by bits per edge is reported for each direction.
+
 
 
 \begin{table}[ht]
 \centering
-\caption{The performance of compact mechanisms.}
+\caption{The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges}
 \label{compact-performance}
 \begin{tabular}{|l||c|c||c|c||c|}
 \cline{2-6}
@@ -410,7 +440,7 @@ bcsstk31               & 6.61          & 2.98         & 9.02           & 2.89   
 
 \begin{table}[ht]
 \centering
-\caption{The space cost of different indexing structures}
+\caption{The space cost of different indexing structures. Space is in bits per edge for encoding the edges.}
 \label{my-label}
 \begin{tabular}{|l||c||c||c||c||c|}
 \hline
@@ -423,8 +453,8 @@ wave     &   2.36    &   1.18   &    0.46      &   1.14   &   0.72         \\
 144      &    2.15   &   1.07   &    0.43      &  1.05    &   0.67          \\
 bcsstk30 &   0.46   &   0.23   &      0.26    &   0.35   &   0.16        \\
 bcsstk31 &   0.93   &   0.46   &     0.21     &  0.54   &   0.35        \\ \hline
-Avg      &    2.54   &   1.27   &     0.46     &  1.06   &    0.77       \\
-\hline
+%Avg      &    2.54   &   1.27   &     0.46     &  1.06   &    0.77       \\
+%\hline
 \end{tabular}
 \end{table}
 
@@ -446,8 +476,8 @@ wave     &    19.9   &    60.8    &   66.1   &    144.8     &   176.2  &   95.1 
 144      &   19.2    &    60.0    &   64.7   &     111.2     &  130.4   &  87.9         \\
 bcsstk30 &   4.2    &    24.9    &   26.8   &    37.0    &   40.9  &  29.3         \\
 bcsstk31 &    3.7   &    20.2    &   20.7   &     35.4    &   39.2  &  27.9         \\ \hline
-Avg      &       &        &      &          &     &           \\
-\hline
+%Avg      &    14.2   &    41.9    &  45.0  &          &     &           \\
+%\hline
 \end{tabular}
 \end{table}
 
@@ -469,7 +499,7 @@ wave                   &             &             &                &           
 144                    &             &             &                &                 &               &                &                 &                  &               &               &                &                \\
 b30*               &             &             &                &                 &               &                &                 &                  &               &               &                &                \\ 
 b31*               &             &             &                &                 &               &                &                 &                  &               &               &                &                \\ \hline
-Avg                    &             &             &                &                 &               &                &                 &                  &               &               &                &                \\ \hline
+%Avg                    &             &             &                &                 &               &                &                 &                  &               &               &                &                \\ \hline
 
 \end{tabular}
 \end{table}
