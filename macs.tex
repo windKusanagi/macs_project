@@ -92,7 +92,7 @@ Next, we implement several index structures to support degree and adjacency quer
 \bigskip
 \bigskip
 
-We compare the performance of various indexing structure by conduct a DFS on the graph represented by different indexing structure. We also compare our space and time cost to that of an array-based adjacency list.  
+We compare the performance of various indexing structure by conduct a breadth-first-search on the graph represented by different indexing structure. We also compare our space and time cost to that of an array-based adjacency list representation.  
 
 \section{Related Works}
 
@@ -193,7 +193,7 @@ In this project, we use two kinds of succinct data structure on bit vector : RRR
 \bigskip
 \bigskip
 
-\textbf{Adjacency Tables}. An adjacency list representation for a graph associates each vertex in the graph with the collection of its neighboring vertices. For use as a data structure, the main alternative to the adjacency list is the adjacency matrix. For a sparse graph (most pairs of vertices are not connected by edges), in our case, a graph has $bounded \ mdensity$, an adjacency list representation is significantly more space-efficient than an adjacency matrix representation: the space cost of the adjacency list representation depends on the number of edges and vertices in the graph, while the adjacency matrix representation is stored as the square of the number of vertices. Generally, an adjacency list representation for an undirected graph requires 8$|E|$ bytes (2(32)$|E|$ bits) of space, where $|E|$ is the number of edges in the graph. However, it is not space-efficient enough yet.
+\textbf{Adjacency Tables}. An adjacency list representation for a graph associates each vertex in the graph with the collection of its neighbouring vertices. For use as a data structure, the main alternative to the adjacency list is the adjacency matrix. For a sparse graph (most pairs of vertices are not connected by edges), in our case, a graph has $bounded \ mdensity$, an adjacency list representation is significantly more space-efficient than an adjacency matrix representation: the space cost of the adjacency list representation depends on the number of edges and vertices in the graph, while the adjacency matrix representation is stored as the square of the number of vertices. Generally, an adjacency list representation for an undirected graph requires 8$|E|$ bytes (2*32*$|E|$ bits) of space, where $|E|$ is the number of edges in the graph. However, it is not space-efficient enough yet.
 
 \bigskip
 \bigskip
@@ -390,9 +390,9 @@ The working mechanism of this lookup table is shown in Figure 4.1 (note that we 
 \textbf{Test Graphs}. The test graph used in our experiment come from several source: two 3D Mesh graphs from an online Graph Partitioning Archive maintained by C. Walshaw~\cite{3DMESH}, one graph from Scotch Graph Archive maintained by Dave Beckett~\cite{Scotch}, one graph from RIACS Graph Archive~\cite{RIACS}, two Gpu Layout Plugin graphs from Cytoscape online resource~\cite{Cytoscape}, and two BCS Structural Engineering Matrix graphs from Matrix Market~\cite{Matrix}. All the test graphs are undirected graphs, a summary of general attributes of the graphs is shown in Table 4.1, giving the information about the numbers of vertexes and edges, max degree and graph source.
 
 
-\begin{table}[ht]
+\begin{table}[]
 \centering
-\caption{Graph List}
+\caption{ Test graphs used in our experiment }
 \label{graph-list}
 \begin{tabular}{|l||c|c|c|c|}
 \hline
@@ -401,7 +401,7 @@ feocean                   & 143437   & 409593  & 6          & 3D mesh~\cite{3DME
 m14b                      & 214765   & 1679018 & 40         & 3D mesh~\cite{3DMESH}       \\
 febody                    & 45087    & 163734  & 28         & Scotch Graphs~\cite{Scotch} \\ 
 wave                      & 156317   & 1059331 & 44         & RIACS Grids~\cite{RIACS}    \\
-558a                      & 110971   & 741934  & 26         & Cytoscape~\cite{Cytoscape}      \\
+598a                      & 110971   & 741934  & 26         & Cytoscape~\cite{Cytoscape}      \\
 144                       & 144649   & 1074393 & 26         & Cytoscape~\cite{Cytoscape}     \\
 bcsstk30                  & 28924    & 1007284 & 218        & BCS~\cite{Matrix}    \\
 bcsstk31                  & 35588    & 572914  & 188        & BCS~\cite{Matrix}     \\ \hline
@@ -410,11 +410,14 @@ bcsstk31                  & 35588    & 572914  & 188        & BCS~\cite{Matrix} 
 
 
 \section{Experiment Result}. The experiments were conducted on a Linux server containing 32 Intel Xeon E5-2650 @ 2.00GHz cores and 256 Gigabytes main memory.
-We present each edge in undirected graphs in both directions, which means the space cost measured by bits per edge is reported for each direction.
+We present each edge in undirected graphs in both directions, which means the space cost measured by bits per edge is reported for each direction. Our experiment focus on three parameters of concern: the time to construct our data structure, the time to perform queries on graph and the space needed to encode the graph into adjacency table. The space cost of our data structure consists of the space for adjacency table, and the space for the indexing structure. There are a trade-off between the time to complete the construction and the space for encoding the adjacency table caused by whether conduct the child-flipping process, as well as a trade-off between the space for the indexing data structure and the time to perform queries on graphs resulted by applying different indexing structures. Our experiments present demonstration on these trade-offs.
+
+\bigskip
 
 
+Table 4.2 shows the time cost of constructing the compact data structure and the space needed to encoding the adjacency table. We can see that the child-flipping causes additional time cost as a heuristic postprocessing phase, but do reduce the space cost of the adjacency table (save at most 8\% space on the febody graph, and at least 2.5\% space on the bcsstk30 graph). The degree space for each graph is listed separately, because the child-flipping process will not change the degree of each vertex, and the number of bits to encode a number is fixed (use $2\lfloor \log d \rfloor + 1$ bits to encode a degree $d$ by using Elias gamma coding).   
 
-\begin{table}[ht]
+\begin{table}[]
 \centering
 \caption{The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges}
 \label{compact-performance}
@@ -427,20 +430,18 @@ feocean                & 55.69         & 8.68         & 59.51          & 8.27   
 m14b                   & 129.3         & 5.21         & 155.37         & 5.00          & 0.51                    \\
 febody                 & 6.33          & 4.64         & 7.2            & 4.25          & 0.82                    \\
 wave                   & 77.4          & 5.76         & 86.52          & 5.57          & 0.55                    \\
-558a                   & 39.06         & 5.45         & 52.33          & 5.21          & 0.54                    \\
+598a                   & 39.06         & 5.45         & 52.33          & 5.21          & 0.54                    \\
 144                    & 67.09         & 5.32         & 84.33          & 5.13          & 0.52                    \\
 bcsstk30               & 7.89          & 2.29         & 12.3           & 2.24          & 0.17                    \\
 bcsstk31               & 6.61          & 2.98         & 9.02           & 2.89          & 0.30                    \\ \hline
 \end{tabular}
 \end{table}
 
-
-
-
+The indexing structures are built based on the ordering result after the child-flipping process. Table 4.3 illustrates the space cost of each indexing structure, while Table 4.4 illustrates the time cost to perform a breadth-first-search(BFS) on the graph by applying those indexing structures on the encoded adjacency table. The reason why we use BFS to measure the performance is because it requires visiting all the edges, which makes it a reasonable measure for our data structure. The BFS algorithm starts at some arbitrary vertex as the root (we use the $1_{st}$ vertex after renumbering in our project) and explores the neighbour nodes first, before moving to the next level neighbours, with a cost of time $\Theta(|V| + |E|)$. We also compare the performance of our representation to that of an array-based adjacency list graph representation. The array-based adjacency list representation store all the neighbours of each vertex contiguously in a large array with the neighbour lists place one after the other. It also require an array to store the index of each vertex. Hence it use one 32-bit word to present an edge and one 32-bit word as the index of one vertex, taking 8$|E|$ bytes (2*32*$|E|$ bits) of space for list and 4$|V|$ bytes of bytes in total. For the BFS on any types of indexing structures, we use one flag bit to indicate whether a vertex has been visited.     
 
 \begin{table}[ht]
 \centering
-\caption{The space cost of different indexing structures. Space is in bits per edge for encoding the edges.}
+\caption{The space cost of different indexing structures. Space is in bits per edge.}
 \label{my-label}
 \begin{tabular}{|l||c||c||c||c||c|}
 \hline
@@ -449,21 +450,21 @@ feocean  &    5.63    &   2.81   &     0.84     &  2.03   &   1.59        \\
 m14b     &    2.05    &   1.02   &    0.42      &  1.01   &   0.64        \\
 febody   &    4.46   &   2.23   &     0.54     &  1.33   &    1.31        \\
 wave     &   2.36    &   1.18   &    0.46      &   1.14   &   0.72         \\
-558a     &    2.39    &   1.19   &   0.47       &  1.10   &    0.77       \\
+598a     &    2.39    &   1.19   &   0.47       &  1.10   &    0.77       \\
 144      &    2.15   &   1.07   &    0.43      &  1.05    &   0.67          \\
-bcsstk30 &   0.46   &   0.23   &      0.26    &   0.35   &   0.16        \\
+bcsstk30 &   0.46   &   0.23   &      0.12    &   0.35   &   0.16        \\
 bcsstk31 &   0.93   &   0.46   &     0.21     &  0.54   &   0.35        \\ \hline
 %Avg      &    2.54   &   1.27   &     0.46     &  1.06   &    0.77       \\
 %\hline
 \end{tabular}
 \end{table}
 
-
+The experimental result shows that the $direct$ and $indirect$ indexing structures give the fastest query time, but still slower than the array-based adjacency list representation. It's not surprising because the array-based representation has good spacial locality, which means the edges of a vertex are adjacent in memory and be loaded into cache as an array. In addition to that, the array-based representation does not need to decode the list, hence the array-based representation is faster than others. $Indirect$ indexing structure shows good space usage but it is not very efficient in query, because it needs to decode a "subblock" rather than an adjacency list. The SD Vector-based structure outperforms the RRR-based structure in both space usage and time cost in all the test graphs, but since we are using the API provided by a third-party to construct RRR and SD Vector on bit set, we can not simply say the RRR structure show worse performance than SD Vector when applied in our data mechanism.     
 
 
 \begin{table}[ht]
 \centering
-\caption{The time performances of different indexing structures to conduct a DFS, the time cost is measured by millisecond}
+\caption{The time performances of different indexing structures to conduct a BFS, the time cost is measured by millisecond}
 \label{my-label}
 \begin{tabular}{|l||c||c||c||c||c||c|}
 \hline
@@ -472,7 +473,7 @@ feocean  &   13.6    &   31.6     &   34.9   &    97.2      &  103.3   & 60.8   
 m14b     &   36.2    &    88.5    &   93.1   &   216.8   &  251.6   &   130.7        \\
 febody   &   2.5    &    7.3    &   7.9   &     27.7    &   33.7  &     13.8      \\
 wave     &    19.9   &    60.8    &   66.1   &    144.8     &   176.2  &   95.1        \\
-558a     &    14.5   &    42.1    &   45.9   &    102.8     &  115.0   &    65.6       \\
+598a     &    14.5   &    42.1    &   45.9   &    102.8     &  115.0   &    65.6       \\
 144      &   19.2    &    60.0    &   64.7   &     111.2     &  130.4   &  87.9         \\
 bcsstk30 &   4.2    &    24.9    &   26.8   &    37.0    &   40.9  &  29.3         \\
 bcsstk31 &    3.7   &    20.2    &   20.7   &     35.4    &   39.2  &  27.9         \\ \hline
@@ -485,21 +486,21 @@ bcsstk31 &    3.7   &    20.2    &   20.7   &     35.4    &   39.2  &  27.9     
 % \usepackage{multirow}
 \begin{table}[]
 \centering
-\caption{Summary of space and time performance}
+\caption{Summary of space and time performance. Space is in bits per edge and time is in millisecond}
 \label{my-label}
 \begin{tabular}{|l||c|c||c|c||c|c||c|c||c|c||c|c|}
 \hline
 \multirow{2}{*}{Graph} & \multicolumn{2}{c||}{Array} & \multicolumn{2}{c||}{Metis/Di} & \multicolumn{2}{c||}{Metis/SemD} & \multicolumn{2}{c||}{Metis/Ind} & \multicolumn{2}{c||}{Metis/RRR} & \multicolumn{2}{c|}{Metis/SD\_V} \\ \cline{2-13}
                        & \textit{T}        & \textit{S}       & \textit{T}           & \textit{S}           & \textit{T} & \textit{S}          & \textit{T}            & \textit{S}           & \textit{T}          & \textit{S}        & \textit{T} & \textit{S} \\ \hline
-feo*               &             & 37.6        &                &                 &               &                &                 &                  &               &               &                &                \\
-m14b                   &             & 34.1        &                &                 &               &                &                 &                  &               &               &                &                \\
-feb*               &             &             &                &                 &               &                &                 &                  &               &               &                &                \\
-wave                   &             &             &                &                 &               &                &                 &                  &               &               &                &                \\
-558a                   &             &             &                &                 &               &                &                 &                  &               &               &                &                \\
-144                    &             &             &                &                 &               &                &                 &                  &               &               &                &                \\
-b30*               &             &             &                &                 &               &                &                 &                  &               &               &                &                \\ 
-b31*               &             &             &                &                 &               &                &                 &                  &               &               &                &                \\ \hline
-%Avg                    &             &             &                &                 &               &                &                 &                  &               &               &                &                \\ \hline
+feo*          & 13.6  & 37.6   &  31.6  &  14.8  &  34.9   &   11.94  &  97.2  &  9.8  &  103.3  &  11.06  &  60.8  &  10.6              \\
+m14b          & 36.2  & 34.1   &  88.5  &  7.6  &  93.1   &  6.53   &  216.8  &  5.9  &  251.6  &  6.52  &  130.7  &   6.1             \\
+feb*          & 2.5   & 36.4   &  7.3   &  9.5  &  7.9   &  7.3   &  27.7  &  5.6  &  33.7  &  6.4  &  13.8  &  6.4              \\
+wave          & 19.9  & 34.3   &  60.8  &  8.5  &  66.1   &  7.3   &  144.8  &  6.5  &  176.2  &  7.2  &  95.1  &  6.8              \\
+598a          & 14.5  & 34.4   &  42.1  &  8.1   &  45.9   &  6.9   &  102.8  &  6.2  &  115.0  &  6.8  &  65.6  &  6.5              \\
+144           & 19.2  & 34.1   & 60.0   &  7.8  &   64.7  &  6.7   &  111.2  &  6.1  &  130.4   &  6.7  &  87.9  &  6.3              \\
+b30*          & 4.2   & 32.4   &  24.9  &  2.8  &  26.8   &  2.6   &  37.0  &  2.5  &  40.9  &  2.7  &  29.3  &   2.5             \\ 
+b31*          & 3.7   &  33.0  &  20.7  &  4.2  &   20.7  &   3.6  &  35.4  &  3.4  &  39.2  &  3.7  &  27.9  &   3.5             \\ \hline
+
 
 \end{tabular}
 \end{table}

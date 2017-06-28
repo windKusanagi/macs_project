@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  26 JUN 2017 16:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  28 JUN 2017 17:27
 entering extended mode
 **./macs.tex
 (macs.tex
@@ -787,21 +787,34 @@ File: Figures/Decoding.png Graphic file (type png)
 <use Figures/Decoding.png>
 Package pdftex.def Info: Figures/Decoding.png used on input line 378.
 (pdftex.def)             Requested size: 433.62001pt x 311.87326pt.
- [25 <./Figures/Decoding.png>] [26]
+ [25 <./Figures/Decoding.png>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 486.
+               Default added (so using `tbp') on input line 393.
+
+[26]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 420.
+
+[27]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [28]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 487.
 
 
-Overfull \hbox (24.18439pt too wide) in paragraph at lines 490--505
+Overfull \hbox (49.67595pt too wide) in paragraph at lines 491--506
  [][] 
  []
 
-[27] [28]
+[29] [30]
 Chapter 5.
-(macs.bbl [29
+(macs.bbl [31
 
-] [30
+] [32
 
 
 ]
@@ -816,7 +829,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 119--123
 nk / soc / ghuck /
  []
 
-) [31] (macs.aux)
+) [33] (macs.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -828,7 +841,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  4681 strings out of 493328
  66868 string characters out of 3130507
- 178408 words of memory out of 3000000
+ 171408 words of memory out of 3000000
  8103 multiletter control sequences out of 15000+200000
  10374 words of font info for 39 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -849,9 +862,9 @@ ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/john/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Use
 rs/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on macs.pdf (37 pages, 296756 bytes).
+Output written on macs.pdf (39 pages, 302755 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
+ 190 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
