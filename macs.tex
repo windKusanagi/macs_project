@@ -383,16 +383,12 @@ After implementing our data structure by encoding the graph into an adjacency ta
 
 \bigskip
 
-The working mechanism of this lookup table is shown in Figure 4.1 (note that we set the $k_{g}$ to 16, and limit the number of words decoded at once to 3 in our implementation): the first two bits indicate the number of values that this 16 bits decode to. If a bit block with size of 16 can not be directly decoded (e.g. the first case in the Figure 4.1, which is all zero), then the firstly two bits in the corresponding entry is set to 0, which means none of number can be decoded in this block. The next 24 bits ($3_{rd} - 26_{th}$ bits) indicate the three potential decoding result (if the first two bits show that only one number can be decoded, then we only look into the $3_{rd} - 11_{rd}$ bits). The next 5 bits ($27_{th} - 31_{th}$ bits) show the number of unused bits which will be used in next lookup operation, and the last bit is unused. This makes each table entry fit into 32 bits. If the first two bits indicate that none value can be directed decoded by checking this table entry, then the sequence will be decoded explicitly (counting zeros then get the value).    
-
-\bigskip
-\bigskip
-
+The working mechanism of this lookup table is shown in Figure 4.1 (note that we set the $k_{g}$ to 16, and limit the number of words decoded at once to 3 in our implementation): the first two bits indicate the number of values that this 16 bits decode to. If a bit block with size of 16 can not be directly decoded (e.g. the first case in the Figure 4.1, which is all zero), then the firstly two bits in the corresponding entry is set to 0, which means none of number can be decoded in this block. The next 24 bits ($3_{rd} - 26_{th}$ bits) indicate the three potential decoding result (if the first two bits show that only one number can be decoded, then we only look into the $3_{rd} - 11_{rd}$ bits). The next 5 bits ($27_{th} - 31_{th}$ bits) show the number of unused bits which will be used in next lookup operation, and the last bit is unused. This makes each table entry fit into 32 bits. If the first two bits indicate that none value can be directed decoded by checking this table entry, then the sequence will be decoded explicitly (counting zeros then get the value).
 
 \textbf{Test Graphs}. The test graph used in our experiment come from several source: two 3D Mesh graphs from an online Graph Partitioning Archive maintained by C. Walshaw~\cite{3DMESH}, one graph from Scotch Graph Archive maintained by Dave Beckett~\cite{Scotch}, one graph from RIACS Graph Archive~\cite{RIACS}, two Gpu Layout Plugin graphs from Cytoscape online resource~\cite{Cytoscape}, and two BCS Structural Engineering Matrix graphs from Matrix Market~\cite{Matrix}. All the test graphs are undirected graphs, a summary of general attributes of the graphs is shown in Table 4.1, giving the information about the numbers of vertexes and edges, max degree and graph source.
 
 
-\begin{table}[]
+\begin{table}[ht]
 \centering
 \caption{ Test graphs used in our experiment }
 \label{graph-list}
@@ -543,8 +539,13 @@ Then we implement several indexing structures to support adjacency queries, degr
 \bigskip
 \bigskip
 
-Finally we conduct some experience to measure the performance of our representation. The experiments demonstrates the trade-off between the space cost to encode the adjacency table and the time to construct the data structure, as well as the trade-off between the space cost and time of queries by different indexing structures. Compared to the array-based adjacency list representation, our approach reduces space usage by almost an order of magnitude, while supporting depth-first traversal in about the same running time.
+Finally we conduct some experience to measure the performance of our representation. The experiments demonstrates the trade-off between the space cost to encode the adjacency table and the time to construct the data structure, as well as the trade-off between the space cost and time of queries by different indexing structures. Compared to the array-based adjacency list representation, our approach reduces space usage by almost an order of magnitude, while supporting Breadth-first-search in acceptable running time.
 
+\bigskip
+\bigskip
+
+For the future work, we intend to implement the separator tree by using the vertex separator, and apply different coding schemes like delta~\cite{Elias}, Huffman coding, etc. Besides that, we can try to design and implement more indexing structures to investigate more about the time/space trade-off.
+ 
 \bibliographystyle{plain}
 \bibliography{bib}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  29 JUN 2017 12:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  29 JUN 2017 14:42
 entering extended mode
 **./macs.tex
 (macs.tex
@@ -785,21 +785,16 @@ File: Figures/Decoding.png Graphic file (type png)
 Package pdftex.def Info: Figures/Decoding.png used on input line 380.
 (pdftex.def)             Requested size: 433.62001pt x 311.87326pt.
  [25 <./Figures/Decoding.png>]
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 395.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [26]
 [27]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 423.
+               Default added (so using `tbp') on input line 419.
 
 [28] [29]
-Overfull \hbox (49.67595pt too wide) in paragraph at lines 507--522
+Overfull \hbox (49.67595pt too wide) in paragraph at lines 503--518
  [][] 
  []
 
@@ -855,7 +850,7 @@ ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/john/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Use
 rs/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on macs.pdf (41 pages, 306285 bytes).
+Output written on macs.pdf (41 pages, 306508 bytes).
 PDF statistics:
  196 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
