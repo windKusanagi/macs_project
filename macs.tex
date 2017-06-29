@@ -279,7 +279,7 @@ to represent a graph for simplicity, but in fact the METIS API takes formalized 
 Any n-vertex member in a class of graphs which satisfies a $n^{c}-edge$ separator
 theorem, can be encoded in $O(n)$ bits using an adjacency table.
 \end{lemma}
-\bigskip 
+
 
 \begin{proof}
 For each edge $(u, v)$ in an edge separator in a graph with s vertexes, the difference
@@ -292,6 +292,8 @@ This recurrence can be solved to $S(n) = O(n)$, and the bits to encode the degre
 \bigskip
 
 \textbf{Child-flipping}. When encoding the graph, We contiguously encode the difference between each adjacency pair in the list by using gamma code. The gamma code use $2\lfloor \log n \rfloor + 1$ bits to encode a difference d. If we can make each difference "smaller", in other words, if we can make the labels of vertexes in an adjacency list closer to each other, then we can reduce the space to encode the adjacency list. We arbitrarily decide the side of partitioning during the construction of the separator tree (in our project, we decide the side of partitioning according to the output value of METIS API: '0' to the left child and '1' to right child), so there is a degree of freedom in the way to build the tree. To take advantage of this freedom, we can apply a heuristic optimization method called "child-flipping"~\cite{compact-representation} to our edge separator tree.
+
+\bigskip
 
 The child-flipping algorithm works when making traversal along a separator tree, it tracks the nodes containing vertex labels which appear before and after the vertex labels in the current node. Let define $N_{L}$ to be the left children of current node's left ancestors and $N_{R}$ to be the right children of the current node's right ancestors, $N_{1}$ and $N_{2}$ represents the current node's left child and right child, respectively, and $E_{AB}$ indicates the number of edges between the vertexes in node A and node B. For each node, the vertexes in $N_{1}$ of the current node will have labels less than the vertexes' under the node, the vertexes in $N_{2}$ will have larger labels than all the vertexes under the node, and there is no intersection between the vertexes in $N_{L}$ and $N_{R}$ of the node. The child-flipping exams $E_{N_{L}N_{1}}$, $E_{N_{2}N_{R}}$, $E_{N_{L}N_{2}}$ and $E_{N_{1}N_{R}}$ of each node to ensure that $E_{N_{L}N_{1}} + E_{N_{L}N_{1}} \leq E_{N_{L}N_{1}} + E_{N_{L}N_{1}}$. If not, the child-flipping algorithm swaps the two children of current node. The meaning of making this swap is : after renumbering the vertexes based on an in-order traversal, if $E_{N_{L}N_{1}} + E_{N_{L}N_{1}} < E_{N_{L}N_{1}} + E_{N_{L}N_{1}}$, then the space to encode the edges $N_{L}N_{2}$ and $N_{1}N_{R}$ is greater than that to encode $N_{L}N_{2}$ and $N_{1}N_{R}$, because the difference $v_{N_{2}} -v_{N_{L}}$ is obviously greater than $v_{N_{1}} - v_{N_{L}}$, similar fact works on the difference of $v_{N_{R}}-v_{N_{1}} \  and \  v_{N_{R}}-v_{N_{2}}$.
 
@@ -369,7 +371,7 @@ After implementing our data structure by encoding the graph into an adjacency ta
 \bigskip
 \bigskip
 
-\textbf{Decoding}. Taking advantage of the feature of Random-Access-Machine that costs constant-time to perform operations on $O(\lg n)$ bits, we can decode any $O(\lg n)$-bit words in constant time. One practical approach here is using a lookup table. In our project, the graph is Elias gamma encoded, to ensure a decoding operation on $O(\lg n)$-bits requires constant time, we implement a table to decode multiple gamma codes at once. For a fixed number of $k_{g}$, we create a table of size $2^{k_{g}}$, and use the numbers range from 0~$2^{k_{g}}$ as indexes. Each entry in the table indicates a decoding result which is represented by a 32-bit word. 
+\textbf{Decoding}. Taking advantage of the feature of Random-Access-Machine that costs constant-time to perform operations on $O(\lg n)$ bits, we can decode any $O(\lg n)$-bit words in constant time. One practical approach here is using a lookup table. In our project, the graph is Elias gamma encoded, to ensure a decoding operation on $O(\lg n)$-bits requires constant time, we implement a table to decode multiple gamma codes at once. For a fixed number of $k_{g}$, we create a table of size $2^{k_{g}}$, and use the numbers range from 0~$2^{k_{g}}$ as indexes. Each entry in the table indicates a decoding result which is represented by a 32-bit word.  
 
 \bigskip
 
@@ -381,7 +383,7 @@ After implementing our data structure by encoding the graph into an adjacency ta
 
 \bigskip
 
-The working mechanism of this lookup table is shown in Figure 4.1 (note that we set the $k_{g}$ to 16, and limit the number of words decoded at once to 3 in our implementation): the first two bits indicate the number of values that this 16 bits decode to. If a bit block with size of 16 can not be directly decoded (e.g. the first case in the Figure 4.1, which is all zero), then the firstly two bits in the corresponding entry is set to 0, which means none of number can be decoded in this block. The next 24 bits ($3_{rd} - 26_{th}$ bits) indicate the three potential decoding result (if the first two bits show that only one number can be decoded, then we only look into the $3_{rd} - 11_{rd}$ bits). The next 5 bits ($27_{th} - 31_{th}$ bits) show the number of unused bits which will be used in next lookup operation, and the last bit is unused. This makes each table entry fit into 32 bits.     
+The working mechanism of this lookup table is shown in Figure 4.1 (note that we set the $k_{g}$ to 16, and limit the number of words decoded at once to 3 in our implementation): the first two bits indicate the number of values that this 16 bits decode to. If a bit block with size of 16 can not be directly decoded (e.g. the first case in the Figure 4.1, which is all zero), then the firstly two bits in the corresponding entry is set to 0, which means none of number can be decoded in this block. The next 24 bits ($3_{rd} - 26_{th}$ bits) indicate the three potential decoding result (if the first two bits show that only one number can be decoded, then we only look into the $3_{rd} - 11_{rd}$ bits). The next 5 bits ($27_{th} - 31_{th}$ bits) show the number of unused bits which will be used in next lookup operation, and the last bit is unused. This makes each table entry fit into 32 bits. If the first two bits indicate that none value can be directed decoded by checking this table entry, then the sequence will be decoded explicitly (counting zeros then get the value).    
 
 \bigskip
 \bigskip
@@ -413,6 +415,7 @@ bcsstk31                  & 35588    & 572914  & 188        & BCS~\cite{Matrix} 
 We present each edge in undirected graphs in both directions, which means the space cost measured by bits per edge is reported for each direction. Our experiment focus on three parameters of concern: the time to construct our data structure, the time to perform queries on graph and the space needed to encode the graph into adjacency table. The space cost of our data structure consists of the space for adjacency table, and the space for the indexing structure. There are a trade-off between the time to complete the construction and the space for encoding the adjacency table caused by whether conduct the child-flipping process, as well as a trade-off between the space for the indexing data structure and the time to perform queries on graphs resulted by applying different indexing structures. Our experiments present demonstration on these trade-offs.
 
 \bigskip
+\bigskip
 
 
 Table 4.2 shows the time cost of constructing the compact data structure and the space needed to encoding the adjacency table. We can see that the child-flipping causes additional time cost as a heuristic postprocessing phase, but do reduce the space cost of the adjacency table (save at most 8\% space on the febody graph, and at least 2.5\% space on the bcsstk30 graph). The degree space for each graph is listed separately, because the child-flipping process will not change the degree of each vertex, and the number of bits to encode a number is fixed (use $2\lfloor \log d \rfloor + 1$ bits to encode a degree $d$ by using Elias gamma coding).   
@@ -437,7 +440,14 @@ bcsstk31               & 6.61          & 2.98         & 9.02           & 2.89   
 \end{tabular}
 \end{table}
 
-The indexing structures are built based on the ordering result after the child-flipping process. Table 4.3 illustrates the space cost of each indexing structure, while Table 4.4 illustrates the time cost to perform a breadth-first-search(BFS) on the graph by applying those indexing structures on the encoded adjacency table. The reason why we use BFS to measure the performance is because it requires visiting all the edges, which makes it a reasonable measure for our data structure. The BFS algorithm starts at some arbitrary vertex as the root (we use the $1_{st}$ vertex after renumbering in our project) and explores the neighbour nodes first, before moving to the next level neighbours, with a cost of time $\Theta(|V| + |E|)$. We also compare the performance of our representation to that of an array-based adjacency list graph representation. The array-based adjacency list representation store all the neighbours of each vertex contiguously in a large array with the neighbour lists place one after the other. It also require an array to store the index of each vertex. Hence it use one 32-bit word to present an edge and one 32-bit word as the index of one vertex, taking 8$|E|$ bytes (2*32*$|E|$ bits) of space for list and 4$|V|$ bytes of bytes in total. For the BFS on any types of indexing structures, we use one flag bit to indicate whether a vertex has been visited.     
+\bigskip
+The indexing structures are built based on the ordering result after the child-flipping process. Table 4.3 illustrates the space cost of each indexing structure, while Table 4.4 illustrates the time cost to perform a breadth-first-search(BFS) on the graph by applying those indexing structures on the encoded adjacency table. The reason why we use BFS to measure the performance is because it requires visiting all the edges, which makes it a reasonable measure for our data structure. The BFS algorithm starts at some arbitrary vertex as the root (we use the $1_{st}$ vertex after renumbering in our project) and explores the neighbour nodes first, before moving to the next level neighbours, with a cost of time $\Theta(|V| + |E|)$. 
+
+\bigskip
+\bigskip
+
+We also compare the performance of our representation to that of an array-based adjacency list graph representation. The array-based adjacency list representation store all the neighbours of each vertex contiguously in a large array with the neighbour lists place one after the other. It also require an array to store the index of each vertex. Therefore, it use one 32-bit word to present an edge and one 32-bit word as the index of one vertex, taking 8$|E|$ bytes (2*32*$|E|$ bits) space for list and 4$|V|$ bytes for indexes in total. For the BFS algorithm on any types of indexing structures, we use one bit flag to indicate whether a vertex has been visited.
+\bigskip     
 
 \begin{table}[ht]
 \centering
@@ -459,8 +469,11 @@ bcsstk31 &   0.93   &   0.46   &     0.21     &  0.54   &   0.35        \\ \hlin
 \end{tabular}
 \end{table}
 
-The experimental result shows that the $direct$ and $indirect$ indexing structures give the fastest query time, but still slower than the array-based adjacency list representation. It's not surprising because the array-based representation has good spacial locality, which means the edges of a vertex are adjacent in memory and be loaded into cache as an array. In addition to that, the array-based representation does not need to decode the list, hence the array-based representation is faster than others. $Indirect$ indexing structure shows good space usage but it is not very efficient in query, because it needs to decode a "subblock" rather than an adjacency list. The SD Vector-based structure outperforms the RRR-based structure in both space usage and time cost in all the test graphs, but since we are using the API provided by a third-party to construct RRR and SD Vector on bit set, we can not simply say the RRR structure show worse performance than SD Vector when applied in our data mechanism.     
+\bigskip
 
+The experimental result shows that the $direct$ and $semi direct$ indexing structures give the fastest query time, but still slower than the array-based adjacency list representation. It's not surprising because the array-based representation has good spacial locality, which means the edges of a vertex are adjacent in memory and be loaded into cache as an array. In addition to that, the array-based representation does not need to decode the list, hence the array-based representation is faster than others.The $semi-direct$ indexing structure uses half of the space when compared to $direct$ indexing structure while requiring little extra time on query. $Indirect$ indexing structure shows good space usage but it is not very efficient in query, because it needs to decode a "subblock" rather than an adjacency list. The SD Vector-based structure outperforms the RRR-based structure in both space usage and time cost in all the test graphs, but since we are using the API provided by a third-party to construct RRR and SD Vector on bit set, we can not simply say the RRR structure show worse performance than SD Vector when applied on our indexing structures.     
+
+\bigskip
 
 \begin{table}[ht]
 \centering
@@ -482,9 +495,12 @@ bcsstk31 &    3.7   &    20.2    &   20.7   &     35.4    &   39.2  &  27.9     
 \end{tabular}
 \end{table}
 
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-\begin{table}[]
+\bigskip
+
+Table 4.5 illustrates a summary of performance of different indexing structures associated with the encoded adjacency table built after child-flipping process. The space for each mechanism contains the space for the encoded adjacency list, the space for degree and the space for the indexing structure. We can see that the $direct$ indexing structure gives fastest query speed while requiring the most space, $indirect$ indexing structure use least space while needing more time on query, the SD Vecter-based indexing structure presents a good trade-off between the space usage and query efficiency. 
+
+
+\begin{table}[ht]
 \centering
 \caption{Summary of space and time performance. Space is in bits per edge and time is in millisecond}
 \label{my-label}
@@ -505,9 +521,29 @@ b31*          & 3.7   &  33.0  &  20.7  &  4.2  &   20.7  &   3.6  &  35.4  &  3
 \end{tabular}
 \end{table}
 
-\chapter{Conclusion}
+\chapter{Conclusion and Future Work}
 
-Did it!
+In this project, we focus on how to represent a separable graph compactly while supporting efficient query. Our theoretical basis comes from a previous work conducted by Blandfor $et \ al.$~\cite{compact-representation}, which provides the theory of using vertex separator to compactly represent the graph. The representation takes $O(n)$ bits, meanwhile using constant time on degree or adjacency query, and neighbour listing for one vertex in constant time per neighbour. 
+
+\bigskip
+\bigskip
+
+We first make a survey on the researches related to succinct data structure on planar graph, as well as some succinct representation on bit vector like RRR. Then focus on the representation of separable graph. 
+
+\bigskip
+\bigskip
+
+Next, we use the METIS$\_$API to partition the graph by removing some amount of edges recursively, and construct the edge separator tree for the graph. To reduce the space of difference encoding, we conduct a heuristic postprocessing phase called "child-flipping" on the edge separator tree. We use Elias gamma code to encode the adjacency list of each vertex, and concatenate all the adjacency lists to an adjacency table.
+
+\bigskip
+\bigskip
+
+Then we implement several indexing structures to support adjacency queries, degree queries and neighbourhood queries in constant time. Besides the three indexing structure mentioned in Blanddfor's work, we implement other two structure based on succinct representation on bit vector.
+
+\bigskip
+\bigskip
+
+Finally we conduct some experience to measure the performance of our representation. The experiments demonstrates the trade-off between the space cost to encode the adjacency table and the time to construct the data structure, as well as the trade-off between the space cost and time of queries by different indexing structures. Compared to the array-based adjacency list representation, our approach reduces space usage by almost an order of magnitude, while supporting depth-first traversal in about the same running time.
 
 \bibliographystyle{plain}
 \bibliography{bib}
