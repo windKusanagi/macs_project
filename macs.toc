@@ -18,9 +18,9 @@
 \contentsline {section}{\numberline {2.1}Building Edge Separator Tree}{12}
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {2.2}Post Processing}{17}
-\contentsline {chapter}{\numberline {Chapter 3}Index Structure}{20}
+\contentsline {chapter}{\numberline {Chapter 3}Indexing Structures}{20}
 \addvspace {10\p@ }
-\contentsline {chapter}{\numberline {Chapter 4}Experiment}{25}
+\contentsline {chapter}{\numberline {Chapter 4}Experiments to Exam Our Representation}{25}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {4.1}Experiment Setup}{25}

@@ -26,7 +26,7 @@
 \begin{document}
 
 \macs  % options are \mcs, \macs, \mec, \mhi, \phd, and \bcshon
-\title{COMPACT REPRESENTATION OF SEPARABLE GRAPH}``
+\title{COMPACT REPRESENTATION OF SEPARABLE GRAPH}
 \author{Xiang Zhang}
 \defenceday{1}
 \defencemonth{August}
@@ -49,9 +49,10 @@
 
 
 \begin{abstract}
-Nowadays, the problem of designing space-efficient data structures to represent graphs while supporting efficient queries operations has drawn a great deal of attention. Plenty of previous works have been conducted to represent graphs "succinctly", which means representing the graphs in a compact representation whose space cost is close to the information-theoretic lower bound, and still supports efficient query operations. An available approach is making use of small separator of a separable graph to represent the graph compactly. The representation used $O(n)$ bits, meanwhile using constant time on thee degree or adjacency queries as well as neighbour listing in constant time per neighbour.
+Nowadays, the problem of designing space-efficient data structures to represent graphs while supporting efficient queries operations has drawn a great deal of attention. Plenty of previous works have been conducted to represent graphs "succinctly", which means representing the graphs in a compact representation whose space cost is close to the information-theoretic lower bound, and still supports efficient query operations. An available approach based on adjacency table representation is making use of small separator of a separable graph to represent the graph compactly. This representation used $O(n)$ bits, meanwhile using constant time on thee degree or adjacency queries as well as constant time per neighbour on neighbour listing operations.
 
-We implement this data structure by using edge separator. The data structure is building by recursively partitioning a graph into two subgraphs until only one vertex left. We store an adjacency list for each vertex, then concatenate the adjacency lists in the order of renumbered vertex to form an adjacency table. Then we implement several indexing structures to support adjacency queries, degree queries and neighbourhood queries in constant time. We conduct some experience to measure the performance of our representation. The experiment shows our approach reduces space usage by almost an order of magnitude, while supporting Breadth-first-search in acceptable running time when compared to the array-based adjacency list representation.
+
+We implemented this data structure by using edge separators. The data structure was built by recursively partitioning a graph. We stored an adjacency list for each vertex, then concatenated the adjacency lists in the order of renumbered vertex to form an adjacency table. Then we implemented several indexing structures to support adjacency queries, degree queries and neighbourhood queries in constant time. We conducted some experiments to measure the the performance of our representation as well as the performance of standard array-based adjacency list representation. The experiment shows our approach reduces space usage by almost an order of magnitude, while supporting Breadth-first-search in acceptable running time when compared to the array-based representation.
 \end{abstract}
 
 \printglossary
@@ -79,12 +80,12 @@ A considerable strategy to save the space when represent graphs is taking advant
 
 \bigskip
 
-In this project, we are interested in improving a compact representation mechanism for separable graphs presented by a previous work ~\cite{compact-representation}. In which work the authors proposed an approach to representing separable graphs compactly. Their representation used $O(n)$ bits, meanwhile using constant time on degree or adjacency query, and neighbour listing for one vertex in constant time per neighbour (They took advantage of $O(\lg n)$-bit parallelism computation to access $\Theta(\lg n)$ consecutive bits in one operation). Graphs with good separators got good compression by using their representation, and even graphs that are not strictly separable, their representation still works well because the separable components in those graphs can be compressed.In their paper, they provided detail description for compressing the graph by building two structures: the adjacency table and the root-find structure ~\cite{compact-representation}, which used vertex separators to encode the graph into a shadow adjacency table ~\cite{compact-representation}, as well as support constant time on query operations. But their experiment implemented the data structure by using edge separator instead of vertex separator, which means the shadow label and root-find structure were not needed. In this project, we implement the data structure by using edge separator, and conduct experiments on it.
+In this project, we are interested in improving a compact representation mechanism for separable graphs presented by a previous work ~\cite{compact-representation}. In which work the authors proposed an approach to representing separable graphs compactly based on an adjacency list representation. Their representation used $O(n)$ bits, meanwhile using constant time on degree or adjacency query, and neighbour listing for one vertex in constant time per neighbour (They took advantage of $O(\lg n)$-bit parallelism computation to access $\Theta(\lg n)$ consecutive bits in one operation). Graphs with good separators got good compression by using their representation, and even graphs that were not strictly separable, their representation still worked well because the separable components in those graphs can be compressed. In their paper, they provided detail description for compressing the graph by building two structures: the adjacency table and the root-find structure ~\cite{compact-representation}, which used vertex separators to encode the graph into a shadow adjacency table ~\cite{compact-representation}, as well as support constant time on query operations. But their experiment implemented the data structure by using edge separators instead of vertex separators, which means the shadow label and root-find structure were not needed. In this project, we implement the data structure by using edge separator, and conduct experiments on it.
 
 \bigskip
 \bigskip
 
-We firstly followed their idea to implement the data structure by using edge separator. The data structure was built by recursively partitioning a graph into two subgraphs until only one vertex left. During the partition process, an edge separator tree was built. Then we made use of the edge separator tree to renumber the vertexes. We stored an adjacency list for each vertex, then concatenated the adjacency lists in the order of renumbered vertex to form an adjacency table. Each pair of vertexes in the adjacency was stored by encoding the difference $d$ between the two vertexes, and all the differences are stored contiguously as a sequence of bits in memory. We show, by using adjacency table, $O(n)$ bits are sufficient to encode the separable graph. 
+We firstly followed their idea to implement the data structure by using edge separators. The data structure was built by recursively partitioning a graph into two subgraphs until only one vertex left. During the partition process, an edge separator tree was built. Then we made use of the edge separator tree to renumber the vertexes. We stored an adjacency list for each vertex, then concatenated the adjacency lists in the order of renumbered vertex to form an adjacency table. Each pair of vertexes in the adjacency was stored by encoding the difference $d$ between the two vertexes, and all the differences were stored contiguously as a sequence of bits in memory. We showed, by using adjacency table, $O(n)$ bits were sufficient to encode the separable graph. 
 
 \bigskip
 \bigskip
@@ -103,7 +104,7 @@ There have been considerable works dedicate to compress graphs such as planar gr
 \bigskip
 \bigskip
 
-Munro and Raman~\cite{Munro} improved the time for adjacency queries to O(1) time while using $8n+2m$ bits where $n$ and $m$ are numbers of vertexes and edges respectively. Their work gives a great reduction in the higher order term for a number of bits regarding Jacobson's parenthesis representation, and further expands the types of operations on parenthesis representation. Geary $et$ $al.$~\cite{Geary} gave a conceptually simpler representation compared to Jacobson's data structure, they used $2n+o(n)$ bits while supporting natural parenthesis operations in $O(1)$ time. The space constants on the high order term has been improved by Chuang $et$ $al.$~\cite{Chuang}, and further by Chiang $et$ $al.$~\cite{Chiang}. The former proposed another encoding mechanism based on $canonical orderings$ of a planar graph, then used a $multiple parentheses sequences$ to represent the graph, while the latter generalized the notion of canonical orderings to orderly spanning trees and improved constant factors in terms of numbers of vertexes and edges. 
+Munro and Raman~\cite{Munro} improved the time for adjacency queries to O(1) time while using $8n+2m$ bits where $n$ and $m$ are numbers of vertexes and edges respectively. Their work gives a great reduction in the higher order term for a number of bits regarding Jacobson's parenthesis representation, and further expands the types of operations on parenthesis representation. Geary $et$ $al.$~\cite{Geary} gave a conceptually simpler representation compared to Jacobson's data structure, they used $2n+o(n)$ bits while supporting natural parenthesis operations in $O(1)$ time. The space constants on the high order term had been improved by Chuang $et$ $al.$~\cite{Chuang}, and further by Chiang $et$ $al.$~\cite{Chiang}. The former proposed another encoding mechanism based on $canonical orderings$ of a planar graph, then used a $multiple parentheses sequences$ to represent the graph, while the latter generalized the notion of canonical orderings to orderly spanning trees and improved constant factors in terms of numbers of vertexes and edges. 
 
 \bigskip
 \bigskip
@@ -166,7 +167,7 @@ By making use of the definitions above, we define a class of graphs G satisfies 
 \bigskip
 \bigskip
 
-In this project, we only considered the connected graph, which meant all vertexes in the graph have nonzero degree, and we assumed each step of partitioning always returns a edge separator set of size $O(n^{c})$.
+In this project, we only considered the undirected connected graph, which meant all vertexes in the graph have nonzero degree, and we assumed each step of partitioning always returns a edge separator set of size $O(n^{c})$.
 
 \bigskip
 \bigskip
@@ -185,7 +186,7 @@ In this project, we only considered the connected graph, which meant all vertexe
 
 \bigskip
 
-In this project, we used two kinds of succinct data structures on bit vector: RRR~\cite{RRR} and SD vector~\cite{SD-vector} in order to build the index structure which supports queries on a separable graph. Both structures satisfy information-theoretic lower bound, and still supports efficient rank and select query operations.
+In this project, we used two kinds of succinct data structures on bit vector: RRR~\cite{RRR} and SD vector~\cite{SD-vector} in order to build the index structure which supports queries on a separable graph. Both structures satisfy the information-theoretic lower bound, and still supports efficient rank and select query operations.
 
 \bigskip
 \bigskip
@@ -208,7 +209,7 @@ To access an adjacency list of a particular vertex, we use our index structure t
 \end{proof}
 
 \section{Outline}
-This report is organized as follows. Chapter 1 shows the motivation of this project, and provides some preliminaries used in this project. Chapter 2 and 3 explain the construction and usage of the edge separator tree and several index structures respectively. Chapter 4 describes the experimental setup and examines the performance of our data structure. Chapter 5 shows the conclusion as well as the future work of our project.
+This report is organized as follows. Chapter 1 shows the motivation of this project, and provides some preliminaries used in this project. Chapter 2 and 3 explain the construction and usage of the edge separator tree and several index structures, respectively. Chapter 4 describes the experimental setup and examines the performance of our data structure. Chapter 5 shows the conclusion as well as the future work of our project.
 
 \chapter{Edge Separator Tree}
 
@@ -312,7 +313,7 @@ The child-flipping algorithm works when making traversal along a separator tree,
 
 Having this general case, then we can generate the $N_{1}$ and $N_{2}$ for each node during the child-flipping traversal via DFS. The $N_{L}$ and $N_{R}$ of each node in separator tree can be pre-collected via a post-order traversal along the edge separator tree, the vertex set of a tree node is formed by merging the two vertex sets of its children in sorted order. When needing to expand the current $N_{1}$ or $N_{1}$, we include the new coming $N_{L}$ or $N_{R}$ as distinct sorted set instead of merging $N_{L}$ into $N_{1}$ or $N_{R}$ into $N_{2}$. Note that in term of a node, the size of $N_{L}$ or $N_{R}$ is always smaller that the size of $N_{1}$ or $N_{2}$, respectively. We check an existing of an edge by performing binary on larger sorted set, all of above approaches improve the speed of child-flipping processing significantly.
 
-\chapter{Index Structure}
+\chapter{Indexing Structures}
 
 We have already introduced how to encode a graph with good edge separator into difference adjacency table bounded by $O(n)$ bits, but to access to the particular adjacency list for a particular vertex, we need to know the exact starting position in the bit sequence. Hence our representation requires a data structure that supports efficient select operations on the bit sequence. Note that, the space cost of the data structure should not exceed our space bound which is $O(n)$. Blandfor $et al.$ had proposed three kinds of index structure: $direct$, $semi-direct$, and $indirect$~\cite{compact-representation} to support efficient select queries. In addition to these three structures, we also implement other two index structures based on RRR and SD Vector, respectively, we will henceforth call these two RRR-based and SDV-based index structure. We will introduce all the five indexing structures in this chapter.
 
@@ -360,7 +361,7 @@ RRR efficiently compresses a bit set if the set is very sparse populated, we tak
 \textbf{SD Vector-based indexing structure}. SD Vector is a bit vector that can compress very sparse populated bit vectors by representing the positions of 1 by the Elias~\cite{Elias} - Fano~\cite{Fano} representation for non-decreasing sequences. Given a bit set $B[0,...n-1)$ with $m$ ones ($m << n$),   the SD Vector uses $m \log n/m  + 2m + o(m)$~\cite{Practical-Entropy} bits to store the bit set, meanwhile support constant time $rank$ and $select$ queries. The idea of SD Vector-based indexing structure is very similar to RRR-based indexing structure. We firstly maintain a bit sequence which has the same length as the encoded graph bit sequence, next we mark the bits which indicate the starting position of an adjacency list, then we build an SD Vector on this bit sequence. In order to locate the starting position of a particular vertex, we use the SD Vector to perform a $select$ operation which would return the expected position. 
 
 
-\chapter{Experiment}
+\chapter{Experiments to Exam Our Representation}
 After implementing our data structure by encoding a graph into an adjacency table as well as building an auxiliary indexing structure for supporting queries on the graph, we'd like to exam the performance of our approach. In this chapter we will first describe the experimental setup which includes some our implementation detail in terms of succinct representation of bit vector, as well as our decoding approach. Then show and discuss our experiment result.
 
 \bigskip
@@ -373,7 +374,7 @@ After implementing our data structure by encoding a graph into an adjacency tabl
 \bigskip
 \bigskip
 
-\textbf{Decoding}. Taking advantage of the feature of Random-Access-Machine that costs constant-time to perform operations on $O(\lg n)$ bits, we can decode any $O(\lg n)$-bit words in constant time. One practical approach here is using a lookup table. In our project, the graph is Elias gamma encoded, to ensure a decoding operation on $O(\lg n)$-bits requires constant time, we implement a table to decode multiple gamma codes at once. For a fixed number of $k_{g}$, we create a table of size $2^{k_{g}}$, and use the numbers range from 0~$2^{k_{g}}$ as indexes. Each entry in the table indicates a decoding result which is represented by a 32-bit word.  
+\textbf{Decoding Mechanism}. Taking advantage of the feature of Random-Access-Machine that costs constant-time to perform operations on $O(\lg n)$ bits, we can decode any $O(\lg n)$-bit words in constant time. One practical approach here is using a lookup table. In our project, the graph is Elias gamma encoded, to ensure a decoding operation on $O(\lg n)$-bits requires constant time, we implement a table to decode multiple gamma codes at once. For a fixed number of $k_{g}$, we create a table of size $2^{k_{g}}$, and use the numbers range from 0~$2^{k_{g}}$ as indexes. Each entry in the table indicates a decoding result which is represented by a 32-bit word.  
 
 \bigskip
 
@@ -409,7 +410,8 @@ bcsstk31                  & 35588    & 572914  & 188        & BCS~\cite{Matrix} 
 \end{table}
 
 
-\section{Experiment Result}. The experiments were conducted on a Linux server containing 32 Intel Xeon E5-2650 @ 2.00GHz cores and 256 Gigabytes main memory.
+\section{Experiment Result} 
+The experiments were conducted on a Linux server containing 32 Intel Xeon E5-2650 @ 2.00GHz cores and 256 Gigabytes main memory.
 We present each edge in undirected graphs in both directions, which means the space cost measured by bits per edge is reported for each direction. Our experiment focus on three parameters of concern: the time to construct our data structure, the time to perform queries on graph and the space needed to encode the graph into adjacency table. The space cost of our data structure consists of the space for adjacency table, and the space for the indexing structure. There are a trade-off between the time to complete the construction and the space for encoding the adjacency table caused by whether conduct the child-flipping process, as well as a trade-off between the space for the indexing data structure and the time to perform queries on graphs resulted by applying different indexing structures. Our experiments present demonstration on these trade-offs.
 
 \bigskip
@@ -439,12 +441,12 @@ bcsstk31               & 6.61          & 2.98         & 9.02           & 2.89   
 \end{table}
 
 \bigskip
-The indexing structures are built based on the ordering result after the child-flipping process. Table 4.3 illustrates the space cost of each indexing structure, while Table 4.4 illustrates the time cost to perform a breadth-first-search(BFS) on the graph by applying those indexing structures on the encoded adjacency table. The reason why we use BFS to measure the performance is because it requires visiting all the edges, which makes it a reasonable measure for our data structure. The BFS algorithm starts at some arbitrary vertex as the root (we use the $1_{st}$ vertex after renumbering in our project) and explores the neighbour nodes first, before moving to the next level neighbours, with a cost of time $\Theta(|V| + |E|)$. 
+The indexing structures were built based on the ordering result after the child-flipping process. Table 4.3 illustrates the space cost of each indexing structure, while Table 4.4 illustrates the time cost to perform a breadth-first-search(BFS) on the graph by applying those indexing structures on the encoded adjacency table. The reason why we use BFS to measure the performance is because it requires visiting all the edges, which makes it a reasonable measure for our data structure. The BFS algorithm starts at some arbitrary vertex as the root (we use the $1_{st}$ vertex after renumbering in our project) and explores the neighbour nodes first, before moving to the next level neighbours, with a cost of time $\Theta(|V| + |E|)$. 
 
 \bigskip
 \bigskip
 
-We also compare the performance of our representation to that of an array-based adjacency list graph representation. The array-based adjacency list representation store all the neighbours of each vertex contiguously in a large array with the neighbour lists place one after the other. It also require an array to store the index of each vertex. Therefore, it use one 32-bit word to present an edge and one 32-bit word as the index of one vertex, taking 8$|E|$ bytes (2*32*$|E|$ bits) space for list and 4$|V|$ bytes for indexes in total. For the BFS algorithm on any types of indexing structures, we use one bit flag to indicate whether a vertex has been visited.
+We also compared the performance of our representation to that of an array-based adjacency list graph representation. The array-based adjacency list representation store all the neighbours of each vertex contiguously in a large array with the neighbour lists place one after the other. It also require an array to store the index of each vertex. Therefore, it use one 32-bit word to present an edge and one 32-bit word as the index of one vertex, taking 8$|E|$ bytes (2*32*$|E|$ bits) space for list and 4$|V|$ bytes for indexes in total. For the BFS algorithm on any types of indexing structures, we use one bit flag to indicate whether a vertex has been visited.
 \bigskip     
 
 \begin{table}[ht]
@@ -495,7 +497,7 @@ bcsstk31 &    3.7   &    20.2    &   20.7   &     35.4    &   39.2  &  27.9     
 
 \bigskip
 
-Table 4.5 illustrates a summary of performance of different indexing structures associated with the encoded adjacency table built after child-flipping process. The space for each mechanism contains the space for the encoded adjacency list, the space for degree and the space for the indexing structure. We can see that the $direct$ indexing structure gives fastest query speed while requiring the most space, $indirect$ indexing structure use least space while needing more time on query, the SD Vecter-based indexing structure presents a good trade-off between the space usage and query efficiency. 
+Table 4.5 illustrates a summary of performance of different indexing structures associated with the encoded adjacency table built after child-flipping process. The space for each mechanism contains the space for the encoded adjacency list, the space for degree and the space for the indexing structure. We can see that the $direct$ indexing structure gives the fastest query speed while requiring the most space, $indirect$ indexing structure use least space while needing more time on query, the SD Vecter-based indexing structure presents a good trade-off between the space usage and query efficiency. 
 
 
 \begin{table}[ht]
@@ -526,22 +528,22 @@ In this project, we focus on how to represent a separable graph compactly while 
 \bigskip
 \bigskip
 
-We first make a survey on the researches related to succinct data structure on planar graph, as well as some succinct representation on bit vector like RRR. Then focus on the representation of separable graph. 
+We first made a survey on the researches related to succinct data structure on planar graph, as well as some succinct representation on bit vector like RRR. Then focused on the representation of separable graph. 
 
 \bigskip
 \bigskip
 
-Next, we use the METIS$\_$API to partition the graph by removing some amount of edges recursively, and construct the edge separator tree for the graph. To reduce the space of difference encoding, we conduct a heuristic postprocessing phase called "child-flipping" on the edge separator tree. We use Elias gamma code to encode the adjacency list of each vertex, and concatenate all the adjacency lists to an adjacency table.
+Next, we used the METIS$\_$API to partition the graph by removing some amount of edges recursively, and construct the edge separator tree for the graph. To reduce the space of difference encoding, we conducted a heuristic postprocessing phase called "child-flipping" on the edge separator tree. We used Elias gamma code to encode the adjacency list of each vertex, and concatenated all the adjacency lists to an adjacency table.
 
 \bigskip
 \bigskip
 
-Then we implement several indexing structures to support adjacency queries, degree queries and neighbourhood queries in constant time. Besides the three indexing structure mentioned in Blanddfor's work, we implement other two structure based on succinct representation on bit vector.
+Then we implemented several indexing structures to support adjacency queries, degree queries and neighbourhood queries in constant time. Besides the three indexing structure mentioned in Blanddfor's work, we implemented other two structure based on succinct representation on bit vector.
 
 \bigskip
 \bigskip
 
-Finally we conduct some experience to measure the performance of our representation. The experiments demonstrates the trade-off between the space cost to encode the adjacency table and the time to construct the data structure, as well as the trade-off between the space cost and time of queries by different indexing structures. Compared to the array-based adjacency list representation, our approach reduces space usage by almost an order of magnitude, while supporting Breadth-first-search in acceptable running time.
+Finally we conducted some experiments to measure the performance of our representation. The experiments demonstrated the trade-off between the space cost to encode the adjacency table and the time to construct the data structure, as well as the trade-off between the space cost and time of queries by different indexing structures. Compared to the array-based adjacency list representation, our approach reduces space usage by almost an order of magnitude, while supporting Breadth-first-search in acceptable running time.
 
 \bigskip
 \bigskip
