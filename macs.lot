@@ -1,13 +1,13 @@
 \select@language {english}
 \baselineskip =0.7\baselineskip 
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {Table 1.1}{\ignorespaces A summary of performance of various of succinct planar graph representations. Notation: $n$ and $m$ denote the numbers of vertexes and edges in Graph $G$, respectively, $i$ is the number of isolated vertexes in $G$, $\epsilon $ is an arbitrary positive constant, $\tau $ = min\{ $\mathop {\mathgroup \symoperators lg}\nolimits k / \mathop {\mathgroup \symoperators lg}\nolimits \mathop {\mathgroup \symoperators lg}\nolimits m, \mathop {\mathgroup \symoperators lg}\nolimits \mathop {\mathgroup \symoperators lg}\nolimits k$, and $H$ is the information theoretic lower bound regarding storing a separable graph. \} }}{6}
+\contentsline {table}{\numberline {Table 1.1}{\ignorespaces A summary of performance of various of succinct planar graph representations. Notation: "Pla*" indicates the planar graphs, "k-p*" indicates the k-page graphs, "Tri*" indicates the triangulation graphs, "Sep*" indicates the separable graphs, $n$ and $m$ denote the numbers of vertexes and edges in Graph $G$, respectively, $i$ is the number of isolated vertexes in $G$, $\epsilon $ is an arbitrary positive constant, $\tau $ = min\{ $\mathop {\mathgroup \symoperators lg}\nolimits k / \mathop {\mathgroup \symoperators lg}\nolimits \mathop {\mathgroup \symoperators lg}\nolimits m, \mathop {\mathgroup \symoperators lg}\nolimits \mathop {\mathgroup \symoperators lg}\nolimits k$, and $H$ is the information theoretic lower bound regarding storing a separable graph. \} Triangulation}}{6}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {Table 4.1}{\ignorespaces Test graphs used in our experiment }}{27}
-\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges}}{28}
-\contentsline {table}{\numberline {Table 4.3}{\ignorespaces The space cost of different indexing structures. Space is in bits per edge.}}{29}
-\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS, the time cost is measured by millisecond}}{30}
-\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond}}{31}
+\contentsline {table}{\numberline {Table 4.1}{\ignorespaces Test graphs used in our experiment }}{28}
+\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges}}{29}
+\contentsline {table}{\numberline {Table 4.3}{\ignorespaces The space cost of different indexing structures. Space is in bits per edge.}}{30}
+\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS, the time cost is measured by millisecond}}{31}
+\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond}}{32}
 \addvspace {10\p@ }

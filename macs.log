@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  4 JUL 2017 11:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  5 JUL 2017 10:52
 entering extended mode
 **./macs.tex
 (macs.tex
@@ -745,67 +745,74 @@ Underfull \vbox (badness 1320) has occurred while \output is active []
 
  [2]
 [3] [4]
-Overfull \hbox (62.382pt too wide) in paragraph at lines 120--137
+Overfull \hbox (19.29912pt too wide) in paragraph at lines 120--137
  [][] 
  []
 
-[5] [6] [7] [8] [9] [10]
+[5] [6] [7] [8] [9] [10] [11]
 Chapter 2.
-<Figures/partition.png, id=61, 588.1975pt x 492.84125pt>
+<Figures/partition.png, id=64, 588.1975pt x 492.84125pt>
 File: Figures/partition.png Graphic file (type png)
 
 <use Figures/partition.png>
-Package pdftex.def Info: Figures/partition.png used on input line 226.
+Package pdftex.def Info: Figures/partition.png used on input line 224.
 (pdftex.def)             Requested size: 303.53267pt x 254.32367pt.
 
-<Figures/separatorTree.png, id=63, 603.25375pt x 452.69125pt>
+<Figures/separatorTree.png, id=66, 603.25375pt x 452.69125pt>
 File: Figures/separatorTree.png Graphic file (type png)
 
 <use Figures/separatorTree.png>
-Package pdftex.def Info: Figures/separatorTree.png used on input line 236.
+Package pdftex.def Info: Figures/separatorTree.png used on input line 234.
 (pdftex.def)             Requested size: 346.89732pt x 260.31616pt.
- [11
 
-] [12 <./Figures/partition.png>] [13 <./Figures/separatorTree.png>] [14] [15] [
-16] [17] [18]
+Underfull \vbox (badness 1024) has occurred while \output is active []
+
+ [12
+
+]
+Underfull \vbox (badness 6316) has occurred while \output is active []
+
+ [13 <./Figures/partition.png>] [14 <./Figures/separatorTree.png>] [15] [16] [1
+7] [18]
+[19]
 Chapter 3.
-[19
+[20
 
-] [20] <Figures/indirect.png, id=101, 618.31pt x 373.395pt>
+] [21] <Figures/indirect.png, id=104, 618.31pt x 373.395pt>
 File: Figures/indirect.png Graphic file (type png)
 
 <use Figures/indirect.png>
 Package pdftex.def Info: Figures/indirect.png used on input line 339.
 (pdftex.def)             Requested size: 433.62001pt x 261.8704pt.
- [21 <./Figures/indirect.png>] [22] [23]
+ [22 <./Figures/indirect.png>] [23] [24]
 Chapter 4.
-[24
+[25
 
-] <Figures/Decoding.png, id=115, 782.925pt x 563.10374pt>
+] <Figures/Decoding.png, id=119, 782.925pt x 563.10374pt>
 File: Figures/Decoding.png Graphic file (type png)
 
 <use Figures/Decoding.png>
 Package pdftex.def Info: Figures/Decoding.png used on input line 382.
 (pdftex.def)             Requested size: 433.62001pt x 311.87326pt.
- [25 <./Figures/Decoding.png>]
+ [26 <./Figures/Decoding.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [26]
-[27]
+ [27]
+[28]
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 421.
 
-[28] [29]
+[29] [30]
 Overfull \hbox (49.67595pt too wide) in paragraph at lines 505--520
  [][] 
  []
 
-[30] [31]
+[31] [32]
 Chapter 5.
-[32
+[33
 
-] (macs.bbl [33] [34
+] (macs.bbl [34] [35
 
 
 ]
@@ -820,7 +827,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 119--123
 nk / soc / ghuck /
  []
 
-) [35] (macs.aux)
+) [36] (macs.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -853,9 +860,9 @@ ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/john/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Use
 rs/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on macs.pdf (41 pages, 307824 bytes).
+Output written on macs.pdf (42 pages, 309242 bytes).
 PDF statistics:
- 196 PDF objects out of 1000 (max. 8388607)
+ 199 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
