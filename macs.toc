@@ -9,23 +9,23 @@
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {1.1}Related Works}{4}
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {1.2}Preliminaries}{6}
+\contentsline {section}{\numberline {1.2}Outline}{6}
+\contentsline {chapter}{\numberline {Chapter 2}Preliminaries}{8}
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {1.3}Outline}{10}
-\contentsline {chapter}{\numberline {Chapter 2}Edge Separator Tree}{12}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {section}{\numberline {2.1}Building Edge Separator Tree}{12}
-\addvspace {10\p@ }
-\contentsline {section}{\numberline {2.2}Post Processing}{17}
-\contentsline {chapter}{\numberline {Chapter 3}Indexing Structures}{20}
-\addvspace {10\p@ }
-\contentsline {chapter}{\numberline {Chapter 4}Experiments to Exam Our Representation}{25}
+\contentsline {chapter}{\numberline {Chapter 3}Edge Separator Tree and Indexing Structures}{13}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {4.1}Experiment Setup}{25}
+\contentsline {section}{\numberline {3.1}Building Edge Separator Tree}{13}
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {4.2}Experiment Result}{28}
-\contentsline {chapter}{\numberline {Chapter 5}Conclusion and Future Work}{33}
+\contentsline {section}{\numberline {3.2}Post Processing}{18}
 \addvspace {10\p@ }
-\contentsline {chapter}{Bibliography}{35}
+\contentsline {section}{\numberline {3.3}Indexing Structures}{20}
+\contentsline {chapter}{\numberline {Chapter 4}Experiments and Evaluation}{26}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {section}{\numberline {4.1}Experiment Setup}{26}
+\addvspace {10\p@ }
+\contentsline {section}{\numberline {4.2}Experiment Result}{29}
+\contentsline {chapter}{\numberline {Chapter 5}Conclusion and Future Work}{34}
+\addvspace {10\p@ }
+\contentsline {chapter}{Bibliography}{36}

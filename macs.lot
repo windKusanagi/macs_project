@@ -5,9 +5,9 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {Table 4.1}{\ignorespaces Test graphs used in our experiment }}{28}
-\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges}}{29}
-\contentsline {table}{\numberline {Table 4.3}{\ignorespaces The space cost of different indexing structures. Space is in bits per edge.}}{30}
-\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS, the time cost is measured by millisecond}}{31}
-\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond}}{32}
+\contentsline {table}{\numberline {Table 4.1}{\ignorespaces Test graphs used in our experiment }}{29}
+\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges}}{30}
+\contentsline {table}{\numberline {Table 4.3}{\ignorespaces The space cost of different indexing structures. Space is in bits per edge.}}{31}
+\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS, the time cost is measured by millisecond}}{32}
+\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond}}{33}
 \addvspace {10\p@ }

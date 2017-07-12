@@ -7,6 +7,7 @@
 \@writefile{toc}{\contentsline {chapter}{List of Tables}{iii}}
 \@writefile{lot}{\baselineskip =0.7\baselineskip }
 \@writefile{toc}{\contentsline {chapter}{List of Figures}{iv}}
+\citation{compact-representation}
 \@writefile{lof}{\baselineskip =0.7\baselineskip }
 \@writefile{toc}{\contentsline {chapter}{Abstract}{v}}
 \@writefile{toc}{\contentsline {chapter}{Acknowledgements}{vi}}
@@ -40,51 +41,51 @@
 \citation{succinct-representation}
 \citation{compact-representation}
 \citation{succinct-representation}
-\citation{separator-theorem}
 \@writefile{lot}{\contentsline {table}{\numberline {Table 1.1}{\ignorespaces A summary of performance of various of succinct planar graph representations. Notation: "Pla*" indicates the planar graphs, "k-p*" indicates the k-page graphs, "Tri*" indicates the triangulation graphs, "Sep*" indicates the separable graphs, $n$ and $m$ denote the numbers of vertexes and edges in Graph $G$, respectively, $i$ is the number of isolated vertexes in $G$, $\epsilon $ is an arbitrary positive constant, $\tau $ = min\{ $\mathop {\mathgroup \symoperators lg}\nolimits k / \mathop {\mathgroup \symoperators lg}\nolimits \mathop {\mathgroup \symoperators lg}\nolimits m, \mathop {\mathgroup \symoperators lg}\nolimits \mathop {\mathgroup \symoperators lg}\nolimits k$, and $H$ is the information theoretic lower bound regarding storing a separable graph. \} Triangulation}}{6}}
 \newlabel{my-label}{{1.1}{6}}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {1.2}Preliminaries}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Outline}{6}}
+\citation{separator-theorem}
 \citation{separators-sphere-packing}
 \citation{Nested-Dissection}
 \citation{compact-representation}
+\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 2}Preliminaries}{8}}
+\@writefile{toc}{\addvspace {10\p@ }}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
 \citation{RRR}
 \citation{SD-vector}
 \citation{Gamma}
 \citation{compact-representation}
-\@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {1.3}Outline}{10}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 2}Edge Separator Tree}{12}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 3}Edge Separator Tree and Indexing Structures}{13}}
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}Building Edge Separator Tree}{12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {Figure 2.1}{\ignorespaces An example of a partition process using edge separator}}{13}}
-\@writefile{lof}{\contentsline {figure}{\numberline {Figure 2.2}{\ignorespaces An example of edge separator tree}}{14}}
-\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Building the edge separator tree}}{15}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Building Edge Separator Tree}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {Figure 3.1}{\ignorespaces An example of a partition process using edge separators}}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {Figure 3.2}{\ignorespaces An example of edge separator tree}}{15}}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Building the edge separator tree}}{16}}
 \citation{compact-representation}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Post Processing}{17}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Post Processing}{18}}
 \citation{compact-representation}
 \citation{compact-representation}
-\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 3}Indexing Structures}{20}}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{lof}{\contentsline {figure}{\numberline {Figure 3.1}{\ignorespaces The architecture of the $indirect$ indexing structure}}{22}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Indexing Structures}{20}}
 \citation{RRR}
+\@writefile{lof}{\contentsline {figure}{\numberline {Figure 3.3}{\ignorespaces The architecture of the $indirect$ indexing structure}}{23}}
 \citation{Elias}
 \citation{Fano}
 \citation{Practical-Entropy}
 \citation{sdsl}
-\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 4}Experiments to Exam Our Representation}{25}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 4}Experiments and Evaluation}{26}}
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Experiment Setup}{25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {Figure 4.1}{\ignorespaces The working mechanism of the lookup table}}{26}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Experiment Setup}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {Figure 4.1}{\ignorespaces The working mechanism of the lookup table}}{27}}
 \citation{3DMESH}
 \citation{Scotch}
 \citation{RIACS}
@@ -99,19 +100,19 @@
 \citation{Matrix}
 \citation{Matrix}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.1}{\ignorespaces  Test graphs used in our experiment }}{28}}
-\newlabel{graph-list}{{4.1}{28}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Experiment Result}{28}}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges}}{29}}
-\newlabel{compact-performance}{{4.2}{29}}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.3}{\ignorespaces The space cost of different indexing structures. Space is in bits per edge.}}{30}}
-\newlabel{my-label}{{4.3}{30}}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS, the time cost is measured by millisecond}}{31}}
-\newlabel{my-label}{{4.4}{31}}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond}}{32}}
-\newlabel{my-label}{{4.5}{32}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.1}{\ignorespaces  Test graphs used in our experiment }}{29}}
+\newlabel{graph-list}{{4.1}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Experiment Result}{29}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges}}{30}}
+\newlabel{compact-performance}{{4.2}{30}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.3}{\ignorespaces The space cost of different indexing structures. Space is in bits per edge.}}{31}}
+\newlabel{my-label}{{4.3}{31}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS, the time cost is measured by millisecond}}{32}}
+\newlabel{my-label}{{4.4}{32}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond}}{33}}
+\newlabel{my-label}{{4.5}{33}}
 \citation{compact-representation}
-\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 5}Conclusion and Future Work}{33}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 5}Conclusion and Future Work}{34}}
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -134,7 +135,7 @@
 \bibcite{sdsl}{14}
 \bibcite{Munro}{15}
 \bibcite{compact-representation}{16}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{35}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{36}}
 \bibcite{Nested-Dissection}{17}
 \bibcite{separators-sphere-packing}{18}
 \bibcite{SD-vector}{19}
