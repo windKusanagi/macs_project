@@ -57,6 +57,12 @@ Jacobson G.
 \newblock {\em 30th annual IEEE symposium on foundations of computer science},
   pages 549--554, 1989.
 
+\bibitem{k-page-def}
+Zvi Galil, Ravi Kannan, W.~P. Thurston, and Endre Szemeredi.
+\newblock On nontrivial separators for k-page graphs and simulations by
+  nondeterministic one-tape turing machines.
+\newblock {\em Journal of Computer and System Sciences}, pages 134--149, 1989.
+
 \bibitem{succinct-representation}
 Blelloch GE and Farzan A.
 \newblock Succinct representations of separable graphs.

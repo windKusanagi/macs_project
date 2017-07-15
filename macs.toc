@@ -1,21 +1,29 @@
 \select@language {english}
 \baselineskip =0.7\baselineskip 
-\contentsline {chapter}{List of Tables}{iii}
-\contentsline {chapter}{List of Figures}{iv}
-\contentsline {chapter}{Abstract}{v}
-\contentsline {chapter}{Acknowledgements}{vi}
+\contentsline {chapter}{List of Tables}{iv}
+\contentsline {chapter}{List of Figures}{v}
+\contentsline {chapter}{Abstract}{vi}
+\contentsline {chapter}{Acknowledgements}{vii}
 \contentsline {chapter}{\numberline {Chapter 1}Introduction}{1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {1.1}Related Works}{4}
+\contentsline {section}{\numberline {1.1}Related Work}{4}
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {1.2}Outline}{6}
 \contentsline {chapter}{\numberline {Chapter 2}Preliminaries}{8}
 \addvspace {10\p@ }
-\contentsline {chapter}{\numberline {Chapter 3}Edge Separator Tree and Indexing Structures}{13}
+\addvspace {10\p@ }
+\contentsline {section}{\numberline {2.1}Graph Separators}{8}
+\addvspace {10\p@ }
+\contentsline {section}{\numberline {2.2}Queries in Graphs}{9}
+\addvspace {10\p@ }
+\contentsline {section}{\numberline {2.3}Bit Vectors}{10}
+\addvspace {10\p@ }
+\contentsline {section}{\numberline {2.4}Adjacency Tables}{11}
+\contentsline {chapter}{\numberline {Chapter 3}Edge Separator Tree and Indexing Structures}{12}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {3.1}Building Edge Separator Tree}{13}
+\contentsline {section}{\numberline {3.1}Building Edge Separator Tree}{12}
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {3.2}Post Processing}{18}
 \addvspace {10\p@ }
