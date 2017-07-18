@@ -20,10 +20,10 @@
 \contentsline {section}{\numberline {2.3}Bit Vectors}{10}
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {2.4}Adjacency Tables}{11}
-\contentsline {chapter}{\numberline {Chapter 3}Edge Separator Tree and Indexing Structures}{12}
+\contentsline {chapter}{\numberline {Chapter 3}Compressed Representation of Separable Graphs}{12}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {3.1}Building Edge Separator Tree}{12}
+\contentsline {section}{\numberline {3.1}Building an Edge Separator Tree}{12}
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {3.2}Post Processing}{18}
 \addvspace {10\p@ }

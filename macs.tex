@@ -192,7 +192,6 @@ The compact representation stores a separable graph as a difference-encoded bit 
 \item $select_{q}(x)$ = $ min \{ k \in [0...n) : rank_{q}(k) = x \} $ 
 \end{itemize}
 
-\bigskip
 
 In this project, we used two different succinct representations of bit vectors: RRR~\cite{RRR} and SD vector~\cite{SD-vector} in order to build two indexing structures that supports queries in a separable graph. Both structures match the information-theoretic lower bound on representing a bit vector, and still support efficient rank and select query operations. More detail about these two structures will be given in section 3.3, where we use them to build indexing structures.
 
@@ -203,24 +202,26 @@ An adjacency list representation for a graph associates each vertex in the graph
 
 
 
-\chapter{Edge Separator Tree and Indexing Structures}
+\chapter{Compressed Representation of Separable Graphs}
+
+This chapter shows how Blandford $et \ al.$~\cite{compact-representation} compactly represents separable graphs based on adjacency tables. The content of this chapter includes the process of generating a separator tree from the input graph to renumber the vertexes, a postprocessing stage algorithm to further reduce the space needed to encode the adjacency table, as well as several indexing structures to support efficient graph queries meanwhile using less space.    
 
 
-\section{Building Edge Separator Tree}
+\section{Building an Edge Separator Tree}
 
-\textbf{Edge Separator}. To compactly represent a graph, the first thing we need to do is building an edge separator tree from the target tree. The tree-building process is based on recursively partitioning the tree into two parts using the edge separator. One example that illustrates the function of edge separators is shown in Figure 2.1: Assuming we have an 8-vertex graph $G_{1}$ with 9 edges, by removing the two edges $(v_{1}, v_{9})$ and $(v_{1}, v_{5})$, we can partition $G_{1}$ into two parts with 4 vertexes in each. Hence the edge separator in this partitioning step is $\{(v_{1}, v_{9}),(v_{1}, v_{5}) \}$.
+\textbf{Edge Separators}. To compactly represent a graph, the first thing we need to do is building an edge separator tree from the input graph. The tree-building process is based on recursively partitioning the graph into two subgraphs using the edge separator. One example that illustrates the function of edge separators is shown in Figure 2.1: Assuming we have an 8-vertex graph $G_{1}$ with 9 edges, by removing the two edges $(v_{1}, v_{8})$ and $(v_{1}, v_{5})$, we can partition $G_{1}$ into two subgraphs with 4 vertexes in each. Hence the edge separator in this partitioning step is $\{(v_{1}, v_{8}),(v_{1}, v_{5}) \}$.
 
 \bigskip
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.7\textwidth]{partition}
-\caption{An example of a partition process using edge separators}
+\caption{An example of a partition process of using edge separators}
 \end{figure}
 
 \bigskip
 
-We can see that each time we make a partitioning on a graph, it splits its vertex set and parts of edges set, and removes some edges. if we perform this partitioning recursively until each subgraph has only one vertex, and then we have an edge separator tree from the graph, one edge separator tree for the $G1$ in Figure 2.1 is shown in Figure 2.2. Each vertex in a graph will appear once in a leaf of the edge separator tree build from that graph. Each internal node is the set of edges used as edge separators to make partitioning in each step.
+We can see that each time we partition a graph, it splits its vertex set and part of its edge set, and removes some edges. if we perform this partitioning recursively until each subgraph has only one vertex, then we have an edge separator tree from the graph. One edge separator tree for the graph $G1$ in Figure 2.1 is shown in Figure 2.2. Each vertex in a graph will appear once in a leaf of the edge separator tree build from that graph. Each internal node is the set of edges used as the edge separator to partition the corresponding subgraph.
 
 \begin{figure}[ht]
 \centering
@@ -230,12 +231,12 @@ We can see that each time we make a partitioning on a graph, it splits its verte
 
 \bigskip
 \bigskip
-Note that we arbitrarily decided which side of the partition will be the left child or the right child at this stage. The tree is also not perfectly balanced in some cases (e.g. one child is a leaf and the other is an internal node), the side of the children is also decided arbitrarily. We will take advantages of this "freedom" to further reduce the space to encode the graph in later time. The vertex labels may be disordered by making in-order traversal on the edge separator tree (e.g. in Figure 2.2 the order of the vertexes after in-order traversal is :$v_{1}$, $v_{4}$, $v_{2}$, $v_{3}$, $v_{5}$, $v_{6}$, $v_{7}$, $v_{8}$), we will renumber these vertex by making a in-order traversal along the edge separator tree.
+Note that we arbitrarily decided which side of the partition will be the left child or the right child at this stage. The tree is also not perfectly balanced in some cases (e.g. it is possible that one child is a leaf and the other is an internal node), the side of the children is also decided arbitrarily. We will take advantages of this "freedom" to further reduce the space needed to encode the graph in chapter 3.2. The vertex labels may be disordered by making in-order traversal on the edge separator tree (e.g. in Figure 2.2 the order of the vertexes after in-order traversal is :$v_{1}$, $v_{4}$, $v_{2}$, $v_{3}$, $v_{5}$, $v_{6}$, $v_{7}$, $v_{8}$), we will renumber these vertex by making a in-order traversal along the edge separator tree.
 
 \bigskip
 \bigskip
 
-\textbf{METIS Partition Library}. To recursively partition a given graph, we used METIS's API in our project. METIS is an open source library developed by Karypis lab at the University of Minnesota. It supports set of serial programs for partitioning graphs and partitioning finite element meshes. The algorithms implemented in METIS are based on the multilevel recursive-bisection, multilevel k-way, and multi-constraint partitioning schemes [2]. The METIS partitioning API returns one integer list with vertex index as the key, and a flag 0 or 1 to indicate which side of partitioning the vertex belongs to. The returned value of METIS API does not provide information about edges, and the API takes two integer arrays (adjacency list of current graph and the index of vertex in adjacency list)as input parameters, hence before each calling of the METIS API, we need to generate an adjacency list and an index list for the current graph to be partitioned. In order to collect the edge separators, we need both the adjacency list and the returned values after calling the API.
+\textbf{METIS Partition Library}. To recursively partition a given graph, we used METIS's API in our project. METIS is an open source library developed by Karypis lab at the University of Minnesota. It supports set of serial programs for partitioning graphs and partitioning finite element meshes. The algorithms implemented in METIS are based on the multilevel recursive-bisection, multilevel k-way, and multi-constraint partitioning schemes [2]. The METIS partitioning API returns one integer list with vertex index as the key, and a flag 0 or 1 to indicate which side of partitioning the vertex belongs to. The returned value of METIS API does not provide information about edges, and the API takes two integer arrays (adjacency list of current graph and the index of vertex in adjacency list) as input parameters, hence before each calling of the METIS API, we need to generate an adjacency list and an index list for the current graph to be partitioned. In order to collect the edge separators, we need both the adjacency list and the returned values after calling the API.
 
 \bigskip
 \bigskip
@@ -317,7 +318,7 @@ Having this general case,  we can generate the $N_{1}$ and $N_{2}$ for each node
 
 \section{Indexing Structures}
 
-We have already introduced how to encode a graph with good edge separator into difference adjacency table bounded by $O(n)$ bits, but to access to the particular adjacency list for a particular vertex, we need to know the exact starting position in the bit sequence. Hence our representation requires a data structure that supports efficient select operations on the bit sequence. Note that, the space cost of the data structure should not exceed our space bound which is $O(n)$. Blandford $et al.$ had proposed three kinds of indexing structure: $direct$, $semi-direct$, and $indirect$~\cite{compact-representation} to support efficient select queries. In addition to these three structures, we also implement other two indexing structures based on RRR and SD Vector, respectively, we will henceforth call these two RRR-based and SDV-based indexing structure. We will introduce all the five indexing structures in this chapter.
+We have already introduced how to encode a graph with good edge separator into difference adjacency table bounded by $O(n)$ bits, but to access to the particular adjacency list for a particular vertex, we need to know the exact starting position in the bit sequence. Hence our representation requires a data structure that supports efficient select operations on the bit sequence. Note that, the space cost of the data structure should not exceed our space bound which is $O(n)$. Blandford $et al.$ had proposed three kinds of indexing structure: $direct$, $semi-direct$, and $indirect$~\cite{compact-representation} to support efficient select queries. In addition to these three structures, we also implement other two indexing structures based on RRR and SD Vector, respectively, we will henceforth call these two RRR-based and SDV-based indexing structure. We will introduce all the five indexing structures in this section.
 
 \bigskip
 \bigskip
