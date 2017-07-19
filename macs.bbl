@@ -84,6 +84,11 @@ V.~Raman J.~I.~Munro.
   planar graphs.
 \newblock {\em 38th FOCS}, pages 118--126, 1997.
 
+\bibitem{metis-lib}
+George Karypis.
+\newblock {\em METIS Graph Partitioning Library}.
+\newblock Available at \url{http://glaros.dtc.umn.edu/gkhome/metis/}.
+
 \bibitem{compact-representation}
 Daniel K.Blandfor, Guy~E. Blelloch, and Ian~A. Ksh.
 \newblock Compact representations of separable graphs.

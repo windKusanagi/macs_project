@@ -27,7 +27,7 @@
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {3.2}Post Processing}{18}
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {3.3}Indexing Structures}{20}
+\contentsline {section}{\numberline {3.3}Indexing Structures}{21}
 \contentsline {chapter}{\numberline {Chapter 4}Experiments and Evaluation}{26}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
