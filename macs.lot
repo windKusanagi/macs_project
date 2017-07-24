@@ -6,8 +6,8 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {Table 4.1}{\ignorespaces Test graphs used in our experiment }}{30}
-\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges}}{31}
+\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges. The columns 'METIS' and 'METIS-CF' indicate that it does not perform the child flipping process and it performs the child flipping process, respectively.}}{31}
 \contentsline {table}{\numberline {Table 4.3}{\ignorespaces The space cost of different indexing structures. Space is in bits per edge.}}{32}
-\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS, the time cost is measured by millisecond}}{33}
-\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond}}{34}
+\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS. The time cost is measured in millisecond}}{33}
+\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond. The column 'SD(DF)' means we do not encode the degree of each vertex when building the adjacency table, and then use SD Vector to build indexing structure on it.}}{34}
 \addvspace {10\p@ }

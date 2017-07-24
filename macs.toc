@@ -23,11 +23,11 @@
 \contentsline {chapter}{\numberline {Chapter 3}Compressed Representation of Separable Graphs}{12}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {3.1}Building an Edge Separator Tree}{12}
+\contentsline {section}{\numberline {3.1}Building an Edge Separator Tree}{13}
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {3.2}Post Processing}{18}
+\contentsline {section}{\numberline {3.2}Post Processing}{19}
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {3.3}Indexing Structures}{21}
+\contentsline {section}{\numberline {3.3}Indexing Structures}{22}
 \contentsline {chapter}{\numberline {Chapter 4}Experiments and Evaluation}{27}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

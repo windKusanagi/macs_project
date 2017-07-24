@@ -65,31 +65,34 @@
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Adjacency Tables}{11}}
 \citation{compact-representation}
+\citation{compact-representation}
 \@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 3}Compressed Representation of Separable Graphs}{12}}
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Building an Edge Separator Tree}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Building an Edge Separator Tree}{13}}
 \@writefile{lof}{\contentsline {figure}{\numberline {Figure 3.1}{\ignorespaces An example of a partition process of using edge separators}}{13}}
-\citation{metis-lib}
 \@writefile{lof}{\contentsline {figure}{\numberline {Figure 3.2}{\ignorespaces An example of edge separator tree}}{14}}
+\citation{metis-lib}
 \citation{Gamma}
 \citation{compact-representation}
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Building the edge separator tree. The variables $V_{a},\ V_{b}$ represent the vertex set of two subgraphs, respectively. The $findEdgeSeparator$ function exams the original graph and the partitioning result to determine the edge separator. The $separatorTree$ function builds the tree-like structure based on the partitioning result.}}{16}}
 \citation{compact-representation}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Post Processing}{18}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Post Processing}{19}}
 \citation{compact-representation}
 \citation{compact-representation}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Indexing Structures}{21}}
-\citation{RRR}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Indexing Structures}{22}}
 \@writefile{lof}{\contentsline {figure}{\numberline {Figure 3.3}{\ignorespaces The architecture of the $indirect$ indexing structure}}{24}}
+\citation{RRR}
 \citation{Elias}
 \citation{Fano}
 \citation{Practical-Entropy}
+\citation{compact-representation}
 \citation{sdsl}
+\citation{compact-representation}
 \@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 4}Experiments and Evaluation}{27}}
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{lof}{\addvspace {10\p@ }}
@@ -114,13 +117,14 @@
 \@writefile{lot}{\contentsline {table}{\numberline {Table 4.1}{\ignorespaces  Test graphs used in our experiment }}{30}}
 \newlabel{graph-list}{{4.1}{30}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.2}Experiment Result}{30}}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges}}{31}}
+\citation{compact-representation}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges. The columns 'METIS' and 'METIS-CF' indicate that it does not perform the child flipping process and it performs the child flipping process, respectively.}}{31}}
 \newlabel{compact-performance}{{4.2}{31}}
 \@writefile{lot}{\contentsline {table}{\numberline {Table 4.3}{\ignorespaces The space cost of different indexing structures. Space is in bits per edge.}}{32}}
 \newlabel{my-label}{{4.3}{32}}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS, the time cost is measured by millisecond}}{33}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS. The time cost is measured in millisecond}}{33}}
 \newlabel{my-label}{{4.4}{33}}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond}}{34}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond. The column 'SD(DF)' means we do not encode the degree of each vertex when building the adjacency table, and then use SD Vector to build indexing structure on it.}}{34}}
 \newlabel{my-label}{{4.5}{34}}
 \citation{compact-representation}
 \@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 5}Conclusion and Future Work}{35}}
