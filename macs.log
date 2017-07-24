@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  24 JUL 2017 16:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  24 JUL 2017 18:55
 entering extended mode
 **./macs.tex
 (macs.tex
@@ -806,11 +806,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 425.
 
-[31] [32] [33] [34]
+[31] [32] [33] [34] [35]
 Chapter 5.
-[35
+[36
 
-] (macs.bbl [36] [37
+] (macs.bbl [37] [38
 
 
 ]
@@ -825,7 +825,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 130--134
 nk / soc / ghuck /
  []
 
-) [38] (macs.aux)
+) [39] (macs.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -837,7 +837,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  4696 strings out of 493328
  67057 string characters out of 3130507
- 168418 words of memory out of 3000000
+ 167418 words of memory out of 3000000
  8115 multiletter control sequences out of 15000+200000
  12919 words of font info for 49 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -861,9 +861,9 @@ pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmti8.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmtt12.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on macs.pdf (45 pages, 359104 bytes).
+Output written on macs.pdf (46 pages, 360949 bytes).
 PDF statistics:
- 221 PDF objects out of 1000 (max. 8388607)
+ 224 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

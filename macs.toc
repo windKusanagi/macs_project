@@ -34,6 +34,6 @@
 \contentsline {section}{\numberline {4.1}Experiment Setup}{27}
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {4.2}Experiment Result}{30}
-\contentsline {chapter}{\numberline {Chapter 5}Conclusion and Future Work}{35}
+\contentsline {chapter}{\numberline {Chapter 5}Conclusions and Future Work}{36}
 \addvspace {10\p@ }
-\contentsline {chapter}{Bibliography}{37}
+\contentsline {chapter}{Bibliography}{38}

@@ -82,7 +82,7 @@ A considerable strategy to save the space when representing graphs is taking adv
 \bigskip
 
 
-In this project, we are interested in improving a compact representation mechanism for separable graphs presented by Blandford $et \ al.$~\cite{compact-representation}, in which the authors proposed an approach to represent separable graphs compactly based on an adjacency list representation. Their representation used $O(n)$ bits if the input graph has a vertex separator of size $O(n^{c})$, where $n$ is the number of vertexes in this graph and $c$ is a constant in (0,1), meanwhile using constant time to support degree or adjacency query, as well as constant time per neighbour for neighbour listing queries (They took advantage of $O(\lg n)$-bit parallelism computation to access $\Theta(\lg n)$ consecutive bits in one operation). For graphs with small separators, their representation achieved good compression ratios, and even for graphs that were not strictly separable, their representation still worked well because the separable components in those graphs can be compressed. In their paper, they provided a detailed description for compressing the graph by building two structures: the adjacency table and the root-find structure, which used vertex separators to encode the graph into a shadow adjacency table, and to support query operations in constant time. But in their experimental studies, they implemented the data structure using edge separators instead of vertex separators, which means the shadow label and root-find structure were not needed. This simplification is needed because these two data structures are not practical. In this project, we implemented the data structure by using edge separators, and conducted experiments on it.
+In this project, we are interested in improving a compact representation mechanism for separable graphs presented by Blandford $et \ al.$~\cite{compact-representation}, in which the authors proposed an approach to represent separable graphs compactly based on an adjacency list representation. Their representation used $O(n)$ bits if the input graph has a vertex separator of size $O(n^{c})$, where $n$ is the number of vertexes in this graph and $c$ is a constant in (0,1), meanwhile using constant time to support degree or adjacency queries, as well as constant time per neighbour for neighbour listing queries (They took advantage of $O(\lg n)$-bit parallelism computation to access $\Theta(\lg n)$ consecutive bits in one operation). For graphs with small separators, their representation achieved good compression ratios, and even for graphs that were not strictly separable, their representation still worked well because the separable components in those graphs can be compressed. In their paper, they provided a detailed description for compressing the graph by building two structures: the adjacency table and the root-find structure, which used vertex separators to encode the graph into a shadow adjacency table, and to support query operations in constant time. But in their experimental studies, they implemented the data structure using edge separators instead of vertex separators, which means the shadow label and root-find structure were not needed. This simplification is needed because these two data structures are not practical. In this project, we implemented the data structure by using edge separators, and conducted experiments on it.
 
 \bigskip
 \bigskip
@@ -493,7 +493,7 @@ bcsstk31 &    3.7   &    20.2    &   20.7   &     35.4    &   39.2  &  27.9     
 
 \bigskip
 
-The experimental result shows that the $direct$ and $semi direct$ indexing structures give the fastest query time, but they are still slower than the array-based adjacency list representation. It is not surprising because the array-based representation has good spacial locality, which means the edges of a vertex are adjacent in memory and be loaded into cache as an array. In addition to that, the array-based representation does not need to decode the list, and hence, the array-based representation is faster than others. The $semi-direct$ indexing structure uses half of the space when compared to $direct$ indexing structure while requiring little extra time on query. $Indirect$ indexing structure shows good space usage but it is not very efficient in query, because it needs to decode a "subblock" rather than an adjacency list. The SD Vector-based structure outperforms the RRR-based structure in both space usage and time cost in all the test graphs, and when compared to the $Indeirect$ indexing structure, the SD Vector-based structure is more efficient in queries while requiring little more space.   
+The experimental result shows that the $direct$ and $semi direct$ indexing structures give the fastest query time, but they are still slower than the array-based adjacency list representation. It is not surprising because the array-based representation has good spacial locality, which means the edges of a vertex are adjacent in memory and be loaded into cache as an array. In addition to that, the array-based representation does not need to decode the list, and hence, the array-based representation is faster than others. The $semi-direct$ indexing structure uses half of the space when compared to $direct$ indexing structure while requiring little extra time on queries. $Indirect$ indexing structure shows good space usage but it is not very efficient in queries, because it needs to decode a "subblock" rather than an adjacency list. The SD Vector-based structure outperforms the RRR-based structure in both space usage and time cost in all the test graphs, and when compared to the $Indeirect$ indexing structure, the SD Vector-based structure is more efficient in queries while requiring little more space.   
 
 \bigskip
 \begin{table}[ht]
@@ -521,19 +521,22 @@ b1*          & 3.7   &  33.0  &  20.7  &  4.2  &   20.7  &   3.6  &  35.4  &  3.
 
 \bigskip
 
-Table 4.5 illustrates a summary of performance of different indexing structures associated with the encoded adjacency table built after child-flipping process. The space for each mechanism contains the space for the encoded adjacency list, the space for degree and the space for the indexing structure. We can see that the $direct$ indexing structure gives the fastest query speed while requiring the biggest space, $indirect$ indexing structure use least space while needing more time on query, the SD Vecter-based indexing structure presents a good trade-off between the space usage and query efficiency. To ensure the degree queries can be completed in constant time, we encode the degree of each vertex at the beginning of each corresponding adjacency list, but for the adjacency queries and neighbouring list queries, the degree information is not necessary. In the last two columns (under the 'SD(DF)' column, 'SD(DF)' means 'SD Vector(degree-free)') of the Table 4.5, we present a set of time and space data for conducting the BFS and building the adjacency table, respectively.    
-
-
-
-
-\chapter{Conclusion and Future Work}
-
-In this project, we focused on how to represent a separable graph compactly while supporting efficient query. Our theoretical basis came from a previous work conducted by Blandford $et \ al.$~\cite{compact-representation}, which provided the theory of using vertex separators to compactly represent the graph. The representation takes $O(n)$ bits, meanwhile using constant time on degree or adjacency query, and neighbour listing for one vertex in constant time per neighbour. 
+Table 4.5 illustrates a summary of performance of different indexing structures associated with the encoded adjacency table built after child-flipping process. The space for each mechanism contains the space for the encoded adjacency list, the space for degree and the space for the indexing structure. We can see that the $direct$ indexing structure gives the fastest query speed while requiring the biggest space, $indirect$ indexing structure use least space while needing more time on queries, the SD Vecter-based indexing structure presents a good trade-off between the space usage and query efficiency. 
 
 \bigskip
 \bigskip
 
-We first made a survey on the researches related to succinct data structure on planar graph, as well as some succinct representation on bit vector like RRR. Then focused on the representation of separable graph. 
+To ensure the degree queries can be completed in constant time, we encode the degree of each vertex at the beginning of each corresponding adjacency list, but for the adjacency queries and neighbouring list queries, the degree information is not necessary. In the last two columns (under the 'SD(DF)' column, 'SD(DF)' means 'SD Vector(degree-free)') of the Table 4.5, we present the time and the space of conducting the BFS algorithm and building the adjacency tables, respectively. We can see that the space and time are further saved when the degree information is not encoded, this is because the neighbouring list queries needed by the BFS algorithm (require decoding the adjacency list for each vertex) is more efficient without a degree encoded at the beginning of each adjacency list. But note that although the absence of the degree information may reduce the space to encode the adjacency table and the time for adjacency and neighbouring list queries, it can not make the degree queries be completed in constant time, because it needs to decode the entire adjacency list first, then it can know the number of neighbours in that list. The reason why we only chose to use SD Vector-based indexing structure to demonstrate the trade-off of the space to encode the adjacency and the time to conduct different queries on graphs caused by whether encoding the degree information into the adjacency table is because: 1) our experiment demonstrates that the SD Vector-based indexing structure outperforms the RRR-based indexing structure greatly; 2) the $direct$ and $semi-direct$ indexing structures exceed our space bound; 3) the degree information for each vertex is necessary for $indirect$ indexing structure.  
+
+
+\chapter{Conclusions and Future Work}
+
+In this project, we focused on how to represent a separable graph compactly while supporting efficient queries. Our theoretical basis came from a previous work conducted by Blandford $et \ al.$~\cite{compact-representation}, which provided the theory of using vertex separators to compactly represent the graph. The representation takes $O(n)$ bits, meanwhile using constant time to support degree or adjacency queries, and neighbour listing for one vertex in constant time per neighbour. 
+
+\bigskip
+\bigskip
+
+We first conducted a survey on the research related to succinct data structure on planar graphs, as well as some succinct representations on bit vector like RRR. Then we focused on the representation of separable graph. 
 
 \bigskip
 \bigskip
@@ -543,17 +546,17 @@ Next, we used the METIS$\_$API to partition the graph by removing some amount of
 \bigskip
 \bigskip
 
-Then we implemented several indexing structures to support adjacency queries, degree queries and neighbourhood queries in constant time. Besides the three indexing structure mentioned in Blanddfor's work, we implemented other two structure based on succinct representation on bit vector.
+Then we implemented several indexing structures to support adjacency queries, degree queries and neighbourhood queries in constant time. Besides the three indexing structure mentioned in the work of Blanddford $et \ al.$, we implemented other two structures based on succinct representations on bit vectors.
 
 \bigskip
 \bigskip
 
-Finally we conducted some experiments to measure the performance of our representation. The experiments demonstrated the trade-off between the space cost to encode the adjacency table and the time to construct the data structure, as well as the trade-off between the space cost and time of queries by different indexing structures. Compared to the array-based adjacency list representation, our implementation reduces space usage by almost an order of magnitude, while supporting Bread-first-search in acceptable running time.
+Finally we conducted some experiments to measure the performance of our representation. The experiments demonstrated the trade-off between the space cost to encode the adjacency table and the time to construct the data structure, as well as the trade-off between the space cost and time of queries by different indexing structures. Compared to the array-based adjacency list representation, our implementation reduces space usage by almost an order of magnitude, while supporting bread-first search in acceptable running time.
 
 \bigskip
 \bigskip
 
-For the future work, we intend to implement the separator tree by using the vertex separator, and apply different coding schemes like delta~\cite{Elias}, Huffman coding, etc. Besides that, we can try to design and implement more indexing structures to investigate more about the time/space trade-off.
+For the future work, we intend to implement the separator tree by using the vertex separators, and apply different coding schemes like delta~\cite{Elias}, Huffman coding, etc. Besides that, we can try to design and implement more indexing structures to investigate more about the time/space trade-offs.
  
 \bibliographystyle{plain}
 \bibliography{bib}
