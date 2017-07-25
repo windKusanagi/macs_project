@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  24 JUL 2017 18:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.5.27)  25 JUL 2017 18:53
 entering extended mode
 **./macs.tex
 (macs.tex
@@ -780,8 +780,11 @@ File: Figures/separatorTree.png Graphic file (type png)
 Package pdftex.def Info: Figures/separatorTree.png used on input line 228.
 (pdftex.def)             Requested size: 346.89732pt x 260.31616pt.
  [14 <./Figures/separatorTree.png>] [15]
-[16] [17] [18] [19] [20] [21] [22] [23]
-<Figures/indirect.png, id=115, 618.31pt x 373.395pt>
+[16] [17] [18] [19] [20]
+Underfull \vbox (badness 5417) has occurred while \output is active []
+
+ [21]
+[22] [23] <Figures/indirect.png, id=115, 618.31pt x 373.395pt>
 File: Figures/indirect.png Graphic file (type png)
 
 <use Figures/indirect.png>
@@ -814,13 +817,13 @@ Chapter 5.
 
 
 ]
-Underfull \hbox (badness 3417) in paragraph at lines 130--134
+Underfull \hbox (badness 3417) in paragraph at lines 139--143
 []\OT1/cmr/m/n/12 svn2github.  \OT1/cmr/m/it/12 Cy-toscape GPU lay-out\OT1/cmr/
 m/n/12 .  Avail-able at $\OT1/cmtt/m/n/12 https : / / github .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--134
+Underfull \hbox (badness 10000) in paragraph at lines 139--143
 \OT1/cmtt/m/n/12 com / svn2github / cytoscape / tree / master / csplugins / tru
 nk / soc / ghuck /
  []
@@ -841,7 +844,7 @@ Here is how much of TeX's memory you used:
  8115 multiletter control sequences out of 15000+200000
  12919 words of font info for 49 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,12n,28p,1846b,2221s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 39i,12n,28p,1840b,2221s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmbx12.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/john/AppData/Local/Programs/Mi
@@ -861,7 +864,7 @@ pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmti8.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmtt12.pfb><C:/Users/john/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on macs.pdf (46 pages, 360949 bytes).
+Output written on macs.pdf (46 pages, 360555 bytes).
 PDF statistics:
  224 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

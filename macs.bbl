@@ -9,122 +9,131 @@
 {\em RIACS GRIDS}.
 \newblock Available at \url{http://riacs.edu/pub/grids/}.
 
-\bibitem{Barbay}
-He~M Barbay~J, Castelli Aleardi~L and Munro JI.
-\newblock Succinct representation of labeled graphs.
-\newblock {\em Algorithmica 62}, pages 224--257, 2012.
-
 \bibitem{Scotch}
-Dave Beckett.
+D.~Beckett.
 \newblock {\em Internet Parallel Computing Archive}.
 \newblock Available at
   \url{http://wotug.org/parallel/libraries/communication/scotch/Graphs/}.
 
-\bibitem{Gavoille}
-Gavoille C and Hanusse N.
-\newblock On compact encoding of pagenumber.
-\newblock {\em Discret Math Theor Comput Sci 10(3)}, 2008.
+\bibitem{compact-representation}
+D.~K. Blandfor, G.~E. Blelloch, and I.~A. Ksh.
+\newblock Compact representations of separable graphs.
+\newblock {\em Proceedings of ACM-SIAM Symposium on Discrete Algorithms}, page
+  679–688, 2003.
 
-\bibitem{3DMESH}
-C.Walshaw.
-\newblock {\em Graph partitioning archive}.
-\newblock Available at \url{http://www.gre.ac.uk/~c.walshaw/partition/}.
+\bibitem{succinct-representation}
+G.~E. Blelloch and A.~Farzan.
+\newblock Succinct representations of separable graphs.
+\newblock {\em Proceedings of Amir A, Parida L (eds) CPM}, page 138–150,
+  2010.
+
+\bibitem{Chiang}
+Y.~T. Chiang and C.~C. Lin.
+\newblock Orderly spanning trees with applications to graph encoding and graph
+  drawing.
+\newblock {\em ACM-SIAM Symposium on Discrete Algorithms}, pages 506--515,
+  2001.
 
 \bibitem{Practical-Entropy}
 K.~Sadakane D.~Okanohara.
 \newblock Practical entropy-compressed rank/select dictionary.
-\newblock {\em Proceedings of ALENEX}, 2007.
+\newblock {\em Algorithm Engineering and Experiments}, 2007.
 
 \bibitem{Elias}
 P.~Elias.
 \newblock Efficient storage and retrieval by content and address of static
   files.
-\newblock {\em Journal of the ACM}, 1974.
+\newblock {\em Proceedings of Journal of the ACM}, 1974.
 
 \bibitem{Gamma}
 P.~Elias.
 \newblock Universal codeword sets and representations of the integers.
-\newblock {\em IEEE Transactions on Information Theory}, (21):194--203, 1975.
+\newblock {\em Proceedings of IEEE Transactions on Information Theory},
+  (21):194--203, 1975.
 
 \bibitem{Fano}
 R.~Fano.
 \newblock The number of bits required to implement an associative memory.
-\newblock {\em Computer Structures Group, Project MAC, MIT}, 1971.
-
-\bibitem{Jacobson}
-Jacobson G.
-\newblock Space-efficient static trees and graphs.
-\newblock {\em 30th annual IEEE symposium on foundations of computer science},
-  pages 549--554, 1989.
+\newblock {\em Proceedings of Computer Structures Group, Project MAC, MIT},
+  1971.
 
 \bibitem{k-page-def}
-Zvi Galil, Ravi Kannan, W.~P. Thurston, and Endre Szemeredi.
+Z.~Galil, R.~Kannan, W.~P. Thurston, and E.~Szemeredi.
 \newblock On nontrivial separators for k-page graphs and simulations by
   nondeterministic one-tape turing machines.
-\newblock {\em Journal of Computer and System Sciences}, pages 134--149, 1989.
+\newblock {\em Proceedings of Journal of Computer and System Sciences}, pages
+  134--149, 1989.
 
-\bibitem{succinct-representation}
-Blelloch GE and Farzan A.
-\newblock Succinct representations of separable graphs.
-\newblock {\em Amir A, Parida L (eds) CPM}, page 138–150, 2010.
-
-\bibitem{Geary}
-Raman~R Geary~RF, Rahman~N.
-\newblock A simple optimal representation for balanced parentheses.
-\newblock {\em Theor Comput Sci 368}, page 231–246, 2006.
+\bibitem{Gavoille}
+C.~Gavoille and N.~Hanusse.
+\newblock On compact encoding of pagenumber.
+\newblock {\em Proceedings of Discret Math Theor Comput Sci 10(3)}, 2008.
 
 \bibitem{sdsl}
-Simon Gog.
+S.~Gog.
 \newblock {\em SDSL - Succinct Data Structure Library}.
 \newblock Available at \url{https://github.com/simongog/sdsl-lite}.
+
+\bibitem{Barbay}
+M.~He J.~Barbay, A. L.~Castelli and J.~I. Munro.
+\newblock Succinct representation of labeled graphs.
+\newblock {\em Algorithmica 62}, pages 224--257, 2012.
 
 \bibitem{Munro}
 V.~Raman J.~I.~Munro.
 \newblock Succinct representation of balanced parentheses, static trees and
   planar graphs.
-\newblock {\em 38th FOCS}, pages 118--126, 1997.
+\newblock {\em Proceedings of 38th FOCS}, pages 118--126, 1997.
+
+\bibitem{Jacobson}
+G.~J. Jacobson.
+\newblock Space-efficient static trees and graphs.
+\newblock {\em Proceedings of 30th annual IEEE symposium on foundations of
+  computer science}, pages 549--554, 1989.
 
 \bibitem{metis-lib}
-George Karypis.
+G.~Karypis.
 \newblock {\em METIS Graph Partitioning Library}.
 \newblock Available at \url{http://glaros.dtc.umn.edu/gkhome/metis/}.
-
-\bibitem{compact-representation}
-Daniel K.Blandfor, Guy~E. Blelloch, and Ian~A. Ksh.
-\newblock Compact representations of separable graphs.
-\newblock {\em Proc. SODA, ACM/SIAM}, page 679–688, 2003.
 
 \bibitem{Nested-Dissection}
 R.~J. Lipton, D.~J. Rose, and R.~E. Tarjan.
 \newblock Generalized nested dissection.
-\newblock {\em SIAM Journal on Numerical Analysis}, (16):346--358, 1979.
+\newblock {\em Proceedings of SIAM Journal on Numerical Analysis},
+  (16):346--358, 1979.
+
+\bibitem{separator-theorem}
+R.~J. Liton and R.~E. Tarjan.
+\newblock A separator theorem for planar graphs.
+\newblock {\em Proceedings of SIAM J.Applied Mathematics}, (16):177--189, 1979.
 
 \bibitem{separators-sphere-packing}
-G.~L. Miller, S.-H. Teng, W.~P. Thurston, and S.~A.Vavasis.
+G.~L. Miller, S.~H. Teng, W.~P. Thurston, and S.~A. Vavasis.
 \newblock Separators for sphere-packings and nearest neighbor graphs.
-\newblock {\em Journal of the ACM}, (44):1--29, 1997.
+\newblock {\em Proceedings of Journal of the ACM}, (44):1--29, 1997.
 
 \bibitem{SD-vector}
 D.~Okanohara and K.~Sadakane.
 \newblock Practical entropy-compressed rank/select dictionary.
-\newblock {\em Proceedings of ALENEX}, 2007.
+\newblock {\em Algorithm Engineering and Experiments}, 2007.
+
+\bibitem{Chuang}
+X.~He R.~C. N.~Chuang, A.~Garg and M.~Y. Kao.
+\newblock Compact encodings of planar graphs via canonical orderings and
+  multiple parentheses.
+\newblock {\em Proceedings of Lecture Notes in Computer Science, 1443}, pages
+  118--129, 1998.
+
+\bibitem{Geary}
+R.~Raman R.~F.~Geary, N.~Rahman.
+\newblock A simple optimal representation for balanced parentheses.
+\newblock {\em Proceedings of Theor Comput Sci 368}, page 231–246, 2006.
 
 \bibitem{RRR}
 R.~Raman, V.~Raman, and S.~Rao.
 \newblock Succinct indexable dictionaries with applications to representations
   of k-ary trees and multi-sets.
-\newblock {\em SODA}, 2002.
-
-\bibitem{Chuang}
-X.He R.C.N.Chuang, A.Garg and M.Y.Kao.
-\newblock Compact encodings of planar graphs via canonical orderings and
-  multiple parentheses.
-\newblock {\em Lecture Notes in Computer Science, 1443}, pages 118--129, 1998.
-
-\bibitem{separator-theorem}
-R.J.Liton and R.E. Tarjan.
-\newblock A separator theorem for planar graphs.
-\newblock {\em SIAM J.Applied Mathematics}, (16):177--189, 1979.
+\newblock {\em ACM-SIAM Symposium on Discrete Algorithms}, 2002.
 
 \bibitem{Cytoscape}
 svn2github.
@@ -132,10 +141,9 @@ svn2github.
 \newblock Available at
   \url{https://github.com/svn2github/cytoscape/tree/master/csplugins/trunk/soc/ghuck/GpuGraphLayoutPlugin/sample_graphs}.
 
-\bibitem{Chiang}
-Y.T.Chiang and C.C.Lin.
-\newblock Orderly spanning trees with applications to graph encoding and graph
-  drawing.
-\newblock {\em In SODA}, pages 506--515, 2001.
+\bibitem{3DMESH}
+C.~Walshaw.
+\newblock {\em Graph partitioning archive}.
+\newblock Available at \url{http://www.gre.ac.uk/~c.walshaw/partition/}.
 
 \end{thebibliography}
