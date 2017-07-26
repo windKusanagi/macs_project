@@ -9,7 +9,7 @@
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {1.1}Related Work}{4}
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {1.2}Outline}{6}
+\contentsline {section}{\numberline {1.2}Outline}{7}
 \contentsline {chapter}{\numberline {Chapter 2}Preliminaries}{8}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -20,7 +20,7 @@
 \contentsline {section}{\numberline {2.3}Bit Vectors}{10}
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {2.4}Adjacency Tables}{11}
-\contentsline {chapter}{\numberline {Chapter 3}Compressed Representation of Separable Graphs}{12}
+\contentsline {chapter}{\numberline {Chapter 3}Compressed Representations of Separable Graphs}{12}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {3.1}Building an Edge Separator Tree}{13}
@@ -28,12 +28,12 @@
 \contentsline {section}{\numberline {3.2}Post Processing}{19}
 \addvspace {10\p@ }
 \contentsline {section}{\numberline {3.3}Indexing Structures}{22}
-\contentsline {chapter}{\numberline {Chapter 4}Experiments and Evaluation}{27}
+\contentsline {chapter}{\numberline {Chapter 4}Experiments and Evaluation}{28}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {4.1}Experiment Setup}{27}
+\contentsline {section}{\numberline {4.1}Experiment Setup}{28}
 \addvspace {10\p@ }
-\contentsline {section}{\numberline {4.2}Experiment Result}{30}
-\contentsline {chapter}{\numberline {Chapter 5}Conclusions and Future Work}{36}
+\contentsline {section}{\numberline {4.2}Experiment Result}{31}
+\contentsline {chapter}{\numberline {Chapter 5}Conclusions and Future Work}{37}
 \addvspace {10\p@ }
-\contentsline {chapter}{Bibliography}{38}
+\contentsline {chapter}{Bibliography}{39}

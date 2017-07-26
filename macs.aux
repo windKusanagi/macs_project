@@ -16,13 +16,14 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \citation{separator-theorem}
+\citation{separator-theorem}
+\citation{compact-representation}
 \citation{compact-representation}
 \citation{Jacobson}
 \citation{k-page-def}
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Related Work}{4}}
 \citation{Munro}
-\citation{Geary}
 \citation{Chuang}
 \citation{Chiang}
 \citation{Barbay}
@@ -44,7 +45,8 @@
 \@writefile{lot}{\contentsline {table}{\numberline {Table 1.1}{\ignorespaces A summary of performance of various of succinct planar graph representations. Notation: "Pla*" indicates planar graphs, "k-p*" indicates k-page graphs, "Tri*" indicates planar triangulations, "Sep*" indicates separable graphs, $n$ and $m$ denote the numbers of vertexes and edges in Graph $G$, respectively, $i$ is the number of isolated vertexes in $G$, $\epsilon $ is an arbitrary positive constant, $\tau $ = min\{ $\mathop {\mathgroup \symoperators lg}\nolimits k / \mathop {\mathgroup \symoperators lg}\nolimits \mathop {\mathgroup \symoperators lg}\nolimits m, \mathop {\mathgroup \symoperators lg}\nolimits \mathop {\mathgroup \symoperators lg}\nolimits k$\} }}{6}}
 \newlabel{my-label}{{1.1}{6}}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {1.2}Outline}{6}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Outline}{7}}
+\citation{separator-theorem}
 \citation{separator-theorem}
 \citation{separators-sphere-packing}
 \citation{Nested-Dissection}
@@ -54,6 +56,7 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Graph Separators}{8}}
+\citation{compact-representation}
 \citation{compact-representation}
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Queries in Graphs}{9}}
@@ -66,7 +69,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Adjacency Tables}{11}}
 \citation{compact-representation}
 \citation{compact-representation}
-\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 3}Compressed Representation of Separable Graphs}{12}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 3}Compressed Representations of Separable Graphs}{12}}
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -94,13 +97,13 @@
 \citation{compact-representation}
 \citation{sdsl}
 \citation{compact-representation}
-\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 4}Experiments and Evaluation}{27}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 4}Experiments and Evaluation}{28}}
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Experiment Setup}{27}}
-\@writefile{lof}{\contentsline {figure}{\numberline {Figure 4.1}{\ignorespaces The working mechanism of the lookup table}}{28}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Experiment Setup}{28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {Figure 4.1}{\ignorespaces The working mechanism of the lookup table}}{29}}
 \citation{3DMESH}
 \citation{Scotch}
 \citation{RIACS}
@@ -115,21 +118,21 @@
 \citation{Matrix}
 \citation{Matrix}
 \@writefile{toc}{\addvspace {10\p@ }}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.1}{\ignorespaces  Test graphs used in our experiment }}{30}}
-\newlabel{graph-list}{{4.1}{30}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Experiment Result}{30}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.1}{\ignorespaces  Test graphs used in our experiment }}{31}}
+\newlabel{graph-list}{{4.1}{31}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Experiment Result}{31}}
 \citation{compact-representation}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges. The columns 'METIS' and 'METIS-CF' indicate that it does not perform the child flipping process and it performs the child flipping process, respectively.}}{31}}
-\newlabel{compact-performance}{{4.2}{31}}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.3}{\ignorespaces The space cost of different indexing structures. Space is in bits per edge.}}{32}}
-\newlabel{my-label}{{4.3}{32}}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS. The time cost is measured in millisecond}}{33}}
-\newlabel{my-label}{{4.4}{33}}
-\@writefile{lot}{\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond. The column 'SD(DF)' means we do not encode the degree of each vertex when building the adjacency table, and then use SD Vector to build an indexing structure on it.}}{34}}
-\newlabel{my-label}{{4.5}{34}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.2}{\ignorespaces The performance of compact mechanisms. Time is in seconds and space is in bits per edge for encoding the edges. The columns 'METIS' and 'METIS-CF' indicate that it does not perform the child flipping process and it performs the child flipping process, respectively.}}{32}}
+\newlabel{compact-performance}{{4.2}{32}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.3}{\ignorespaces The space cost of different indexing structures. Space is in bits per edge.}}{33}}
+\newlabel{my-label}{{4.3}{33}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.4}{\ignorespaces The time performances of different indexing structures to conduct a BFS. The time cost is measured in millisecond}}{34}}
+\newlabel{my-label}{{4.4}{34}}
+\@writefile{lot}{\contentsline {table}{\numberline {Table 4.5}{\ignorespaces Summary of space and time performance. Space is in bits per edge and time is in millisecond. The column 'SD(DF)' means we do not encode the degree of each vertex when building the adjacency table, and then use SD Vector to build an indexing structure on it.}}{35}}
+\newlabel{my-label}{{4.5}{35}}
 \citation{compact-representation}
 \citation{compact-representation}
-\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 5}Conclusions and Future Work}{36}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {Chapter 5}Conclusions and Future Work}{37}}
 \@writefile{toc}{\addvspace {10\p@ }}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -149,16 +152,15 @@
 \bibcite{Fano}{11}
 \bibcite{k-page-def}{12}
 \bibcite{Gavoille}{13}
-\bibcite{Geary}{14}
-\bibcite{sdsl}{15}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{38}}
-\bibcite{Jacobson}{16}
-\bibcite{metis-lib}{17}
-\bibcite{Nested-Dissection}{18}
-\bibcite{separator-theorem}{19}
-\bibcite{separators-sphere-packing}{20}
-\bibcite{Munro}{21}
-\bibcite{SD-vector}{22}
-\bibcite{RRR}{23}
-\bibcite{Cytoscape}{24}
-\bibcite{3DMESH}{25}
+\bibcite{sdsl}{14}
+\bibcite{Jacobson}{15}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{39}}
+\bibcite{metis-lib}{16}
+\bibcite{Nested-Dissection}{17}
+\bibcite{separator-theorem}{18}
+\bibcite{separators-sphere-packing}{19}
+\bibcite{Munro}{20}
+\bibcite{SD-vector}{21}
+\bibcite{RRR}{22}
+\bibcite{Cytoscape}{23}
+\bibcite{3DMESH}{24}

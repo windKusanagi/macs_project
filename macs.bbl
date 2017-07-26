@@ -76,11 +76,6 @@ C.~Gavoille and N.~Hanusse.
 \newblock On compact encoding of pagenumber.
 \newblock {\em Proceedings of Discret Math Theor Comput Sci 10(3)}, 2008.
 
-\bibitem{Geary}
-R.~F. Geary, N.~Rahman, and R.~Raman.
-\newblock A simple optimal representation for balanced parentheses.
-\newblock {\em Proceedings of Theor Comput Sci 368}, page 231–246, 2006.
-
 \bibitem{sdsl}
 S.~Gog.
 \newblock {\em SDSL - Succinct Data Structure Library}.
